@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.jiyun.yingyuxinyuan.app.App;
+
 import butterknife.ButterKnife;
 
 /**
@@ -23,10 +25,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        App.context = this;
         init();
         loadDate();
     }
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        App.context = null;
+    }
     /**
      * 加载布局
      *

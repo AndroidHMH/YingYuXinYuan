@@ -8,19 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jiyun.yingyuxinyuan.R;
+import com.jiyun.yingyuxinyuan.base.BaseFragment;
 
 /**
  * 预告页面
  */
-public class PreviewFragment extends Fragment {
-
-
+public class PreviewFragment extends BaseFragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_preview, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_preview;
+    }
+
+    @Override
+    protected void init() {
+
+    }
+
+    @Override
+    protected void loadDate() {
+
     }
 
 }

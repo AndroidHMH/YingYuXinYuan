@@ -1,5 +1,6 @@
 package com.jiyun.yingyuxinyuan.app;
 
+import android.app.Activity;
 import android.app.Application;
 
 /**
@@ -10,4 +11,5 @@ import android.app.Application;
  * 全局的Application
  */
 public class App extends Application {
+    public static Activity context;
 }

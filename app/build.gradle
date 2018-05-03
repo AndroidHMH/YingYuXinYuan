@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.+'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:support-v4:27.1.1'
@@ -27,13 +27,21 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'    //Butter Knife依赖
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'    //Retrofit的依赖
-    implementation 'com.google.code.gson:gson:2.8.2'    // Gson解析
-    implementation 'com.android.support:recyclerview-v7:27.+'    //RecyclerView
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'    //Retrofit的Gson解析依赖
-    implementation 'com.github.bumptech.glide:glide:4.6.1'     //解析图片 Glide
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //Butter Knife依赖
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    //Retrofit的依赖
+    implementation 'com.google.code.gson:gson:2.8.2'
+    // Gson解析
+    implementation 'com.android.support:recyclerview-v7:27.+'
+    //RecyclerView
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //Retrofit的Gson解析依赖
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    //解析图片 Glide
     compile 'io.reactivex.rxjava2:rxjava:2.1.10'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.2'                //RxJava2的依赖
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    //RxJava2的依赖
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation files('libs/BASE64.jar')
 }

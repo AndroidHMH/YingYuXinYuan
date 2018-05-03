@@ -8,23 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jiyun.yingyuxinyuan.R;
+import com.jiyun.yingyuxinyuan.base.BaseFragment;
 
 /**
  * 宝典页面
  */
-public class TreasureFragment extends Fragment {
-
-
-    public TreasureFragment() {
-        // Required empty public constructor
-    }
-
+public class TreasureFragment extends BaseFragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_treasure, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_treasure;
+    }
+
+    @Override
+    protected void init() {
+
+    }
+
+    @Override
+    protected void loadDate() {
+
     }
 
 }
