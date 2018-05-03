@@ -23,8 +23,8 @@ import butterknife.OnClick;
  * 首页
  */
 public class MainActivity extends BaseActivity {
-    @BindView(R.id.recycler)
-    RelativeLayout recycler;
+    @BindView(R.id.relative)
+    RelativeLayout relative;
     @BindView(R.id.title_icon_iv)
     ImageView titleIconIv;
     @BindView(R.id.title_title_tv)
@@ -87,13 +87,13 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.main_teacher_btn:
-                recycler.setVisibility(View.VISIBLE);
+                relative.setVisibility(View.VISIBLE);
                 setCreateView(R.id.main_content, TeacherFragment.class);
                 mainTeacherIv.setImageResource(R.mipmap.home_master_active);
                 mainTeacherTv.setTextColor(R.color.colorPrimary);
                 break;
             case R.id.main_homework_btn:
-                recycler.setVisibility(View.VISIBLE);
+                relative.setVisibility(View.VISIBLE);
                 setCreateView(R.id.main_content, HomeworkFragment.class);
                 mainHomeworkIv.setImageResource(R.mipmap.home_work_active);
                 mainHomeworkTv.setTextColor(R.color.colorPrimary);
@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.main_myself_btn:
                 setCreateView(R.id.main_content, PersonFragment.class);
-                recycler.setVisibility(View.GONE);
+                relative.setVisibility(View.GONE);
                 mainMyselfIv.setImageResource(R.mipmap.home_myself_active);
                 mainMyselfTv.setTextColor(R.color.colorPrimary);
                 mainMyselfIv.setImageResource(R.mipmap.home_myself_normal);
