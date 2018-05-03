@@ -82,16 +82,14 @@ public class MainActivity extends BaseActivity {
             case R.id.title_message_iv:
                 break;
             case R.id.main_teacher_btn:
+                setTeacherView();
                 setCreateView(R.id.main_content, TeacherFragment.class);
-                mainTeacherIv.setImageResource(R.mipmap.home_master_active);
-                mainTeacherTv.setTextColor(R.color.colorPrimary);
+
                 break;
             case R.id.main_homework_btn:
+                setHomeworkView();
                 setCreateView(R.id.main_content, HomeworkFragment.class);
-                mainHomeworkIv.setImageResource(R.mipmap.home_work_active);
-                mainHomeworkTv.setTextColor(R.color.colorPrimary);
-                mainTeacherIv.setImageResource(R.mipmap.home_master_normal);
-                mainTeacherTv.setTextColor(R.color.gray);
+
                 break;
             case R.id.main_valuable_btn:
                 break;
@@ -100,5 +98,26 @@ public class MainActivity extends BaseActivity {
             case R.id.main_myself_btn:
                 break;
         }
+    }
+
+    private void setHomeworkView() {
+        mainHomeworkIv.setImageResource(R.mipmap.home_work_active);
+        mainHomeworkTv.setTextColor(R.color.colorPrimary);
+        mainTeacherIv.setImageResource(R.mipmap.home_master_normal);
+        mainTeacherTv.setTextColor(R.color.gray);
+    }
+
+    private void setTeacherView() {
+        mainTeacherIv.setImageResource(R.mipmap.home_master_active);
+        mainTeacherTv.setTextColor(R.color.colorPrimary);
+
+        mainHomeworkIv.setImageResource(R.mipmap.home_work_normal);
+        mainHomeworkTv.setTextColor(R.color.gray);
+
+        mainValuableIv.setImageResource(R.mipmap.home_valuable_normal);
+        mainValuableTv.setTextColor(R.color.gray);
+
+        mainNoticeIv.setImageResource(R.mipmap.home_notice_normal);
+        mainNoticeTv.setTextColor(R.color.gray);
     }
 }
