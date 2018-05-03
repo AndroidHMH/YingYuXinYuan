@@ -8,11 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by asus on 2018/5/3.
  */
 
 public abstract class BaseFragment extends Fragment {
+    Unbinder unbinder;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,6 +28,7 @@ public abstract class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         init();
         loadDate();
+        unbinder = ButterKnife.bind(this, view);
     }
 
     /**
@@ -42,4 +47,10 @@ public abstract class BaseFragment extends Fragment {
      * 统一加载数据
      */
     protected abstract void loadDate();
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

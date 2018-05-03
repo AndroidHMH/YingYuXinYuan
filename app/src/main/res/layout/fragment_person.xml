@@ -1,13 +1,68 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@mipmap/myself_head_bg"
+        >
+        <LinearLayout
+            android:id="@+id/my_linear"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/title_layout"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/default_userimg" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center"
+        android:text="登陆后，享受更多精彩服务"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+     <LinearLayout
+         android:layout_marginTop="30dp"
+         android:layout_marginLeft="20dp"
+         android:layout_marginRight="20dp"
+         android:orientation="horizontal"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+         <Button
+             android:id="@+id/my_resgin"
+             android:layout_width="0dp"
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:text="注册"
+             android:textColor="#fff"
+             android:background="@drawable/shape1"/>
+         <Button
+             android:id="@+id/my_login"
+             android:layout_marginLeft="20dp"
+             android:layout_width="0dp"
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:text="登陆"
+             android:textColor="#fff"
+             android:background="@drawable/shape"/>
+     </LinearLayout>
+
+
+</LinearLayout>

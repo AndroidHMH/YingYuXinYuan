@@ -17,8 +17,6 @@ public class WelcomeActivity extends BaseActivity {
 
     @BindView(R.id.num)
     TextView num;
-    @BindView(R.id.image_start)
-    ImageView start_image;
     private int number = 3;
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable() {
@@ -37,6 +35,7 @@ public class WelcomeActivity extends BaseActivity {
         @Override
         public void run() {
             startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+            finish();
         }
     };
     @Override
