@@ -10,10 +10,7 @@ import android.widget.TextView;
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.fragment.HomeworkFragment;
-import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
-import com.jiyun.yingyuxinyuan.ui.modular.preview.fragment.PreviewFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.teacher.fragment.TeacherFragment;
-import com.jiyun.yingyuxinyuan.ui.modular.treasure.fragment.TreasureFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,115 +76,38 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.title_message_iv, R.id.title_draw_iv, R.id.main_teacher_btn, R.id.main_homework_btn, R.id.main_valuable_btn, R.id.main_notice_btn, R.id.main_myself_btn})
+    @OnClick({R.id.title_message_iv, R.id.main_teacher_btn, R.id.main_homework_btn, R.id.main_valuable_btn, R.id.main_notice_btn, R.id.main_myself_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_message_iv:
                 break;
-            case R.id.title_draw_iv:
-                break;
             case R.id.main_teacher_btn:
                 setTeacherView();
                 setCreateView(R.id.main_content, TeacherFragment.class);
+
                 break;
             case R.id.main_homework_btn:
                 setHomeworkView();
                 setCreateView(R.id.main_content, HomeworkFragment.class);
+
                 break;
             case R.id.main_valuable_btn:
-                setValuableView();
-                setCreateView(R.id.main_content, TreasureFragment.class);
                 break;
             case R.id.main_notice_btn:
-                setNoticeView();
-                setCreateView(R.id.main_content, PreviewFragment.class);
                 break;
             case R.id.main_myself_btn:
-                setMyselfView();
-                setCreateView(R.id.main_content, PersonFragment.class);
                 break;
         }
     }
 
-    private void setMyselfView() {
-        titleDrawIv.setVisibility(View.GONE);
-
-        mainTeacherIv.setImageResource(R.mipmap.home_master_normal);
-        mainTeacherTv.setTextColor(R.color.gray);
-
-        mainHomeworkIv.setImageResource(R.mipmap.home_work_normal);
-        mainHomeworkTv.setTextColor(R.color.gray);
-
-        mainValuableIv.setImageResource(R.mipmap.home_valuable_normal);
-        mainValuableTv.setTextColor(R.color.gray);
-
-        mainNoticeIv.setImageResource(R.mipmap.home_notice_normal);
-        mainNoticeTv.setTextColor(R.color.gray);
-
-        mainMyselfIv.setImageResource(R.mipmap.home_myself_active);
-        mainMyselfTv.setTextColor(R.color.colorPrimary);
-    }
-
-    private void setNoticeView() {
-        titleDrawIv.setVisibility(View.GONE);
-
-        mainTeacherIv.setImageResource(R.mipmap.home_master_normal);
-        mainTeacherTv.setTextColor(R.color.gray);
-
-        mainHomeworkIv.setImageResource(R.mipmap.home_work_normal);
-        mainHomeworkTv.setTextColor(R.color.gray);
-
-        mainValuableIv.setImageResource(R.mipmap.home_valuable_normal);
-        mainValuableTv.setTextColor(R.color.gray);
-
-        mainNoticeIv.setImageResource(R.mipmap.home_notice_active);
-        mainNoticeTv.setTextColor(R.color.colorPrimary);
-
-        mainMyselfIv.setImageResource(R.mipmap.home_myself_normal);
-        mainMyselfTv.setTextColor(R.color.gray);
-    }
-
-    private void setValuableView() {
-        titleDrawIv.setVisibility(View.VISIBLE);
-
-        mainTeacherIv.setImageResource(R.mipmap.home_master_normal);
-        mainTeacherTv.setTextColor(R.color.gray);
-
-        mainHomeworkIv.setImageResource(R.mipmap.home_work_normal);
-        mainHomeworkTv.setTextColor(R.color.gray);
-
-        mainValuableIv.setImageResource(R.mipmap.home_valuable_active);
-        mainValuableTv.setTextColor(R.color.colorPrimary);
-
-        mainNoticeIv.setImageResource(R.mipmap.home_notice_normal);
-        mainNoticeTv.setTextColor(R.color.gray);
-
-        mainMyselfIv.setImageResource(R.mipmap.home_myself_normal);
-        mainMyselfTv.setTextColor(R.color.gray);
-    }
-
     private void setHomeworkView() {
-        titleDrawIv.setVisibility(View.GONE);
-
-        mainTeacherIv.setImageResource(R.mipmap.home_master_normal);
-        mainTeacherTv.setTextColor(R.color.gray);
-
         mainHomeworkIv.setImageResource(R.mipmap.home_work_active);
         mainHomeworkTv.setTextColor(R.color.colorPrimary);
-
-        mainValuableIv.setImageResource(R.mipmap.home_valuable_normal);
-        mainValuableTv.setTextColor(R.color.gray);
-
-        mainNoticeIv.setImageResource(R.mipmap.home_notice_normal);
-        mainNoticeTv.setTextColor(R.color.gray);
-
-        mainMyselfIv.setImageResource(R.mipmap.home_myself_normal);
-        mainMyselfTv.setTextColor(R.color.gray);
+        mainTeacherIv.setImageResource(R.mipmap.home_master_normal);
+        mainTeacherTv.setTextColor(R.color.gray);
     }
 
     private void setTeacherView() {
-        titleDrawIv.setVisibility(View.GONE);
-
         mainTeacherIv.setImageResource(R.mipmap.home_master_active);
         mainTeacherTv.setTextColor(R.color.colorPrimary);
 
@@ -199,8 +119,5 @@ public class MainActivity extends BaseActivity {
 
         mainNoticeIv.setImageResource(R.mipmap.home_notice_normal);
         mainNoticeTv.setTextColor(R.color.gray);
-
-        mainMyselfIv.setImageResource(R.mipmap.home_myself_normal);
-        mainMyselfTv.setTextColor(R.color.gray);
     }
 }
