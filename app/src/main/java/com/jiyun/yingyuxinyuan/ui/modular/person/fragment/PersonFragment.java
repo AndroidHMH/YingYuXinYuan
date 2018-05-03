@@ -31,7 +31,7 @@ public class PersonFragment extends BaseFragment {
         switch (view.getId()){
 //            更换图标
             case R.id.title_draw_iv:
-                title_draw_iv.setImageResource(R.mipmap.myself_setting);
+                startActivity(new Intent(getActivity(),LoginActivity.class));
                 break;
 //             进入登陆页面
             case R.id.my_login:

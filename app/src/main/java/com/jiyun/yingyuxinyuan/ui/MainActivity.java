@@ -1,5 +1,6 @@
 package com.jiyun.yingyuxinyuan.ui;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.ui.activity.LoginActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.fragment.HomeworkFragment;
+import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.teacher.fragment.TeacherFragment;
 
 import butterknife.BindView;
@@ -20,7 +23,8 @@ import butterknife.OnClick;
  * 首页
  */
 public class MainActivity extends BaseActivity {
-
+    @BindView(R.id.recycler)
+    RelativeLayout recycler;
     @BindView(R.id.title_icon_iv)
     ImageView titleIconIv;
     @BindView(R.id.title_title_tv)
@@ -80,13 +84,16 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_message_iv:
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.main_teacher_btn:
+                recycler.setVisibility(View.VISIBLE);
                 setCreateView(R.id.main_content, TeacherFragment.class);
                 mainTeacherIv.setImageResource(R.mipmap.home_master_active);
                 mainTeacherTv.setTextColor(R.color.colorPrimary);
                 break;
             case R.id.main_homework_btn:
+                recycler.setVisibility(View.VISIBLE);
                 setCreateView(R.id.main_content, HomeworkFragment.class);
                 mainHomeworkIv.setImageResource(R.mipmap.home_work_active);
                 mainHomeworkTv.setTextColor(R.color.colorPrimary);
@@ -98,6 +105,12 @@ public class MainActivity extends BaseActivity {
             case R.id.main_notice_btn:
                 break;
             case R.id.main_myself_btn:
+                setCreateView(R.id.main_content, PersonFragment.class);
+                recycler.setVisibility(View.GONE);
+                mainMyselfIv.setImageResource(R.mipmap.home_myself_active);
+                mainMyselfTv.setTextColor(R.color.colorPrimary);
+                mainMyselfIv.setImageResource(R.mipmap.home_myself_normal);
+                mainMyselfTv.setTextColor(R.color.gray);
                 break;
         }
     }

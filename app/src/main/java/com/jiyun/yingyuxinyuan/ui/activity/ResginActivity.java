@@ -53,7 +53,7 @@ public class ResginActivity extends BaseActivity {
                 break;
 //                注册
             case R.id.resgin_resgin:
-//
+
                 break;
 //                微信登录
             case R.id.login_weixin:
