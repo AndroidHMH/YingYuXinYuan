@@ -27,5 +27,5 @@
         <activity android:name=".ui.activity.resgin.activity.SetHobbyActivity" />
         <activity android:name=".ui.activity.resgin.activity.ResginXieYiActivity"></activity>
     </application>
-
+<!---->
 </manifest>
