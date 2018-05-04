@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jiyun.yingyuxinyuan.ui.activity.ForgetActivity">
+    tools:context="com.jiyun.yingyuxinyuan.ui.activity.forget.ForgetActivity">
 
 
     <ImageView
@@ -64,7 +64,7 @@
             android:textSize="16sp"
             android:id="@+id/forget_getyzm"
             android:text="获取验证码"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorblue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

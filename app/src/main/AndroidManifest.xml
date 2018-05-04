@@ -22,7 +22,10 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.ResginActivity" />
-        <activity android:name=".ui.activity.ForgetActivity"></activity>
+        <activity android:name=".ui.activity.forget.ForgetActivity" />
+        <activity android:name=".ui.activity.resgin.activity.ResginAllActivity" />
+        <activity android:name=".ui.activity.resgin.activity.SetHobbyActivity" />
+        <activity android:name=".ui.activity.resgin.activity.ResginXieYiActivity"></activity>
     </application>
 
 </manifest>
