@@ -1,8 +1,6 @@
 package com.jiyun.yingyuxinyuan.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +10,7 @@ import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.ui.activity.forget.ForgetActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

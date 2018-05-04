@@ -6,16 +6,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.jiyun.yingyuxinyuan.ui.activity.ResginActivity">
 
-    <ImageView
-        android:id="@+id/resgin_close"
-        android:src="@mipmap/register_return"
-        android:layout_marginTop="@dimen/ts_10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/ts_26"
+        android:layout_height="@dimen/ts_44">
 
+        <TextView
+            android:id="@+id/resgin_close"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/cancle_bg_style" />
+
+    </RelativeLayout>
     <TextView
         android:layout_marginLeft="10dp"
         android:textColor="#000"
@@ -42,7 +48,7 @@
             android:visibility="invisible"
             android:src="@mipmap/input_close"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
@@ -63,11 +69,12 @@
             android:textSize="16sp"
             android:id="@+id/resgin_getyzm"
             android:text="获取验证码"
-            android:textColor="@color/blue"
+            android:textColor="@color/colorblue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/resgin_xieyi_linear"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:orientation="horizontal"

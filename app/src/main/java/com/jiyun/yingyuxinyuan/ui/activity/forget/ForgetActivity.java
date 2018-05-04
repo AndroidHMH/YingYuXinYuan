@@ -1,4 +1,4 @@
-package com.jiyun.yingyuxinyuan.ui.activity;
+package com.jiyun.yingyuxinyuan.ui.activity.forget;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -22,9 +22,7 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.ResginActivity" />
-        <activity android:name=".ui.activity.ForgetActivity" />
-        <activity android:name=".ui.modular.teacherlist.activity.TeacherListActivity" />
-        <activity android:name=".ui.modular.lookclass.activity.LookClassActivity"></activity>
+        <activity android:name=".ui.activity.ForgetActivity"></activity>
     </application>
 
 </manifest>
