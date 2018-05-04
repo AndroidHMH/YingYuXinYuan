@@ -82,7 +82,7 @@ public class ResginActivity extends BaseActivity implements ResginContract.resgi
                 break;
 //
             case R.id.resgin_phone_res:
-//                resgin_phone.getText().toString().trim().substring(resgin_phone.getText().length()-1);
+                resgin_phone.getText().toString().trim().substring(resgin_phone.getText().length()-1);
                 break;
 //                输入手机验证码
             case R.id.resgin_yzm:
@@ -93,6 +93,10 @@ public class ResginActivity extends BaseActivity implements ResginContract.resgi
 //              获取验证码
             case R.id.resgin_getyzm:
                 resginPresenterimp.getPhoneCode(resgin_phone.getText().toString());
+                break;
+//                协议
+            case R.id.resgin_xieyi_linear:
+                startActivity(new Intent(ResginActivity.this,ResginXieYiActivity.class));
                 break;
 //                注册
             case R.id.resgin_resgin:
