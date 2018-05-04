@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.jiyun.yingyuxinyuan.R;
 
+/**
+ * 直播课程页面
+ */
 public class LookClassActivity extends AppCompatActivity {
 
     @Override

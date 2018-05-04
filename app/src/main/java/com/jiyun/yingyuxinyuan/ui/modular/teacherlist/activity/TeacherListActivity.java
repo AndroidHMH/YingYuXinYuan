@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.jiyun.yingyuxinyuan.R;
 
+/**
+ * 名师列表页面
+ */
 public class TeacherListActivity extends AppCompatActivity {
 
     @Override

@@ -87,7 +87,7 @@ public class ResginActivity extends BaseActivity implements ResginContract.resgi
 //                输入手机验证码
             case R.id.resgin_yzm:
                 if (resgin_phone.getText().length() == 0 && resgin_getyzm.getText().length() != 0){
-                    resgin_resgin.setBackgroundColor(R.color.colorblue);
+//                    resgin_resgin.setBackgroundColor(R.color.colorblue);
                 }
                 break;
 //              获取验证码

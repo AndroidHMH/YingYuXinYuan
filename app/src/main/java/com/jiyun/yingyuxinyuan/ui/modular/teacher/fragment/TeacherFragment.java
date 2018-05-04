@@ -168,6 +168,11 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
                 break;
         }
     }
+
+    /**
+     * Event更新ui控件
+     * @param eventBean
+     */
     @Subscribe
     public void onEventMainThread(EventBean eventBean) {
 
