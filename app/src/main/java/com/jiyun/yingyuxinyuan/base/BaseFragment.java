@@ -25,6 +25,8 @@ import butterknife.Unbinder;
  * Created by asus on 2018/5/3.
  */
 
+
+
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     protected T presenter;
     private Fragment lastFragment;
