@@ -7,6 +7,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.jiyun.yingyuxinyuan.app.App;
+import com.jiyun.yingyuxinyuan.ui.MainActivity;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 import butterknife.ButterKnife;
 
@@ -17,23 +23,53 @@ import butterknife.ButterKnife;
 /**
  * 统一管理Activity
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
     private Fragment lastFragment;
+    protected T presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+
         App.context = this;
+//        presenter = getPresenter();
+        if (presenter != null) {
+            presenter.actualView(this);
+        }
         init();
         loadDate();
     }
+
+    private T getPresenter() {
+
+        Type type = getClass().getGenericSuperclass();
+        if (MainActivity.class.equals(type)) {
+            return null;
+        }
+        Type[] arguments = ((ParameterizedType) type).getActualTypeArguments();
+
+        Class<T> tClass = (Class<T>) arguments[0];
+        try {
+            return tClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         App.context = null;
+        if (presenter != null) {
+            presenter.unActualView();
+        }
     }
+
     /**
      * 加载布局
      *

@@ -7,5 +7,8 @@ package com.jiyun.yingyuxinyuan.base;
 /**
  * 统一管理Presenter
  */
-public interface BasePresenter {
+public interface BasePresenter<View> {
+    void actualView(View view);
+
+    void unActualView();
 }

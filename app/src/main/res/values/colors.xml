@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="gray">#66535353</color>
     <color name="blue">#0040ff</color>
+    <color name="gray_prograss_bg">#e6e6e6</color>
 </resources>

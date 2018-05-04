@@ -1,13 +1,319 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jiyun.yingyuxinyuan.ui.modular.teacher.fragment.TeacherFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/teacher_pull_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="名师" />
+        android:background="#f6f6f6">
 
-    </FrameLayout>
+        <com.jiyun.yingyuxinyuan.view.MyScrollView
+            android:id="@+id/teacher_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.jude.rollviewpager.RollPagerView
+                    android:id="@+id/teacher_pollPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:rollviewpager_play_delay="3000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/teacher_findTeacher_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/teacher_findTeacher_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_master_find_shape" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/teacher_findTeacher_iv"
+                            android:layout_alignRight="@id/teacher_findTeacher_iv"
+                            android:layout_below="@+id/teacher_findTeacher_iv"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="找老师"
+                            android:textColor="#bb535353" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/teacher_lookClass_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/teacher_lookClass_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_master_look_shape" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/teacher_lookClass_iv"
+                            android:layout_alignRight="@id/teacher_lookClass_iv"
+                            android:layout_below="@+id/teacher_lookClass_iv"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="线上课"
+                            android:textColor="#bb535353" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/teacher_work_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/teacher_work_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_master_work_shape" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/teacher_work_iv"
+                            android:layout_alignRight="@id/teacher_work_iv"
+                            android:layout_below="@+id/teacher_work_iv"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="交作业"
+                            android:textColor="#bb535353" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/teacher_chat_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/teacher_chat_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_master_chat_shape" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/teacher_chat_iv"
+                            android:layout_alignRight="@id/teacher_chat_iv"
+                            android:layout_below="@+id/teacher_chat_iv"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="聊艺考"
+                            android:textColor="#bb535353" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/teacher_learn_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/teacher_learn_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_master_learn_shape" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/teacher_learn_iv"
+                            android:layout_alignRight="@id/teacher_learn_iv"
+                            android:layout_below="@+id/teacher_learn_iv"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="线下课"
+                            android:textColor="#bb535353" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#fff" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/rectangle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="名师推荐" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/rectangle" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/teacher_moreTeacher_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:text="更多" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/teacher_teacher_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/rectangle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="课程推荐" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/rectangle" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/teacher_moreClass_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:text="更多" />
+                </RelativeLayout>
+
+                <com.jiyun.yingyuxinyuan.view.MyGridView
+                    android:id="@+id/teacher_class_recycler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="14dp"
+                    android:divider="#00000000"
+                    android:dividerHeight="1px"
+                    android:listSelector="#00000000"
+                    android:numColumns="2"
+                    android:scrollbars="none" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/rectangle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="推荐作业" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/rectangle" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/teacher_moreWork_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:text="更多" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/teacher_Work_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none" />
+            </LinearLayout>
+
+        </com.jiyun.yingyuxinyuan.view.MyScrollView>
+
+
+    </com.baoyz.widget.PullRefreshLayout>
+
+</LinearLayout>
