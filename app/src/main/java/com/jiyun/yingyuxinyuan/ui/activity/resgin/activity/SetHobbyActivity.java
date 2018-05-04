@@ -17,7 +17,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-//设置偏好页面
+/**
+ * 设置偏好页面
+ */
+
 public class SetHobbyActivity extends BaseActivity implements SetHobbyContract.sethobbyView {
 
     @BindView(R.id.usermajor_select_aty_num)
