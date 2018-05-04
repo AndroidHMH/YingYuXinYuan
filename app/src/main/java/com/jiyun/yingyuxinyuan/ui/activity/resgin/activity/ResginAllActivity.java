@@ -91,7 +91,7 @@ public class ResginAllActivity extends BaseActivity implements ResginContract.re
                 break;
             case R.id.resgin_finish:
                 resginPresenterimp.getResginAll(resginPassword.getText().toString().trim());
-                startActivity(new Intent(ResginAllActivity.this,SetHobbyActivity.class));
+//                startActivity(new Intent(ResginAllActivity.this,SetHobbyActivity.class));
                 break;
         }
     }

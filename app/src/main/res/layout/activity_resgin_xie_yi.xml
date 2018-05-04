@@ -15,7 +15,7 @@
         android:layout_height="@dimen/ts_44">
 
         <TextView
-            android:id="@+id/complete_userinfo_aty_cancle"
+            android:id="@+id/resgin_xieyi_close"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             style="@style/cancle_bg_style" />

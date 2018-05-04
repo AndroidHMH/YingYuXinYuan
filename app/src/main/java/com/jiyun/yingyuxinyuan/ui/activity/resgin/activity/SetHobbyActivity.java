@@ -56,8 +56,9 @@ public class SetHobbyActivity extends BaseActivity implements SetHobbyContract.s
 
     @OnClick({R.id.usermajor_select_aty_num,R.id.usermajor_select_aty_unistar_btn,
             R.id.usermajor_select_aty_bottombar,R.id.complete_userinfo_aty_cancle,
-            R.id.usermajor_select_aty_jump,R.id.usermajor_select_atygridview,R.id.userschool_select_atygridview})
-    protected void onViewClicked(View view){
+            R.id.usermajor_select_aty_jump,R.id.usermajor_select_atygridview,
+            R.id.userschool_select_atygridview})
+   protected void onViewClicked(View view){
         switch (view.getId()){
 //            底部状态栏  请选择
             case R.id.usermajor_select_aty_num:
@@ -84,6 +85,7 @@ public class SetHobbyActivity extends BaseActivity implements SetHobbyContract.s
                 break;
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

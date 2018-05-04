@@ -100,7 +100,6 @@ public class ResginActivity extends BaseActivity implements ResginContract.resgi
                 break;
 //                注册
             case R.id.resgin_resgin:
-
                 resginPresenterimp.getResgin(resgin_phone.getText().toString(),resgin_yzm.getText().toString());
                 startActivity(new Intent(ResginActivity.this,ResginAllActivity.class));
                 break;
