@@ -1,5 +1,6 @@
 package com.jiyun.yingyuxinyuan.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,12 +9,16 @@ import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.model.bean.EventBean;
 import com.jiyun.yingyuxinyuan.ui.activity.LoginActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.fragment.HomeworkFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.preview.fragment.PreviewFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.teacher.fragment.TeacherFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.treasure.fragment.TreasureFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,13 +71,20 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
+        if (!EventBus.getDefault().isRegistered(this))
+        {
+            EventBus.getDefault().register(this);
+        }
         return R.layout.activity_main;
     }
 
     @Override
     protected void init() {
+
         titleIconIv.setImageResource(R.mipmap.title_logo);
         titleDrawIv.setVisibility(View.GONE);
+        setTeacherView();
+        setCreateView(R.id.main_content, TeacherFragment.class);
     }
 
     @Override
@@ -108,7 +120,22 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
+    @Subscribe
+    public void onEventMainThread(EventBean eventBean){
+        String fragmentName = eventBean.getFragmentTitle();
+        if ("宝典".equals(fragmentName)) {
+            setValuableView();
+            setCreateView(R.id.main_content, TreasureFragment.class);
+        } else if ("作业".equals(fragmentName)) {
+            setHomeworkView();
+            setCreateView(R.id.main_content, HomeworkFragment.class);
+        } else if ("预告".equals(fragmentName)) {
+            setNoticeView();
+            setCreateView(R.id.main_content, PreviewFragment.class);
+        }
+    }
 
+    @SuppressLint("ResourceAsColor")
     private void setNoticeView() {
         relative.setVisibility(View.VISIBLE);
 
@@ -129,6 +156,7 @@ public class MainActivity extends BaseActivity {
         mainMyselfTv.setTextColor(R.color.gray);
     }
 
+    @SuppressLint("ResourceAsColor")
     private void setMyself() {
         relative.setVisibility(View.GONE);
 
@@ -149,6 +177,7 @@ public class MainActivity extends BaseActivity {
         mainMyselfTv.setTextColor(R.color.colorPrimary);
     }
 
+    @SuppressLint("ResourceAsColor")
     private void setValuableView() {
         relative.setVisibility(View.VISIBLE);
 
@@ -168,6 +197,7 @@ public class MainActivity extends BaseActivity {
         mainMyselfTv.setTextColor(R.color.gray);
     }
 
+    @SuppressLint("ResourceAsColor")
     private void setHomeworkView() {
         relative.setVisibility(View.VISIBLE);
 
@@ -187,6 +217,7 @@ public class MainActivity extends BaseActivity {
         mainMyselfTv.setTextColor(R.color.gray);
     }
 
+    @SuppressLint("ResourceAsColor")
     private void setTeacherView() {
         relative.setVisibility(View.VISIBLE);
 
@@ -204,5 +235,11 @@ public class MainActivity extends BaseActivity {
 
         mainMyselfIv.setImageResource(R.mipmap.home_myself_normal);
         mainMyselfTv.setTextColor(R.color.gray);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }
