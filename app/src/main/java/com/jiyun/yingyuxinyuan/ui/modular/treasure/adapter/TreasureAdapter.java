@@ -1,8 +1,4 @@
-package com.jiyun.yingyuxinyuan.ui.modular.homework.adapter;
-
-/**
- * Created by asus on 2018/5/3.
- */
+package com.jiyun.yingyuxinyuan.ui.modular.treasure.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,13 +8,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 /**
- * 作业页面的适配器
+ * Created by asus on 2018/5/5.
  */
-public class HomeworkAdapter extends FragmentPagerAdapter {
+
+public class TreasureAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
     private List<String> titles;
 
-    public HomeworkAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles) {
+    public TreasureAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles) {
         super(fm);
         this.fragments = fragments;
         this.titles = titles;

@@ -13,9 +13,11 @@ import com.jiyun.yingyuxinyuan.config.EncryptUtil;
 import com.jiyun.yingyuxinyuan.config.Urls;
 import com.jiyun.yingyuxinyuan.model.bean.TokenBean;
 import com.jiyun.yingyuxinyuan.model.biz.AppTokenService;
+import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginService;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
+import com.jiyun.yingyuxinyuan.model.biz.TreasureService;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -79,7 +81,21 @@ public class RetrofitUtils {
     public TeacherService getTeacherService() {
         return retrofit.create(TeacherService.class);
     }
-    public ResginService getResginService() {  return retrofit.create(ResginService.class);  }
-    public SetHobbyService getsetHobbyService() {  return retrofit.create(SetHobbyService.class);  }
+
+    public ResginService getResginService() {
+        return retrofit.create(ResginService.class);
+    }
+
+    public SetHobbyService getsetHobbyService() {
+        return retrofit.create(SetHobbyService.class);
+    }
+
+    public HomeworkService getHomeworkService() {
+        return retrofit.create(HomeworkService.class);
+    }
+
+    public TreasureService getTreasureService() {
+        return retrofit.create(TreasureService.class);
+    }
 
 }
