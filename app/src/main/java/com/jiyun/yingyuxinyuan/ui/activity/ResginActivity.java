@@ -174,6 +174,7 @@ public class ResginActivity extends BaseActivity<ResginPresenterimp> implements 
 
     //  微博登录
     private void sina_login() {
+
     }
 
     //  qq登录

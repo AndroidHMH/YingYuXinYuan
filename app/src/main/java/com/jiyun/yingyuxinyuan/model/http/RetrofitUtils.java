@@ -14,6 +14,8 @@ import com.jiyun.yingyuxinyuan.config.Urls;
 import com.jiyun.yingyuxinyuan.model.bean.TokenBean;
 import com.jiyun.yingyuxinyuan.model.biz.AppTokenService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
+import com.jiyun.yingyuxinyuan.model.biz.LoginService;
+import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginService;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
@@ -86,6 +88,14 @@ public class RetrofitUtils {
         return retrofit.create(ResginService.class);
     }
 
+    public ResginAllService getResginAllService(){
+        return retrofit.create(ResginAllService.class);
+    }
+
+    public LoginService getLoginService(){
+        return retrofit.create(LoginService.class);
+    }
+
     public SetHobbyService getsetHobbyService() {
         return retrofit.create(SetHobbyService.class);
     }
@@ -97,5 +107,7 @@ public class RetrofitUtils {
     public TreasureService getTreasureService() {
         return retrofit.create(TreasureService.class);
     }
+
+
 
 }
