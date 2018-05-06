@@ -69,6 +69,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
                 break;
 //              登录
             case R.id.login_login:
+
                 presenter.getLogin(login_phone.getText().toString(),login_psw.getText().toString());
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
