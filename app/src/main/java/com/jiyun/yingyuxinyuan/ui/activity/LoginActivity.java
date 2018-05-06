@@ -21,6 +21,9 @@ import com.jiyun.yingyuxinyuan.ui.activity.login.presenter.LoginPresenterimp;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 登录页面
+ */
 public class LoginActivity extends BaseActivity<LoginPresenterimp> implements LoginContract.LoginView {
 
    @BindView(R.id.login_close)
