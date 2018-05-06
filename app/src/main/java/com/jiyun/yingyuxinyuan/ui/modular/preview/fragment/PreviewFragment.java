@@ -62,6 +62,8 @@ public class PreviewFragment extends BaseFragment<PreviewPresenter> implements P
         screenPopup = initScreenPopup(screenView, LinearLayout.LayoutParams.MATCH_PARENT);
         screenPopup.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
+
+
             @Override
             public void onDismiss() {
 
