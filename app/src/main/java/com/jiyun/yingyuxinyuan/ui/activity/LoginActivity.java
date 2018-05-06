@@ -65,6 +65,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
                 break;
 //             忘记密码
             case R.id.login_forget:
+
                 startActivity(new Intent(LoginActivity.this,ForgetActivity.class));
                 break;
 //              登录
