@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 登录页面
+ * 登录页面  手机号注册
  */
 public class LoginActivity extends BaseActivity<LoginPresenterimp> implements LoginContract.LoginView {
 
