@@ -12,16 +12,19 @@ import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.contract.ResginAllContract;
 import com.jiyun.yingyuxinyuan.contract.ResginContract;
 import com.jiyun.yingyuxinyuan.ui.MainActivity;
+import com.jiyun.yingyuxinyuan.ui.activity.resgin.presenter.ResginAllPresenterimp;
 import com.jiyun.yingyuxinyuan.ui.activity.resgin.presenter.ResginPresenterimp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+//
 //注册完善信息
-public class ResginAllActivity extends BaseActivity implements ResginContract.resginView{
+public class ResginAllActivity extends BaseActivity<ResginAllPresenterimp> implements ResginAllContract.ResginAllView{
 
     @BindView(R.id.resgin_all_return)
     ImageView resginAllReturn;
@@ -49,7 +52,7 @@ public class ResginAllActivity extends BaseActivity implements ResginContract.re
     ImageView resginPswDelete;
     @BindView(R.id.resgin_finish)
     Button resginFinish;
-    private ResginPresenterimp resginPresenterimp;
+//    private ResginPresenterimp resginPresenterimp;
 
     @Override
     protected int getLayoutId() {
@@ -58,14 +61,14 @@ public class ResginAllActivity extends BaseActivity implements ResginContract.re
 
     @Override
     protected void init() {
-        setBoyView();
+//        resginPresenterimp = new ResginPresenterimp(this);
     }
 
 
     @Override
     protected void loadDate() {
-        resginPresenterimp = new ResginPresenterimp(this);
-        resginPresenterimp.getResginAll(resginPassword.getText().toString().trim());
+//        resginPresenterimp.getResginAll(resginPassword.getText().toString().trim());
+        presenter.getResginAll(resginPassword.getText().toString().trim());
     }
 
     @Override
@@ -90,8 +93,9 @@ public class ResginAllActivity extends BaseActivity implements ResginContract.re
             case R.id.resgin_password:
                 break;
             case R.id.resgin_finish:
-                resginPresenterimp.getResginAll(resginPassword.getText().toString().trim());
-//                startActivity(new Intent(ResginAllActivity.this,SetHobbyActivity.class));
+                presenter.getResginAll(resginPassword.getText().toString().trim());
+                startActivity(new Intent(ResginAllActivity.this,SetHobbyActivity.class));
+                finish();
                 break;
         }
     }
@@ -111,20 +115,6 @@ public class ResginAllActivity extends BaseActivity implements ResginContract.re
 
         resginImageBoy.setImageResource(R.mipmap.check_man_active);
         resginTextBoy.setTextColor(R.color.colorPrimary);
-    }
-
-    @Override
-    public void showPhone() {
-    }
-
-    @Override
-    public void showPhoneYzmMessage(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showPhoneResginMessage(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

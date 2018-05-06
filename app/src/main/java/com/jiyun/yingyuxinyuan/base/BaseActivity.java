@@ -34,7 +34,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         ButterKnife.bind(this);
 
         App.context = this;
-//        presenter = getPresenter();
+        presenter = getPresenter();
         if (presenter != null) {
             presenter.actualView(this);
         }
@@ -42,10 +42,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         loadDate();
     }
 
-    private T getPresenter() {
+   private T getPresenter() {
 
         Type type = getClass().getGenericSuperclass();
-        if (MainActivity.class.equals(type)) {
+        if (BaseActivity.class.equals(type)) {
             return null;
         }
         Type[] arguments = ((ParameterizedType) type).getActualTypeArguments();

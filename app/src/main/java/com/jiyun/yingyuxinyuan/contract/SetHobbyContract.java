@@ -4,6 +4,7 @@ package com.jiyun.yingyuxinyuan.contract;
  * Created by ASUS on 2018/05/04.
  */
 
+import com.jiyun.yingyuxinyuan.base.BasePresenter;
 import com.jiyun.yingyuxinyuan.model.bean.SetHobbyBean;
 
 /**
@@ -13,7 +14,7 @@ public interface SetHobbyContract {
     interface sethobbyView{
         void showSetData(SetHobbyBean setHobbyBean);
     }
-    interface sethobbyPres{
+    interface sethobbyPres extends BasePresenter<sethobbyView>{
 //        获取数据
         void getSetData();
     }

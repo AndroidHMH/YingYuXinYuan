@@ -15,6 +15,40 @@
         <item name="android:textColor">@color/login_close_c</item>
     </style>
 
+    <style name="home_myself_lable_tv_style">
+
+        <item name="android:textSize">@dimen/ts_16</item>
+
+        <item name="android:textColor">#5491FF</item>
+
+    </style>
+
+    <style name="home_myselft_optional_tv_style">
+        <item name="android:layout_marginTop">@dimen/ts_5</item>
+        <item name="android:textSize">@dimen/ts_12</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="home_myself_list_tv_style">
+
+        <item name="android:textSize">@dimen/ts_15</item>
+
+        <item name="android:textColor">#666666</item>
+
+    </style>
+
+
+    <style name="home_myself_lableflag_tv_style">
+
+        <item name="android:textSize">@dimen/ts_14</item>
+
+        <item name="android:layout_marginTop">@dimen/ts_4</item>
+
+        <item name="android:textColor">#999999</item>
+
+    </style>
+
+
     <style name="login_line_style">
 
         <item name="android:background">@color/login_line_c</item>

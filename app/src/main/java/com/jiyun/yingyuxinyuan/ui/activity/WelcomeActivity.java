@@ -11,6 +11,8 @@ import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.ui.MainActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 
 public class WelcomeActivity extends BaseActivity {
@@ -40,6 +42,7 @@ public class WelcomeActivity extends BaseActivity {
     };
     @Override
     protected int getLayoutId() {
+
         return R.layout.activity_welcome;
     }
 
@@ -50,6 +53,12 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void loadDate() {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
     }
 }

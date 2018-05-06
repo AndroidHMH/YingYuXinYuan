@@ -1,21 +1,27 @@
 package com.jiyun.yingyuxinyuan.ui.activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.contract.LoginContract;
+import com.jiyun.yingyuxinyuan.model.bean.LoginBean;
+import com.jiyun.yingyuxinyuan.ui.MainActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.forget.ForgetActivity;
+import com.jiyun.yingyuxinyuan.ui.activity.login.presenter.LoginPresenterimp;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity<LoginPresenterimp> implements LoginContract.LoginView {
 
    @BindView(R.id.login_close)
     TextView login_close;
@@ -63,6 +69,8 @@ public class LoginActivity extends BaseActivity {
                 break;
 //              登录
             case R.id.login_login:
+                presenter.getLogin(login_phone.getText().toString(),login_psw.getText().toString());
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
 //                微信登录
             case R.id.login_weixin:
@@ -87,5 +95,10 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void loadDate() {
 
+    }
+
+    @Override
+    public void showData(String msg) {
+        Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
     }
 }
