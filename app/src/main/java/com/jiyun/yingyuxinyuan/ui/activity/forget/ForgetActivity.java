@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.jiyun.yingyuxinyuan.R;
 
+/**
+ *
+ */
 public class ForgetActivity extends AppCompatActivity {
 
     @Override
