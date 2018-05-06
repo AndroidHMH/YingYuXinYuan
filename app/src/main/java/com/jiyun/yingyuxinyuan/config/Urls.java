@@ -28,4 +28,6 @@ public class Urls {
     public static final String PHONE_RESGIN_ALL = "user/saveCompleteUser";
     //    获取偏好
     public static final String SET_HOBBY = "user/preference";
+    //预告首页
+    public static final String PREVIEW_HOME_PAGE = "forthcoming/index";
 }

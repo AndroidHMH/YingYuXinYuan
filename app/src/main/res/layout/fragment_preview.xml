@@ -1,13 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jiyun.yingyuxinyuan.ui.modular.preview.fragment.PreviewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/preview_screen_btn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="预告" />
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:text="时间筛选"
+        android:textColor="#000"
+        android:textSize="22sp" />
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/preview_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
