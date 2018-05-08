@@ -26,6 +26,7 @@ import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.base.BasePresenter;
 import com.jiyun.yingyuxinyuan.contract.ResginContract;
 import com.jiyun.yingyuxinyuan.model.bean.PhoneResginBean;
+import com.jiyun.yingyuxinyuan.model.bean.TimeCount;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 import com.jiyun.yingyuxinyuan.ui.activity.resgin.activity.ResginAllActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.resgin.activity.ResginXieYiActivity;
@@ -43,21 +44,18 @@ import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+
 //
-public class ResginActivity extends BaseActivity<ResginPresenterimp> implements ResginContract.ResginView{
+public class ResginActivity extends BaseActivity<ResginPresenterimp> implements ResginContract.ResginView {
 
     @BindView(R.id.resgin_close)
     TextView resgin_close;
     @BindView(R.id.resgin_phone)
     EditText resgin_phone_str;
-    @BindView(R.id.resgin_phone_res)
-    ImageView resgin_phone_res;
     @BindView(R.id.resgin_yzm)
     EditText resgin_yzm;
     @BindView(R.id.resgin_getyzm)
-    TextView resgin_getyzm;
-    @BindView(R.id.resgin_phone_yzm_res)
-    ImageView resgin_phone_yzm_res;
+    Button resgin_getyzm;
     @BindView(R.id.resgin_xieyi_linear)
     LinearLayout resginxieyiLinear;
     @BindView(R.id.resgin_resgin)
@@ -68,108 +66,55 @@ public class ResginActivity extends BaseActivity<ResginPresenterimp> implements 
     LinearLayout login_qq;
     @BindView(R.id.login_weibo)
     LinearLayout login_weibo;
-    String phone_str;
+    private TimeCount timeCount;
+    private String phone;
+
     @Override
     protected int getLayoutId() {
+
+
         return R.layout.activity_resgin;
     }
-    @OnClick({R.id.resgin_phone,R.id.resgin_yzm,
-            R.id.resgin_close,R.id.resgin_getyzm,R.id.resgin_resgin,
-            R.id.login_weixin,R.id.login_qq,R.id.login_weibo})
-    protected void onViewClicked(View view){
-        switch (view.getId()){
-//            关闭
+
+    @OnClick({R.id.resgin_phone, R.id.resgin_yzm,
+            R.id.resgin_close, R.id.resgin_getyzm, R.id.resgin_resgin,
+            R.id.login_weixin, R.id.login_qq, R.id.login_weibo})
+    protected void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.resgin_close:
                 finish();
                 break;
-//               输入手机号
-            case R.id.resgin_phone:
-//                判断是否输入
-//                resgin_phone_str.addTextChangedListener(new TextWatcher() {
-//                    @Override
-//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                        phone_str = s.toString();
-//                        if (TextUtils.isEmpty(phone_str)){
-//                            resgin_phone_res.setVisibility(View.INVISIBLE);
-//                        }else{
-//                            resgin_phone_res.setVisibility(View.VISIBLE);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void afterTextChanged(Editable s) {
-//
-//                    }
-//                });
-                break;
-//                输入手机验证码
-            case R.id.resgin_yzm:
-//                判断验证码是否输入
-//                resgin_yzm.addTextChangedListener(new TextWatcher() {
-//                    @Override
-//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                        getyzm_str = s.toString();
-//                        if (TextUtils.isEmpty(getyzm_str)){
-//                            resgin_phone_yzm_res.setVisibility(View.INVISIBLE);
-//                        }else{
-//                            resgin_phone_yzm_res.setVisibility(View.VISIBLE);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void afterTextChanged(Editable s) {
-//
-//                    }
-//                });
-                break;
-//              获取验证码
             case R.id.resgin_getyzm:
-//                判断手机号是否输入
-                if (TextUtils.isEmpty(resgin_phone_str.getText().toString())){
-                    return;
-                }
-
+                //获取验证码
                 presenter.getPhoneCode(resgin_phone_str.getText().toString());
                 break;
-//                注册
             case R.id.resgin_resgin:
-//                判断手机号，验证码是否为空
-                if (TextUtils.isEmpty(resgin_phone_str.getText().toString()) || TextUtils.isEmpty(resgin_yzm.getText().toString())){
-                    return;
-                }
-//                resgin_resgin.setEnabled(false);
-//                注册
-                resgin();
+                //注册
+                phone = resgin_phone_str.getText().toString();
+//                presenter.getResgin(phone, resgin_yzm.getText().toString());
+                gotoResginAll();
                 break;
-//                微信登录
             case R.id.login_weixin:
+                // 微信登录
                 weixin_login();
                 break;
-//                QQ登录
             case R.id.login_qq:
+                // QQ登录
                 qq_login();
                 break;
-//                微博登录
             case R.id.login_weibo:
+                // 微博登录
                 sina_login();
                 break;
         }
     }
-    private void resgin() {
-        presenter.getResgin(resgin_phone_str.getText().toString(),resgin_yzm.getText().toString());
-//        注册成功，跳转到完善信息页面补充页面
-        startActivity(new Intent(ResginActivity.this,ResginAllActivity.class));
-        finish();
+
+    /**
+     * 倒计时
+     */
+    @Override
+    public void startTime() {
+        timeCount.start();
     }
 
     //  微博登录
@@ -187,17 +132,14 @@ public class ResginActivity extends BaseActivity<ResginPresenterimp> implements 
 
     @Override
     protected void init() {
+        timeCount = new TimeCount(60000, 1000, resgin_getyzm);
     }
 
     @Override
     protected void loadDate() {
-//        获取手机验证码
-        presenter.getPhoneCode(resgin_phone_str.getText().toString());
-//        注册
-        presenter.getResgin(resgin_phone_str.getText().toString(),resgin_yzm.getText().toString());
-
 
     }
+
     @Override
     public void showPhoneYzmMessage(String msg) {
         Toast.makeText(this, "获取验证码成功", Toast.LENGTH_SHORT).show();
@@ -208,5 +150,13 @@ public class ResginActivity extends BaseActivity<ResginPresenterimp> implements 
         Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void gotoResginAll() {
+        // 注册成功，跳转到完善信息页面补充页面
+        Intent intent = new Intent(this, ResginAllActivity.class);
+        intent.putExtra("phone", phone);
+        startActivity(intent);
+        finish();
+    }
 
 }

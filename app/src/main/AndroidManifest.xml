@@ -3,6 +3,9 @@
     package="com.jiyun.yingyuxinyuan">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <application
         android:name=".app.App"
@@ -12,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".ui.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +28,19 @@
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.ResginActivity" />
         <activity android:name=".ui.activity.resgin.activity.ResginAllActivity" />
-        <activity android:name=".ui.activity.resgin.activity.SetHobbyActivity"/>
+        <activity android:name=".ui.activity.resgin.activity.SetHobbyActivity" />
+        <activity android:name=".ui.modular.teacherlist.activity.TeacherListActivity" />
+        <activity android:name=".ui.modular.lookclass.activity.LookClassActivity" />
         <!--<activity android:name=".ui.activity.ForgetActivity"></activity><!-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.jiyun.yingyuxinyuan"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+        </provider>
     </application>
 
 </manifest>

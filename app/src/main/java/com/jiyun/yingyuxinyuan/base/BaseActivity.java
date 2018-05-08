@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.jiyun.yingyuxinyuan.app.App;
 import com.jiyun.yingyuxinyuan.ui.MainActivity;
@@ -42,7 +43,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         loadDate();
     }
 
-   private T getPresenter() {
+    private T getPresenter() {
 
         Type type = getClass().getGenericSuperclass();
         if (BaseActivity.class.equals(type)) {
@@ -61,10 +62,23 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         return null;
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("TAG", "------onResume");
+        App.context = this;
+        presenter = getPresenter();
+        if (presenter != null) {
+            presenter.actualView(this);
+        }
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         App.context = null;
+        Log.e("TAG", "------onPause==================");
         if (presenter != null) {
             presenter.unActualView();
         }

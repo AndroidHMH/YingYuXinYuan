@@ -7,6 +7,14 @@ import java.util.List;
  */
 
 public class SetHobbyBean {
+    @Override
+    public String toString() {
+        return "SetHobbyBean{" +
+                "code=" + code +
+                ", data=" + data +
+                ", message='" + message + '\'' +
+                '}';
+    }
 
     /**
      * code : 0
@@ -46,6 +54,14 @@ public class SetHobbyBean {
         private List<CollegesBean> colleges;
         private List<MajorsBean> majors;
 
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "colleges=" + colleges +
+                    ", majors=" + majors +
+                    '}';
+        }
+
         public List<CollegesBean> getColleges() {
             return colleges;
         }
@@ -63,6 +79,17 @@ public class SetHobbyBean {
         }
 
         public static class CollegesBean {
+            @Override
+            public String toString() {
+                return "CollegesBean{" +
+                        "id=" + id +
+                        ", name='" + name + '\'' +
+                        ", page=" + page +
+                        ", rows=" + rows +
+                        ", sortord=" + sortord +
+                        '}';
+            }
+
             /**
              * id : 1
              * name : 中央音乐学院
@@ -119,6 +146,21 @@ public class SetHobbyBean {
         }
 
         public static class MajorsBean {
+            @Override
+            public String toString() {
+                return "MajorsBean{" +
+                        "id=" + id +
+                        ", intro='" + intro + '\'' +
+                        ", name='" + name + '\'' +
+                        ", pId=" + pId +
+                        ", page=" + page +
+                        ", photo='" + photo + '\'' +
+                        ", rows=" + rows +
+                        ", sortord=" + sortord +
+                        ", thumbPhoto='" + thumbPhoto + '\'' +
+                        '}';
+            }
+
             /**
              * id : 1
              * intro : 声乐，是指用人声演唱的音乐形式。声乐是以人的声带为主，配合口腔、舌头、鼻腔作用于气息，发出的悦耳的、连续性、有节奏的声音。按音域的高低和音色的差异，可以分为女高音、女中音、女低音和男高音、男中音、男低音。每一种人声的音域，大约为二个八度。

@@ -48,6 +48,8 @@ public class TeacherPresenter implements TeacherContract.Presenter {
         HashMap<String, String> headers = new HashMap<>();
         SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
         params.put("loginUserId", userId + "");
+        Log.e("TeacherPresenter", token.getString("appToken", ""));
+
         headers.put("apptoken", token.getString("appToken", ""));
         RetrofitUtils.getInstance().getTeacherService()
                 .loadHomePage(params, headers)

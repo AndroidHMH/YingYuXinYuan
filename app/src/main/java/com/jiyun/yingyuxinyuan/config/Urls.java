@@ -30,4 +30,12 @@ public class Urls {
     public static final String SET_HOBBY = "user/preference";
     //预告首页
     public static final String PREVIEW_HOME_PAGE = "forthcoming/index";
+    //上传头像
+    public static final String UPLOAD_IMG = "qiniu/qiniuUpload";
+    //获取偏好
+    public static final String PREFERENCE = "user/preference";
+    //名师列表数据
+    public static final String TEACHER_LIST_DATE = "user/teacher/list";
+    //直播列表数据
+    public static final String ZHI_BO_DATE="liveCourse/list";
 }
