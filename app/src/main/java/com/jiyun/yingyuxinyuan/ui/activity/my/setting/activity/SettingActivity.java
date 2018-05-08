@@ -15,6 +15,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+/**
+ * 设置
+ */
 public class SettingActivity extends BaseActivity {
 
     @BindView(R.id.setting_close)
