@@ -72,8 +72,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        if (!EventBus.getDefault().isRegistered(this))
-        {
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
         return R.layout.activity_main;

@@ -109,7 +109,7 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
         liveCourses = new ArrayList<>();
         systemAds = new ArrayList<>();
         users = new ArrayList<>();
-
+//        teacherClassRecycler.setOnItemClickListener();
 
         //轮播图
         rollPagerAdapter = new RollPagerAdapter(systemAds);

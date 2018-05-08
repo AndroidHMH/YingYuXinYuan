@@ -1,155 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.jiyun.yingyuxinyuan.ui.activity.resgin.activity.SetHobbyActivity">
 
     <!--底部确认栏-->
     <RelativeLayout
         android:id="@+id/usermajor_select_aty_bottombar"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content">
+        android:background="@color/white"
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/usermajor_select_aty_num"
                 android:layout_width="match_parent"
-                android:text="请选择"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:text="请选择"
                 android:textColor="#5491FF"
-                android:textSize="@dimen/ts_13"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/ts_13" />
 
             <TextView
                 android:id="@+id/usermajor_select_aty_unistar_btn"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/ts_48"
                 android:background="#5491FF"
                 android:gravity="center"
                 android:text="选好了？进入UnivStar"
                 android:textColor="@color/white"
-                android:textSize="@dimen/ts_14"
-                android:layout_height="@dimen/ts_48" />
+                android:textSize="@dimen/ts_14" />
         </LinearLayout>
     </RelativeLayout>
 
 
     <LinearLayout
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@id/usermajor_select_aty_bottombar"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/ts_26"
-        android:layout_gravity="center_vertical"
-        android:layout_height="@dimen/ts_44">
-
-        <TextView
-            android:id="@+id/complete_userinfo_aty_cancle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            style="@style/cancle_bg_style" />
-
-
-        <TextView
-            android:id="@+id/usermajor_select_aty_jump"
-            android:layout_width="@dimen/ts_32"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            style="@style/login_top_tv"
-            android:layout_marginRight="@dimen/ts_12"
-            android:text="跳过"/>
-    </RelativeLayout>
-
-        <ScrollView
-            android:scrollbars="none"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/ts_44"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/ts_26">
+
+            <TextView
+                android:id="@+id/complete_userinfo_aty_cancle"
+                style="@style/cancle_bg_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+
+            <TextView
+                android:id="@+id/usermajor_select_aty_jump"
+                style="@style/login_top_tv"
+                android:layout_width="@dimen/ts_32"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/ts_12"
+                android:text="跳过" />
+        </RelativeLayout>
+
+        <com.jiyun.yingyuxinyuan.view.MyScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/ts_20"
-                android:gravity="center"
-                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ts_20"
+                    android:gravity="center">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal"
-                    android:layout_height="wrap_content">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/login_phone_tx_c"
-                        android:textSize="@dimen/ts_18"
-                        android:text="对哪个词最熟悉，最感兴趣？"/>
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/login_phone_tx_c"
-                        android:textSize="@dimen/ts_13"
-                        android:layout_marginTop="@dimen/ts_4"
-                        android:text="选择后，相关内容优先内容推荐给你"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="对哪个词最熟悉，最感兴趣？"
+                            android:textColor="@color/login_phone_tx_c"
+                            android:textSize="@dimen/ts_18" />
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/ts_4"
+                            android:text="选择后，相关内容优先内容推荐给你"
+                            android:textColor="@color/login_phone_tx_c"
+                            android:textSize="@dimen/ts_13" />
 
-            </RelativeLayout>
+                    </LinearLayout>
 
+                </RelativeLayout>
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
                     <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_marginTop="@dimen/ts_30"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ts_30"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="@dimen/ts_22"
-                            android:src="@mipmap/majors"
-                            android:layout_height="@dimen/ts_22" />
+                            android:layout_height="@dimen/ts_22"
+                            android:src="@mipmap/majors" />
 
                         <TextView
-                            android:textColor="#FFD235"
-                            android:text="专业"
-                            android:layout_marginLeft="@dimen/ts_5"
                             android:layout_width="wrap_content"
-                            android:textSize="@dimen/ts_18"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/ts_5"
+                            android:text="专业"
+                            android:textColor="#FFD235"
+                            android:textSize="@dimen/ts_18" />
                     </LinearLayout>
                 </RelativeLayout>
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
-                    <GridView
+                    <com.jiyun.yingyuxinyuan.view.MyGridView
                         android:id="@+id/usermajor_select_atygridview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -160,55 +159,53 @@
                         android:dividerHeight="1px"
                         android:listSelector="@color/transparent"
                         android:numColumns="3"
-                        android:scrollbars="none"></GridView>
+                        android:scrollbars="none" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
                     <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_marginTop="@dimen/ts_30"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ts_30"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="@dimen/ts_22"
-                            android:src="@mipmap/schools"
-                            android:layout_height="@dimen/ts_22" />
+                            android:layout_height="@dimen/ts_22"
+                            android:src="@mipmap/schools" />
 
                         <TextView
-                            android:textColor="#5491FF"
-                            android:text="院校"
-                            android:layout_marginLeft="@dimen/ts_5"
                             android:layout_width="wrap_content"
-                            android:textSize="@dimen/ts_18"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/ts_5"
+                            android:text="院校"
+                            android:textColor="#5491FF"
+                            android:textSize="@dimen/ts_18" />
                     </LinearLayout>
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
-                    <GridView
+                    <com.jiyun.yingyuxinyuan.view.MyGridView
                         android:id="@+id/userschool_select_atygridview"
                         android:layout_width="match_parent"
-                        android:numColumns="2"
+                        android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:listSelector="@color/transparent"
-                        android:scrollbars="none"
                         android:divider="@color/transparent"
                         android:dividerHeight="1px"
-                        android:layout_height="wrap_content">
-                    </GridView>
-
-
+                        android:listSelector="@color/transparent"
+                        android:numColumns="2"
+                        android:scrollbars="none" />
                 </RelativeLayout>
             </LinearLayout>
-        </ScrollView>
+        </com.jiyun.yingyuxinyuan.view.MyScrollView>
 
     </LinearLayout>
 </RelativeLayout>

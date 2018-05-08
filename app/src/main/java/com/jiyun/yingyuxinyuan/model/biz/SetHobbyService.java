@@ -21,11 +21,11 @@ import retrofit2.http.Url;
 
 public interface SetHobbyService {
     //    偏好设置
-   @FormUrlEncoded
+    @FormUrlEncoded
     @POST(Urls.SET_HOBBY)
     Observable<SetHobbyBean> GetData(@HeaderMap Map<String, String> headers);
 
     //    偏好设置
-   @GET
-    Observable<SetHobbyBean> GetDatae(@Url String url);
+    @GET(Urls.PREFERENCE)
+    Observable<SetHobbyBean> GetDatae(@HeaderMap Map<String, String> headers);
 }

@@ -4,17 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.jiyun.yingyuxinyuan.app.App;
 import com.jiyun.yingyuxinyuan.contract.SetHobbyContract;
-import com.jiyun.yingyuxinyuan.model.bean.PhoneResginYzmBean;
 import com.jiyun.yingyuxinyuan.model.bean.SetHobbyBean;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -29,23 +26,31 @@ public class SetPresenterimp implements SetHobbyContract.sethobbyPres {
     SetHobbyService setHobbyService;
 
     public SetPresenterimp() {
-        setHobbyService =RetrofitUtils.getInstance().getsetHobbyService();
+        setHobbyService = RetrofitUtils.getInstance().getsetHobbyService();
     }
 
     @Override
     public void getSetData() {
-        setHobbyService.GetDatae("user/preference")
+        HashMap<String, String> headers = new HashMap<>();
+        SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        headers.put("apptoken", token.getString("appToken", ""));
+        setHobbyService.GetDatae(headers)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<SetHobbyBean>() {
                     @Override
                     public void accept(SetHobbyBean setHobbyBean) throws Exception {
-//                        Gson gson = new Gson();
-//                        SetHobbyBean.DataBean data = setHobbyBean.getData();
-//                        List<SetHobbyBean.DataBean.CollegesBean> colleges = data.getColleges();
-//                        List<SetHobbyBean.DataBean.MajorsBean> majors = data.getMajors();
-//                        gson.fromJson(SetHobbyBean.class);
-                        sethobbyView.showSetData(setHobbyBean);
+                        Log.d("SetPresenterimp", setHobbyBean.toString());
+                        String message = setHobbyBean.getMessage();
+                        if ("成功".equals(message)) {
+                            List<SetHobbyBean.DataBean.CollegesBean> colleges = setHobbyBean.getData().getColleges();
+                            List<SetHobbyBean.DataBean.MajorsBean> majors = setHobbyBean.getData().getMajors();
+                            sethobbyView.showSchool(colleges);
+                            sethobbyView.showSetData(majors);
+
+                        } else {
+                            sethobbyView.showErrorMsg(message);
+                        }
                     }
                 });
     }
@@ -57,6 +62,6 @@ public class SetPresenterimp implements SetHobbyContract.sethobbyPres {
 
     @Override
     public void unActualView() {
-        this.sethobbyView=null;
+        this.sethobbyView = null;
     }
 }

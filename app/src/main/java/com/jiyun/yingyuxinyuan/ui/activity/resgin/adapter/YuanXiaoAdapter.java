@@ -5,13 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.model.bean.SetHobbyBean;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by ASUS on 2018/05/05.
@@ -46,23 +49,23 @@ public class YuanXiaoAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
-        if (convertView == null)
-        {
+        if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_single_str, parent, false);
-
-            viewHolder = new ViewHolder();
-            viewHolder.mTextView = (TextView) convertView.findViewById(R.id.id_tv_title);
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        } else
-        {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.mTextView.setText(list.get(position).getName());
+        viewHolder.itemSingleItemName.setText(list.get(position).getName());
         return convertView;
     }
 
+    public class ViewHolder {
+        @BindView(R.id.item_single_item_name)
+        public TextView itemSingleItemName;
 
-    private final class ViewHolder {
-        TextView mTextView;
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

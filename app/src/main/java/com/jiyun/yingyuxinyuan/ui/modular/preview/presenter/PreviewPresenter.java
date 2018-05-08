@@ -14,6 +14,7 @@ import com.jiyun.yingyuxinyuan.model.biz.PreviewService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -57,7 +58,12 @@ public class PreviewPresenter implements PreviewContract.Presenter {
                     public void accept(PreviewBean previewBean) throws Exception {
                         String message = previewBean.getMessage();
                         if ("成功".equals(message)) {
-                            view.showDate(previewBean);
+                            int size = previewBean.getData().getSize();
+                            if (size != 0) {
+                                view.showDate(previewBean);
+                            } else {
+                                view.showError("没有课程");
+                            }
                         } else {
                             view.showError("请求失败");
                         }
