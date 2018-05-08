@@ -12,6 +12,7 @@ import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.model.bean.EventBean;
 import com.jiyun.yingyuxinyuan.ui.activity.LoginActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.fragment.HomeworkFragment;
+import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.LoginPersonFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.preview.fragment.PreviewFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.teacher.fragment.TeacherFragment;
@@ -116,7 +117,8 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.main_myself_btn:
                 setMyself();
-                setCreateView(R.id.main_content, PersonFragment.class);
+//                setCreateView(R.id.main_content, PersonFragment.class);
+                setCreateView(R.id.main_content, LoginPersonFragment.class);
                 break;
         }
     }

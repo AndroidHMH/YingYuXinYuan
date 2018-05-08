@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent">
-<LinearLayout
+     <LinearLayout
+    android:visibility="visible"
+    android:id="@+id/linear_myself1"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

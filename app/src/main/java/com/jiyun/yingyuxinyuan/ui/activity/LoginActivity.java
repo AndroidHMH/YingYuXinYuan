@@ -1,6 +1,7 @@
 package com.jiyun.yingyuxinyuan.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,12 @@ import com.jiyun.yingyuxinyuan.model.bean.LoginBean;
 import com.jiyun.yingyuxinyuan.ui.MainActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.forget.ForgetActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.login.presenter.LoginPresenterimp;
+import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -48,7 +55,49 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
     LinearLayout login_qq;
     @BindView(R.id.login_weibo)
     LinearLayout login_weibo;
+    UMAuthListener umAuthListener= new UMAuthListener() {
+        /**
+         * @desc 授权开始的回调
+         * @param platform 平台名称
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
 
+        }
+
+        /**
+         * @desc 授权成功的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         * @param data 用户资料返回
+         */
+        @Override
+        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+            Toast.makeText(LoginActivity.this, "成功了", 	Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @desc 授权失败的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+
+            Toast.makeText(LoginActivity.this, "失败：" + t.getMessage(),                                  Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @desc 授权取消的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+            Toast.makeText(LoginActivity.this, "取消了", Toast.LENGTH_LONG).show();
+        }
+    };
 
     @Override
     protected int getLayoutId() {
@@ -73,13 +122,14 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
 //              登录
             case R.id.login_login:
                 presenter.getLogin(login_phone.getText().toString(),login_psw.getText().toString());
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
                 break;
 //                微信登录
             case R.id.login_weixin:
                 break;
 //                QQ登录
             case R.id.login_qq:
+                UMShareAPI.get(this).getPlatformInfo(LoginActivity.this, SHARE_MEDIA.QQ, umAuthListener);
                 break;
 //                微博登录
             case R.id.login_weibo:
@@ -90,9 +140,6 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
 
     @Override
     protected void init() {
-      /*  if (!login_phone.getText().toString().trim().equals("") && !login_psw.getText().toString().trim().equals("")){
-            login_login.setBackgroundColor(R.color.blue);
-        }*/
     }
 
     @Override
@@ -103,5 +150,16 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
     @Override
     public void showData(String msg) {
         Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void gotoMain(LoginBean loginBean) {
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+
     }
 }

@@ -3,6 +3,15 @@
     package="com.jiyun.yingyuxinyuan">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:name=".app.App"
@@ -23,8 +32,69 @@
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.ResginActivity" />
         <activity android:name=".ui.activity.resgin.activity.ResginAllActivity" />
-        <activity android:name=".ui.activity.resgin.activity.SetHobbyActivity"/>
-        <!--<activity android:name=".ui.activity.ForgetActivity"></activity><!-->
+        <activity android:name=".ui.activity.resgin.activity.SetHobbyActivity" />
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5a8f6fa4a40fa378ba000134" />
+
+        <activity android:name=".ui.activity.forget.ForgetActivity" />
+        <activity android:name=".ui.activity.forget.RePswActivity" />
+        <activity android:name=".ui.activity.my.zuoping.activity.ZuoPingActivity" />
+        <activity android:name=".ui.activity.my.tiezi.activity.TieZiActivity" />
+        <activity android:name=".ui.activity.my.fensi.activity.FenSiActivity" />
+        <activity android:name=".ui.activity.my.guanzhu.activity.GuanZhuActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.SettingActivity" />
+        <activity android:name=".ui.activity.my.mymessage.activity.MySettingActivity" />
+        <activity android:name=".ui.activity.my.renzheng.activity.RenZhengActivity" />
+        <activity android:name=".ui.activity.my.store.activity.StoreActivity" />
+        <activity android:name=".ui.activity.my.gift.activity.GiftActivity" />
+        <activity android:name=".ui.activity.my.chongzhi.activity.ChongCenterActivity" />
+        <activity android:name=".ui.activity.my.dingdan.activity.DingDanActivity" />
+        <activity android:name=".ui.activity.my.messagelis.activity.MessageActivity" />
+        <activity android:name=".ui.activity.my.myself.activity.MySelfActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.ChangePswActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.ChangePhoneActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.ChangeSheJiaoActivity"></activity>
     </application>
 
 </manifest>

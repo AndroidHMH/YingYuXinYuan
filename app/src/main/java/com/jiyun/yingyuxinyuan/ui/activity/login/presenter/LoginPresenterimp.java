@@ -48,6 +48,14 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
         map.put("mobile", phone);
         map.put("mobileValidCode", password);
 
+        if (!isPhone(phone)){
+            return;
+        }
+        if (!isPsw(password)){
+            return;
+        }
+
+
         Map<String, String> headers = new HashMap<>();
         headers.put("apptoken", token.getString("appToken", ""));
         loginService.GetLogin(map,headers)
@@ -56,17 +64,16 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
                 .subscribe(new Observer<LoginBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.e("TAG",d.toString());
                     }
 
                     @Override
                     public void onNext(LoginBean loginBean) {
-                        Log.d("Login",loginBean.toString());
+                        int code = loginBean.getCode();
+                        loginView.showData(code+"");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("Error",e.getMessage());
                     }
 
                     @Override
@@ -75,4 +82,39 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
                     }
                 });
     }
+
+    @Override
+    public boolean isPhone(String phone) {
+        if (phone == null){
+            return false;
+        }
+        if (phone.equals("")){
+            return false;
+        }
+        if (phone.contains(" ")){
+            return false;
+        }
+        if (phone.matches("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$")){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isPsw(String password) {
+        if (password == null){
+            return false;
+        }
+        if (password.equals("")){
+            return false;
+        }
+        if (password.contains(" ")){
+            return false;
+        }
+        if (password.matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$")){
+            return true;
+        }
+        return false;
+    }
+
 }

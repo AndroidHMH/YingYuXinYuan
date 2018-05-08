@@ -11,9 +11,11 @@ import com.jiyun.yingyuxinyuan.model.bean.LoginBean;
 public interface LoginContract {
     interface LoginView{
         void showData(String mag);
+        void gotoMain(LoginBean loginBean);
     }
     interface LoginPresenter extends BasePresenter<LoginView> {
         void getLogin(String phone,String password);
-
+        boolean isPhone(String phone);
+        boolean isPsw(String password);
     }
 }

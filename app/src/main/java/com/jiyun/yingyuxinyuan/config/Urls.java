@@ -30,4 +30,6 @@ public class Urls {
     public static final String SET_HOBBY = "user/preference";
     //预告首页
     public static final String PREVIEW_HOME_PAGE = "forthcoming/index";
+//    重置密码
+    public static final String RES_PSW = "user/save/password";
 }

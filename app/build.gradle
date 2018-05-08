@@ -50,5 +50,7 @@ dependencies {
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
     compile 'com.makeramen:roundedimageview:2.3.0'
     implementation files('libs/eventbus-3.1.1.jar')
-    compile 'com.android.support:design:27.1.0'     //TabLayout组件
+    compile 'com.android.support:design:27.1.0'
+    //TabLayout组件
+    implementation files('libs/umeng_social_shareview.jar')
 }

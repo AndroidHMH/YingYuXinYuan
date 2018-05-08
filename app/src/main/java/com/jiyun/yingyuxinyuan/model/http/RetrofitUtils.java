@@ -13,9 +13,11 @@ import com.jiyun.yingyuxinyuan.config.EncryptUtil;
 import com.jiyun.yingyuxinyuan.config.Urls;
 import com.jiyun.yingyuxinyuan.model.bean.TokenBean;
 import com.jiyun.yingyuxinyuan.model.biz.AppTokenService;
+import com.jiyun.yingyuxinyuan.model.biz.ForgetService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
 import com.jiyun.yingyuxinyuan.model.biz.PreviewService;
+import com.jiyun.yingyuxinyuan.model.biz.PswResService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginService;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
@@ -112,4 +114,8 @@ public class RetrofitUtils {
     public PreviewService getPreviewService() {
         return retrofit.create(PreviewService.class);
     }
+
+    public ForgetService getForgetService() { return retrofit.create(ForgetService.class); }
+
+    public PswResService getPswResService() { return retrofit.create(PswResService.class); }
 }
