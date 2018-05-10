@@ -76,6 +76,15 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5a8f6fa4a40fa378ba000134" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.jiyun.yingyuxinyuan"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+        </provider>
 
         <activity android:name=".ui.activity.forget.ForgetActivity" />
         <activity android:name=".ui.activity.forget.RePswActivity" />
@@ -99,6 +108,12 @@
         <activity android:name=".ui.activity.my.setting.activity.AboutIntoActivity" />
         <activity android:name=".ui.activity.my.mymessage.activity.SingleActivity" />
         <activity android:name=".ui.activity.my.setting.activity.ChangePhoneNextActivity"></activity>
+        <activity android:name=".ui.modular.detailssystemads.activity.DetailsSystemAdsActivity" />
+        <activity android:name=".ui.modular.detailssystemads.activity.DetailsSystemAdsTwoActivity" />
+        <activity android:name=".ui.modular.mingshi.activity.MingShiActivity" />
+        <activity android:name=".ui.modular.homeworkcontent.activity.HomeworkContentActivity" />
+        <activity android:name=".ui.modular.treasureitemcontent.activity.TreasureItemContentActivity"></activity>
+
     </application>
 
 </manifest>
