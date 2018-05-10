@@ -29,6 +29,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+/**
+ *
+ */
 public class LoginPersonFragment extends BaseFragment {
 
     @BindView(R.id.setting_my)
