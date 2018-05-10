@@ -1,9 +1,8 @@
 package com.jiyun.yingyuxinyuan.ui.modular.homework.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +16,7 @@ import com.jiyun.yingyuxinyuan.contract.HomeworkItemContract;
 import com.jiyun.yingyuxinyuan.model.bean.HomeworkBean;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.adapter.HomeworkItemAdapter;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.presenter.HomeworkItemPresenter;
-import com.jiyun.yingyuxinyuan.ui.modular.teacher.adapter.WorkRecyclerAdapter;
+import com.jiyun.yingyuxinyuan.ui.modular.homeworkcontent.activity.HomeworkContentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +52,15 @@ public class HomeworkItemFragment extends Fragment implements HomeworkItemContra
 
     private void initViews() {
         homeworkItemAdapter = new HomeworkItemAdapter(list);
+        homeworkItemAdapter.setMyClick(new HomeworkItemAdapter.MyClick() {
+            @Override
+            public void myClick(View view, int position) {
+                Intent intent = new Intent(getContext(), HomeworkContentActivity.class);
+                HomeworkBean.DataBean.ListBean listBean = list.get(position);
+                intent.putExtra("homewokId", listBean.getId() + "");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -53,8 +53,7 @@ public class TeacherPresenter implements TeacherContract.Presenter {
         Log.e("TeacherPresenter", token.getString("appToken", ""));
 
         headers.put("apptoken", token.getString("appToken", ""));
-        RetrofitUtils.getInstance().getTeacherService()
-                .loadHomePage(params, headers)
+        teacherService.loadHomePage(params, headers)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<TeacherHomePageBean>() {

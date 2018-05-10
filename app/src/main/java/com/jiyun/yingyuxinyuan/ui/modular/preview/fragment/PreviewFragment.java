@@ -2,6 +2,7 @@ package com.jiyun.yingyuxinyuan.ui.modular.preview.fragment;
 
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -25,6 +26,7 @@ import com.jiyun.yingyuxinyuan.base.BaseFragment;
 import com.jiyun.yingyuxinyuan.contract.PreviewContract;
 import com.jiyun.yingyuxinyuan.model.bean.PreviewBean;
 import com.jiyun.yingyuxinyuan.ui.MainActivity;
+import com.jiyun.yingyuxinyuan.ui.modular.detailssystemads.activity.DetailsSystemAdsActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.preview.adapter.PreviewAdapter;
 import com.jiyun.yingyuxinyuan.ui.modular.preview.presenter.PreviewPresenter;
 
@@ -84,6 +86,15 @@ public class PreviewFragment extends BaseFragment<PreviewPresenter> implements P
         previewRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         previewAdapter = new PreviewAdapter(list);
         previewRecycler.setAdapter(previewAdapter);
+        previewAdapter.setMyCLick(new PreviewAdapter.MyCLick() {
+            @Override
+            public void myClick(View view, int position) {
+                PreviewBean.DataBean.ListBean listBean = list.get(position);
+                Intent intent = new Intent(getContext(), DetailsSystemAdsActivity.class);
+                intent.putExtra("mobileUrl", listBean.getId() + "");
+                startActivity(intent);
+            }
+        });
     }
 
     private void initScreenViews(View rootView) {
@@ -127,7 +138,7 @@ public class PreviewFragment extends BaseFragment<PreviewPresenter> implements P
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                textView.setText(year + "-" + (monthOfYear+1) + "-" + dayOfMonth);
+                textView.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
@@ -163,6 +174,7 @@ public class PreviewFragment extends BaseFragment<PreviewPresenter> implements P
         previewErrorGroup.setVisibility(View.VISIBLE);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void showScreenPopup() {
         previewRecycler.setBackground(new ColorDrawable(Color.parseColor("#aa000000")));

@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -31,7 +30,7 @@
         <activity android:name=".ui.activity.resgin.activity.SetHobbyActivity" />
         <activity android:name=".ui.modular.teacherlist.activity.TeacherListActivity" />
         <activity android:name=".ui.modular.lookclass.activity.LookClassActivity" />
-        <!--<activity android:name=".ui.activity.ForgetActivity"></activity><!-->
+        <!-- <activity android:name=".ui.activity.ForgetActivity"></activity><! -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.jiyun.yingyuxinyuan"
@@ -41,6 +40,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider" />
         </provider>
+
+        <activity android:name=".ui.modular.detailssystemads.activity.DetailsSystemAdsActivity" />
+        <activity android:name=".ui.modular.detailssystemads.activity.DetailsSystemAdsTwoActivity" />
+        <activity android:name=".ui.modular.mingshi.activity.MingShiActivity" />
+        <activity android:name=".ui.modular.homeworkcontent.activity.HomeworkContentActivity" />
+        <activity android:name=".ui.modular.treasureitemcontent.activity.TreasureItemContentActivity"></activity>
     </application>
 
 </manifest>

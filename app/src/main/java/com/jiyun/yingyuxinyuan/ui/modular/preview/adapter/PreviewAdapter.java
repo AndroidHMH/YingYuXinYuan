@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
  * Created by asus on 2018/5/6.
  */
 
-public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.Holder> {
+public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.Holder> implements View.OnClickListener {
     private List<PreviewBean.DataBean.ListBean> list;
     private Context context;
 
@@ -37,6 +37,7 @@ public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.Holder> 
         context = parent.getContext();
         View inflate = LayoutInflater.from(context).inflate(R.layout.preview_recycler_item, parent, false);
         Holder holder = new Holder(inflate);
+        inflate.setOnClickListener(this);
         return holder;
     }
 
@@ -49,11 +50,29 @@ public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.Holder> 
         holder.previewRecyclerItemStartTimeTv.setText(DateUtils.getYYYYbyTimeStampMs(listBean.getStartDate()));
         holder.previewRecyclerItemTitleTv.setText("地址：" + listBean.getAddress());
         Glide.with(context).load(listBean.getCoverImg()).into(holder.previewRecyclerItemImg);
+        holder.itemView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
         return list.isEmpty() ? 0 : list.size();
+    }
+
+    public interface MyCLick {
+        void myClick(View view, int position);
+    }
+
+    private MyCLick myCLick;
+
+    public void setMyCLick(MyCLick myCLick) {
+        this.myCLick = myCLick;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (myCLick != null) {
+            myCLick.myClick(v, (int) v.getTag());
+        }
     }
 
     public class Holder extends RecyclerView.ViewHolder {

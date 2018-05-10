@@ -13,15 +13,19 @@ import com.jiyun.yingyuxinyuan.config.EncryptUtil;
 import com.jiyun.yingyuxinyuan.config.Urls;
 import com.jiyun.yingyuxinyuan.model.bean.TokenBean;
 import com.jiyun.yingyuxinyuan.model.biz.AppTokenService;
+import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
+import com.jiyun.yingyuxinyuan.model.biz.HomeworkContentService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
 import com.jiyun.yingyuxinyuan.model.biz.LookClassItemService;
+import com.jiyun.yingyuxinyuan.model.biz.MingShiService;
 import com.jiyun.yingyuxinyuan.model.biz.PreviewService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginService;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherListItemService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
+import com.jiyun.yingyuxinyuan.model.biz.TreasureItemContentService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureService;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -121,5 +125,21 @@ public class RetrofitUtils {
 
     public LookClassItemService getLookClassItemService() {
         return retrofit.create(LookClassItemService.class);
+    }
+
+    public DetailsSystemAdsService getDetailsSystemAdsService() {
+        return retrofit.create(DetailsSystemAdsService.class);
+    }
+
+    public MingShiService getMingShiService() {
+        return retrofit.create(MingShiService.class);
+    }
+
+    public HomeworkContentService getHomeworkContentService() {
+        return retrofit.create(HomeworkContentService.class);
+    }
+
+    public TreasureItemContentService getTreasureItemContentService() {
+        return retrofit.create(TreasureItemContentService.class);
     }
 }
