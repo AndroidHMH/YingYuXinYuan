@@ -40,11 +40,11 @@ public class RePswPresenterimp implements RePswContract.RePswPresenter {
     }
 
     @Override
-    public void finish(String phone, String psw) {
+    public void finish(String phone, String repsw) {
 
         Map<String,String> map = new HashMap<>();
         map.put("mobile", phone);
-        map.put("password", psw);
+        map.put("password", repsw);
         SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
         Map<String, String> headers = new HashMap<>();
         headers.put("apptoken", token.getString("appToken", ""));

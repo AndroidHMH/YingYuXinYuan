@@ -63,17 +63,15 @@
                     android:layout_marginTop="@dimen/ts_30"
                     android:background="@color/white"
                     >
-
-
-                    <EditText
+                    <com.jiyun.yingyuxinyuan.view.MyEditText
                         android:id="@+id/change_phone_aty_getcode_et"
-                        android:layout_width="wrap_content"
                         android:minWidth="@dimen/ts_90"
                         android:maxLength="6"
                         style="@style/login_logout_input"
                         android:hint="输入验证码"
-                        android:layout_height="wrap_content" />
-
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
                     <TextView
                         android:id="@+id/change_phone_aty_getcode_reset"
                         android:layout_width="105dp"
@@ -84,16 +82,6 @@
                         android:textColor="#5491FF"
                         android:layout_alignParentRight="true"
                         android:layout_height="wrap_content" />
-
-                    <ImageView
-                        android:id="@+id/change_phone_aty_getcode_reset_clear"
-                        android:layout_toLeftOf="@id/change_phone_aty_getcode_reset"
-                        android:layout_width="@dimen/ts_22"
-                        android:visibility="invisible"
-                        android:src="@mipmap/input_close"
-                        android:layout_marginRight="@dimen/ts_3"
-                        android:layout_height="@dimen/ts_22" />
-
                 </RelativeLayout>
 
                 <TextView
@@ -110,7 +98,6 @@
                     android:textColor="@color/white"
                     android:layout_marginTop="@dimen/ts_68dp"
                     android:enabled="false"
-                    android:background="@drawable/login_btn_enable_bg"
                     android:layout_height="@dimen/ts_48" />
 
             </LinearLayout>

@@ -1,14 +1,19 @@
 package com.jiyun.yingyuxinyuan.ui.activity.my.setting.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.CacheUtil;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
+import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
+import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,20 +25,25 @@ import butterknife.Unbinder;
  */
 public class SettingActivity extends BaseActivity {
 
+
     @BindView(R.id.setting_close)
-    ImageView settingClose;
+    TextView settingClose;
+    @BindView(R.id.setting_aty_phone_tv)
+    TextView settingAtyPhoneTv;
     @BindView(R.id.change_phone)
-    LinearLayout changePhone;
+    RelativeLayout changePhone;
     @BindView(R.id.change_shejiao)
-    LinearLayout changeShejiao;
+    RelativeLayout changeShejiao;
     @BindView(R.id.change_psw)
-    LinearLayout changePsw;
+    RelativeLayout changePsw;
+    @BindView(R.id.setting_glide_cahce_tv)
+    TextView settingGlideCahceTv;
     @BindView(R.id.clean)
-    LinearLayout clean;
+    RelativeLayout clean;
     @BindView(R.id.about)
-    LinearLayout about;
+    RelativeLayout about;
     @BindView(R.id.clean_login)
-    LinearLayout cleanLogin;
+    RelativeLayout cleanLogin;
     Unbinder unbinder;
     @Override
     protected int getLayoutId() {
@@ -42,7 +52,11 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void init() {
-
+        try {
+            settingGlideCahceTv.setText(CacheUtil.getTotalCacheSize(SettingActivity.this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -50,33 +64,40 @@ public class SettingActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.setting_close,R.id.change_phone,R.id.change_shejiao,R.id.change_psw,R.id.clean,R.id.about,R.id.clean_login})
+    @OnClick({R.id.setting_close,
+            R.id.setting_aty_phone_tv, R.id.change_phone, R.id.change_shejiao, R.id.change_psw,
+            R.id.clean,R.id.setting_glide_cahce_tv, R.id.about, R.id.clean_login})
     public void onViewClicked(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.setting_close:
                 finish();
                 break;
             case R.id.change_phone:
-                startActivity(new Intent(SettingActivity.this,ChangePhoneActivity.class));
+                SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
+                String nickname = login.getString("nickname", null);
+                if (nickname != null){
+                    settingAtyPhoneTv.setText(nickname);
+                }
+                startActivity(new Intent(SettingActivity.this, ChangePhoneActivity.class));
                 break;
             case R.id.change_shejiao:
-                startActivity(new Intent(SettingActivity.this,ChangeSheJiaoActivity.class));
+                startActivity(new Intent(SettingActivity.this, ChangeSheJiaoActivity.class));
                 break;
             case R.id.change_psw:
-                startActivity(new Intent(SettingActivity.this,ChangePswActivity.class));
+                startActivity(new Intent(SettingActivity.this, ChangePswActivity.class));
                 break;
             case R.id.clean:
+                CacheUtil.clearAllCache(SettingActivity.this);
+                settingGlideCahceTv.setText("0.0K");
+                Toast.makeText(SettingActivity.this,"缓存已清理",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.about:
+                startActivity(new Intent(SettingActivity.this, AboutActivity.class));
                 break;
             case R.id.clean_login:
+                startActivity(new Intent(SettingActivity.this, PersonFragment.class));
+                finish();
                 break;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
     }
 }

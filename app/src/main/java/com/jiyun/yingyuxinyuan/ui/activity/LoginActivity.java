@@ -1,6 +1,7 @@
 package com.jiyun.yingyuxinyuan.ui.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
+import com.jiyun.yingyuxinyuan.app.App;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.LoginContract;
 import com.jiyun.yingyuxinyuan.model.bean.LoginBean;
 import com.jiyun.yingyuxinyuan.ui.MainActivity;
@@ -39,12 +42,8 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
    TextView login_resgin;
    @BindView(R.id.login_phone)
     EditText login_phone;
-   @BindView(R.id.login_phone_res)
-    ImageView login_phone_res;
    @BindView(R.id.login_psw)
    EditText login_psw;
-   @BindView(R.id.login_psw_res)
-   ImageView login_psw_res;
    @BindView(R.id.login_forget)
    TextView login_forget;
    @BindView(R.id.login_login)
@@ -122,7 +121,6 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
 //              登录
             case R.id.login_login:
                 presenter.getLogin(login_phone.getText().toString(),login_psw.getText().toString());
-
                 break;
 //                微信登录
             case R.id.login_weixin:
@@ -154,7 +152,21 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
 
     @Override
     public void gotoMain(LoginBean loginBean) {
+        String message = loginBean.getMessage();
+        if(message.contains("错误")){
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        LoginShareUtils.UserMessage(LoginActivity.this, loginBean.getData().getNickname(),
+        loginBean.getData().getMobile(),
+                loginBean.getData().getPhoto(),
+                loginBean.getData().getId(),
+                loginBean.getData().getToken());
+        Log.e("昵称", loginBean.getData().getNickname());
+        Log.e("手机号", loginBean.getData().getMobile());
+        Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

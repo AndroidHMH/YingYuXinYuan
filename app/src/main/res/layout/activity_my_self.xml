@@ -13,6 +13,7 @@
         android:layout_height="200dp"
         android:orientation="vertical">
         <ImageView
+            android:id="@+id/myself_close"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
             android:src="@mipmap/detail_back"
@@ -90,6 +91,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/myself_button"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -108,13 +110,13 @@
         android:background="#f8f8f8"
         android:layout_height="@dimen/ts_36">
         <RelativeLayout
-            android:id="@+id/indentlist_aty_level3"
+            android:id="@+id/myself_zuoping"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/indentlist_aty_level3_tv"
+                android:id="@+id/myself_zuoping_tv"
                 android:layout_width="wrap_content"
                 android:text="作品"
                 android:layout_centerInParent="true"
@@ -123,7 +125,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/indentlist_aty_level3_line"
+                android:id="@+id/myslef_zuoping_line"
                 android:layout_width="@dimen/ts_20"
                 android:background="#FFD235"
                 android:visibility="invisible"
@@ -132,13 +134,13 @@
                 android:layout_height="@dimen/ts_3" />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/indentlist_aty_level4"
+            android:id="@+id/myself_tiezi"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/indentlist_aty_level4_tv"
+                android:id="@+id/myself_tiezi_tv"
                 android:layout_width="wrap_content"
                 android:text="帖子"
                 android:layout_centerInParent="true"
@@ -147,7 +149,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/indentlist_aty_level4_line"
+                android:id="@+id/myself_tiezi_line"
                 android:layout_width="@dimen/ts_20"
                 android:background="#FFD235"
                 android:visibility="invisible"

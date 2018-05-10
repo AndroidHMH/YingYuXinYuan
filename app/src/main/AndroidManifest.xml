@@ -94,7 +94,11 @@
         <activity android:name=".ui.activity.my.myself.activity.MySelfActivity" />
         <activity android:name=".ui.activity.my.setting.activity.ChangePswActivity" />
         <activity android:name=".ui.activity.my.setting.activity.ChangePhoneActivity" />
-        <activity android:name=".ui.activity.my.setting.activity.ChangeSheJiaoActivity"></activity>
+        <activity android:name=".ui.activity.my.setting.activity.ChangeSheJiaoActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.AboutActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.AboutIntoActivity" />
+        <activity android:name=".ui.activity.my.mymessage.activity.SingleActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.ChangePhoneNextActivity"></activity>
     </application>
 
 </manifest>

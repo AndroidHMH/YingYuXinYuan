@@ -38,4 +38,12 @@ public class Urls {
     public static final String TEACHER_LIST_DATE = "user/teacher/list";
     //直播列表数据
     public static final String ZHI_BO_DATE="liveCourse/list";
+    //重置后的密码
+    public static final String RES_PSW="user/save/password";
+    //登录
+    public static final String LOGIN="user/login/mobile ";
+    // 下一步
+    public static final String SETPHONE="user/setting/mobile";
+    //用户信息更新
+    public static final String USER_NEW = "user/info/edit";
 }

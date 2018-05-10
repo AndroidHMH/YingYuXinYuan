@@ -66,16 +66,19 @@ public class RePswActivity extends BaseActivity<RePswPresenterimp> implements Re
                 if (TextUtils.isEmpty(psw_et) || TextUtils.isEmpty(psw_re_et)){
                     return;
                 }
-                ressetPsw();
+                startActivity(new Intent(RePswActivity.this,PersonFragment.class));
+//                ressetPsw();
                 break;
         }
     }
 
     private void ressetPsw() {
+        Intent intent = getIntent();
+        String jump_phone = intent.getStringExtra("Jump_phone");
         if (!psw_et.equals(psw_re_et)|| psw_et.toString().length()<6){
             Toast.makeText(this, "两次密码输入不正确", Toast.LENGTH_SHORT).show();
         }
-        presenter.finish(psw_et,psw_re_et);
+        presenter.finish(jump_phone,psw_et);
     }
     @Override
     public void showMessage(String mesage) {

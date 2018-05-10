@@ -2,6 +2,7 @@ package com.jiyun.yingyuxinyuan.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,6 +12,7 @@ import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.model.bean.EventBean;
 import com.jiyun.yingyuxinyuan.ui.activity.LoginActivity;
+import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.activity.MessageActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.fragment.HomeworkFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.LoginPersonFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
@@ -96,7 +98,13 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_message_iv:
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                SharedPreferences login1 = getSharedPreferences("Login", MODE_PRIVATE);
+                String nickname1 = login1.getString("nickname", null);
+                if (nickname1 == null) {
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this,MessageActivity.class));
+                }
                 break;
             case R.id.main_teacher_btn:
                 setTeacherView();
@@ -116,8 +124,13 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.main_myself_btn:
                 setMyself();
-//                setCreateView(R.id.main_content, PersonFragment.class);
-                setCreateView(R.id.main_content, LoginPersonFragment.class);
+                SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
+                String nickname = login.getString("nickname", null);
+                if (nickname == null) {
+                    setCreateView(R.id.main_content, PersonFragment.class);
+                } else {
+                    setCreateView(R.id.main_content, LoginPersonFragment.class);
+                }
                 break;
         }
     }

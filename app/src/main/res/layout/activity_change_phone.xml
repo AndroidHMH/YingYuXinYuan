@@ -11,7 +11,7 @@
         android:layout_height="@dimen/ts_44">
 
         <TextView
-            android:id="@+id/inputnew_phone_aty_cancle"
+            android:id="@+id/new_phone_cancle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             style="@style/cancle_bg_style" />
@@ -80,23 +80,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <EditText
-                            android:id="@+id/inputnew_phone_aty_phone_et"
-                            android:layout_width="match_parent"
+                        <com.jiyun.yingyuxinyuan.view.MyEditText
+                            android:id="@+id/new_phone_et"
                             style="@style/login_logout_input"
                             android:maxLength="11"
                             android:layout_marginLeft="@dimen/ts_12"
-                            android:hint="输入手机号"
-                            android:layout_height="wrap_content" />
-
-                        <ImageView
-                            android:id="@+id/inputnew_phone_aty_phone_et_clear"
-                            android:layout_width="@dimen/ts_22"
-                            android:visibility="invisible"
-                            android:src="@mipmap/input_close"
-                            android:layout_alignParentRight="true"
-                            android:layout_height="@dimen/ts_22" />
-
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="请输入手机号" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -115,18 +106,18 @@
                     android:background="@color/white"
                     >
 
-
-                    <EditText
-                        android:id="@+id/inputnew_phone_aty_getcode_et"
-                        android:layout_width="wrap_content"
+                    <com.jiyun.yingyuxinyuan.view.MyEditText
+                        android:id="@+id/new_phone_getcode_et"
                         android:minWidth="@dimen/ts_90"
                         android:maxLength="6"
                         style="@style/login_logout_input"
                         android:hint="输入验证码"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
 
-                    <TextView
-                        android:id="@+id/inputnew_phone_aty_getcode_reset"
+                    <Button
+                        android:id="@+id/new_phone_getcode_reset"
                         android:layout_width="105dp"
                         android:layout_centerVertical="true"
                         style="@style/register_getcode_style"
@@ -135,16 +126,6 @@
                         android:textColor="#5491FF"
                         android:layout_alignParentRight="true"
                         android:layout_height="wrap_content" />
-
-                    <ImageView
-                        android:id="@+id/inputnew_phone_aty_getcode_reset_clear"
-                        android:layout_toLeftOf="@id/inputnew_phone_aty_getcode_reset"
-                        android:layout_width="@dimen/ts_22"
-                        android:visibility="invisible"
-                        android:src="@mipmap/input_close"
-                        android:layout_marginRight="@dimen/ts_3"
-                        android:layout_height="@dimen/ts_22" />
-
                 </RelativeLayout>
 
                 <TextView
@@ -154,14 +135,13 @@
                     android:layout_height="@dimen/ts_1" />
 
                 <Button
-                    android:id="@+id/inputnew_phone_aty_loginbtn"
+                    android:id="@+id/new_phone_loginbtn"
                     android:layout_width="@dimen/ts_280"
                     android:text="确定"
                     android:textSize="@dimen/ts_16"
                     android:textColor="@color/white"
                     android:enabled="false"
                     android:layout_marginTop="@dimen/ts_68dp"
-                    android:background="@drawable/login_btn_enable_bg"
                     android:layout_height="@dimen/ts_48" />
 
             </LinearLayout>

@@ -60,7 +60,6 @@ public class PersonFragment extends BaseFragment {
             case R.id.linear_myself1:
                 break;
             case R.id.myself_setting:
-//                    myselfSetting.setVisibility();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case R.id.title_message_iv:

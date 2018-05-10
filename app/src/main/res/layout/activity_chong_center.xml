@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/white"
-    android:id="@+id/recharge_center_aty_group"
+    android:id="@+id/recharge_group"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/recharge_center_aty_bottom"
+        android:id="@+id/recharge_bottom"
         android:layout_width="wrap_content"
         android:text="温馨提示：请在网络状态良好的环境下充值。"
         android:layout_alignParentBottom="true"
@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_above="@id/recharge_center_aty_bottom"
+        android:layout_above="@id/recharge_bottom"
         android:layout_height="match_parent">
 
         <RelativeLayout
@@ -28,7 +28,7 @@
             android:layout_height="@dimen/ts_44">
 
             <TextView
-                android:id="@+id/recharge_center_aty_cancle"
+                android:id="@+id/recharge_cancle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 style="@style/cancle_bg_style" />
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/recharge_center_aty_zhangdan"
+                android:id="@+id/recharge_zhangdan"
                 android:layout_width="wrap_content"
                 android:text="账单"
                 android:textColor="@color/black"
@@ -82,7 +82,7 @@
 
 
             <TextView
-                android:id="@+id/recharge_center_aty_zhanghao_tv"
+                android:id="@+id/recharge_zhanghao_tv"
                 android:layout_width="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -117,7 +117,7 @@
 
 
             <TextView
-                android:id="@+id/recharge_center_aty_yue_tv"
+                android:id="@+id/recharge_yue_tv"
                 android:layout_width="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -142,12 +142,9 @@
             android:layout_height="wrap_content" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recharge_center_aty_recyclerview"
+            android:id="@+id/recharge_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>
-
-
     </LinearLayout>
-
 </RelativeLayout>

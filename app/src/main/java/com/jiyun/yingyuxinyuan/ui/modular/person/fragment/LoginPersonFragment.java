@@ -1,6 +1,7 @@
 package com.jiyun.yingyuxinyuan.ui.modular.person.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseFragment;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.ui.activity.my.chongzhi.activity.ChongCenterActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.dingdan.activity.DingDanActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.fensi.activity.FenSiActivity;
@@ -21,6 +23,7 @@ import com.jiyun.yingyuxinyuan.ui.activity.my.setting.activity.SettingActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.store.activity.StoreActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.tiezi.activity.TieZiActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.zuoping.activity.ZuoPingActivity;
+import com.jiyun.yingyuxinyuan.ui.activity.resgin.activity.SetHobbyActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -151,6 +154,7 @@ public class LoginPersonFragment extends BaseFragment {
                 break;
 //                我的偏好
             case R.id.pianhao_my:
+                startActivity(new Intent(getActivity(),SetHobbyActivity.class));
                 break;
 //                我要认证
             case R.id.renzheng_myself:

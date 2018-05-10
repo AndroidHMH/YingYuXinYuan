@@ -18,7 +18,7 @@ import retrofit2.http.POST;
 public interface LoginService {
 //   登录
     @FormUrlEncoded
-    @POST(Urls.PHONE_YZM)
+    @POST(Urls.LOGIN)
     Observable<LoginBean> GetLogin(@FieldMap Map<String, String> params, @HeaderMap Map<String, String> headers);
 
 }

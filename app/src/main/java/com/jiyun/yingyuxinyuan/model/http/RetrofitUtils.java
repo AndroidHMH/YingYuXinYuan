@@ -13,14 +13,17 @@ import com.jiyun.yingyuxinyuan.config.EncryptUtil;
 import com.jiyun.yingyuxinyuan.config.Urls;
 import com.jiyun.yingyuxinyuan.model.bean.TokenBean;
 import com.jiyun.yingyuxinyuan.model.biz.AppTokenService;
+import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
 import com.jiyun.yingyuxinyuan.model.biz.ForgetService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
+import com.jiyun.yingyuxinyuan.model.biz.LookClassItemService;
 import com.jiyun.yingyuxinyuan.model.biz.PreviewService;
 import com.jiyun.yingyuxinyuan.model.biz.PswResService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginService;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
+import com.jiyun.yingyuxinyuan.model.biz.TeacherListItemService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureService;
 
@@ -118,4 +121,8 @@ public class RetrofitUtils {
     public ForgetService getForgetService() { return retrofit.create(ForgetService.class); }
 
     public PswResService getPswResService() { return retrofit.create(PswResService.class); }
+
+    public TeacherListItemService getTeacherListItemService(){ return retrofit.create(TeacherListItemService.class);}
+    public LookClassItemService getLookClassItemService(){ return retrofit.create(LookClassItemService.class); }
+    public ChangePhoneService getChangePhoneService(){ return retrofit.create(ChangePhoneService.class); }
 }

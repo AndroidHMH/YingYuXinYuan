@@ -12,6 +12,7 @@ import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -46,54 +47,41 @@ public class ForgetPresenterimp implements ForgetContract.ForgetPresenter {
         SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
         Map<String, String> map = new HashMap<>();
         map.put("mobile", phone);
-     /*   if (!isPhone(phone)){
+       if (!isPhone(phone)){
             return;
-        }*/
+        }
 
         Map<String, String> headers = new HashMap<>();
         headers.put("apptoken", token.getString("appToken", ""));
         forgetService.GetPhoneYzm(map,headers)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<PhoneResginYzmBean>() {
+                .subscribe(new Consumer<PhoneResginYzmBean>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(PhoneResginYzmBean phoneResginYzmBean) {
+                    public void accept(PhoneResginYzmBean phoneResginYzmBean) throws Exception {
                         String message = phoneResginYzmBean.getMessage();
-                        Log.e("TAG",message.toString());
                         forgetView.showPhoneYzmMessage(message);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e("TAG","失败");
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                        forgetView.startTime();
                     }
                 });
     }
     @Override
     public boolean isPhone(String phone) {
-        if (phone==null){
+        if (phone == null) {
             return false;
         }
-        if (phone.equals("")){
+        if ("".equals(phone)) {
             return false;
         }
-        if (phone.contains(" ")){
+        if (phone.contains(" ")) {
             return false;
         }
-        if (phone.matches("^((13[0-9])|(15[^4,\\\\D])|(18[0,5-9]))\\\\d{8}$")){
+        String regex_mobile = "^((17[0-9])|(14[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+        if (Pattern.matches(regex_mobile, phone)) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
 

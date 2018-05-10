@@ -31,10 +31,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(getLayoutId());
-        ButterKnife.bind(this);
 
         App.context = this;
+        ButterKnife.bind(this);
         presenter = getPresenter();
         if (presenter != null) {
             presenter.actualView(this);

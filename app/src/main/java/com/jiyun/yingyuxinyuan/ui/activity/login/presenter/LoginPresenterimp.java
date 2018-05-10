@@ -46,7 +46,7 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
         SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
         Map<String, String> map = new HashMap<>();
         map.put("mobile", phone);
-        map.put("mobileValidCode", password);
+        map.put("password", password);
 
         if (!isPhone(phone)){
             return;
@@ -61,24 +61,10 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
         loginService.GetLogin(map,headers)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<LoginBean>() {
+                .subscribe(new Consumer<LoginBean>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-                    }
-
-                    @Override
-                    public void onNext(LoginBean loginBean) {
-                        int code = loginBean.getCode();
-                        loginView.showData(code+"");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    public void accept(LoginBean loginBean) throws Exception {
+                        loginView.gotoMain(loginBean);
                     }
                 });
     }
