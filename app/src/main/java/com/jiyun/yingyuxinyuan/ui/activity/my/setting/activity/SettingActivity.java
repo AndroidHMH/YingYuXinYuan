@@ -21,7 +21,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * 设置
+ * 设置   。。。
  */
 public class SettingActivity extends BaseActivity {
 
