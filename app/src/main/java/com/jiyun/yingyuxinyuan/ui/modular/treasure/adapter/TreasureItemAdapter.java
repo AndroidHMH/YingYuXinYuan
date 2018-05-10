@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by asus on 2018/5/5.
  */
 
-public class TreasureItemAdapter extends RecyclerView.Adapter<TreasureItemAdapter.Holder> {
+public class TreasureItemAdapter extends RecyclerView.Adapter<TreasureItemAdapter.Holder> implements View.OnClickListener {
     private List<TreasureItemBean.DataBean.ArtcircleListBean.ListBean> list;
     private Context context;
 
@@ -41,6 +41,7 @@ public class TreasureItemAdapter extends RecyclerView.Adapter<TreasureItemAdapte
         context = parent.getContext();
         View inflate = LayoutInflater.from(context).inflate(R.layout.treasure_item_recycler_item, parent, false);
         Holder holder = new Holder(inflate);
+        inflate.setOnClickListener(this);
         return holder;
     }
 
@@ -81,11 +82,29 @@ public class TreasureItemAdapter extends RecyclerView.Adapter<TreasureItemAdapte
         } else {
             holder.workRecyclerItemPraiseCb.setChecked(true);
         }
+        holder.itemView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
         return list.isEmpty() ? 0 : list.size();
+    }
+
+    public interface MyClick {
+        void myClick(View view, int position);
+    }
+
+    private MyClick myClick;
+
+    public void setMyClick(MyClick myClick) {
+        this.myClick = myClick;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (myClick != null) {
+            myClick.myClick(v, (int) v.getTag());
+        }
     }
 
     public class Holder extends RecyclerView.ViewHolder {

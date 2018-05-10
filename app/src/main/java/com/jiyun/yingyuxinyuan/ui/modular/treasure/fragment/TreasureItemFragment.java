@@ -1,6 +1,7 @@
 package com.jiyun.yingyuxinyuan.ui.modular.treasure.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.jiyun.yingyuxinyuan.model.bean.TreasureItemBean;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.presenter.HomeworkItemPresenter;
 import com.jiyun.yingyuxinyuan.ui.modular.treasure.adapter.TreasureItemAdapter;
 import com.jiyun.yingyuxinyuan.ui.modular.treasure.presenter.TreasureItemPresenter;
+import com.jiyun.yingyuxinyuan.ui.modular.treasureitemcontent.activity.TreasureItemContentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,15 @@ public class TreasureItemFragment extends Fragment implements TreasureItemContra
 
     private void initViews() {
         treasureItemAdapter = new TreasureItemAdapter(list);
+        treasureItemAdapter.setMyClick(new TreasureItemAdapter.MyClick() {
+            @Override
+            public void myClick(View view, int position) {
+                TreasureItemBean.DataBean.ArtcircleListBean.ListBean listBean = list.get(position);
+                Intent intent = new Intent(getContext(), TreasureItemContentActivity.class);
+                intent.putExtra("artcircleId", listBean.getId() + "");
+                startActivity(intent);
+            }
+        });
     }
 
     private void init() {

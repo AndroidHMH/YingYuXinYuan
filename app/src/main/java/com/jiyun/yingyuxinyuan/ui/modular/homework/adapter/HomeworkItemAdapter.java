@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by asus on 2018/5/4.
  */
 
-public class HomeworkItemAdapter extends RecyclerView.Adapter<HomeworkItemAdapter.Holder> {
+public class HomeworkItemAdapter extends RecyclerView.Adapter<HomeworkItemAdapter.Holder> implements View.OnClickListener {
     public static final String TU_PIAN = "图片";
     public static final String SHI_PIN = "视频";
     public static final String YIN_PIN = "音频";
@@ -46,6 +46,7 @@ public class HomeworkItemAdapter extends RecyclerView.Adapter<HomeworkItemAdapte
         context = parent.getContext();
         View inflate = LayoutInflater.from(context).inflate(R.layout.work_recycler_item, parent, false);
         Holder holder = new Holder(inflate);
+        inflate.setOnClickListener(this);
         return holder;
     }
 
@@ -141,12 +142,29 @@ public class HomeworkItemAdapter extends RecyclerView.Adapter<HomeworkItemAdapte
         } else {
             holder.workRecyclerItemRewardCb.setText("");
         }
-
+        holder.itemView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
         return homewoks.size();
+    }
+
+    public interface MyClick {
+        void myClick(View view, int position);
+    }
+
+    private MyClick myClick;
+
+    public void setMyClick(MyClick myClick) {
+        this.myClick = myClick;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (myClick != null) {
+            myClick.myClick(v, (int) v.getTag());
+        }
     }
 
     public class Holder extends RecyclerView.ViewHolder {

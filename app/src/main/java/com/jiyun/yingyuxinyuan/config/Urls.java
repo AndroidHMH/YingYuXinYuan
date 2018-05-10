@@ -37,13 +37,16 @@ public class Urls {
     //名师列表数据
     public static final String TEACHER_LIST_DATE = "user/teacher/list";
     //直播列表数据
-    public static final String ZHI_BO_DATE="liveCourse/list";
-    //重置后的密码
-    public static final String RES_PSW="user/save/password";
-    //登录
-    public static final String LOGIN="user/login/mobile ";
-    // 下一步
-    public static final String SETPHONE="user/setting/mobile";
-    //用户信息更新
-    public static final String USER_NEW = "user/info/edit";
+    public static final String ZHI_BO_DATE = "liveCourse/list";
+    //首页轮播图点击后的
+    public static final String LUN_BO_TO_CLICK = "forthcoming/detail";
+    //首页轮播图点击后的2
+    public static final String LUN_BO_TO_CLICK_TWO = "liveCourse/detail";
+    //名师推荐点击后
+    public static final String MING_SHI_TUI_JIAN = "user/teacher/homepage";
+    //作业推荐点击后
+    public static final String ZUO_YE_TUIJIAN = "homewok/detail";
+    //宝典详情页面
+    public static final String BAO_DIAN_XIANG_QING = "artcircle/detail";
+
 }

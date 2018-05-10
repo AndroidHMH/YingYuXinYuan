@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,8 +18,12 @@ import com.jiyun.yingyuxinyuan.contract.TeacherContract;
 import com.jiyun.yingyuxinyuan.model.bean.EventBean;
 import com.jiyun.yingyuxinyuan.model.bean.TeacherHomePageBean;
 import com.jiyun.yingyuxinyuan.ui.MainActivity;
+import com.jiyun.yingyuxinyuan.ui.modular.detailssystemads.activity.DetailsSystemAdsActivity;
+import com.jiyun.yingyuxinyuan.ui.modular.detailssystemads.activity.DetailsSystemAdsTwoActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.fragment.HomeworkFragment;
+import com.jiyun.yingyuxinyuan.ui.modular.homeworkcontent.activity.HomeworkContentActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.lookclass.activity.LookClassActivity;
+import com.jiyun.yingyuxinyuan.ui.modular.mingshi.activity.MingShiActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.teacher.adapter.ClassGridAdapter;
 import com.jiyun.yingyuxinyuan.ui.modular.teacher.adapter.RollPagerAdapter;
 import com.jiyun.yingyuxinyuan.ui.modular.teacher.adapter.TeacherRecyclerAdapter;
@@ -29,6 +34,7 @@ import com.jiyun.yingyuxinyuan.ui.modular.treasure.fragment.TreasureFragment;
 import com.jiyun.yingyuxinyuan.view.MyGridView;
 import com.jiyun.yingyuxinyuan.view.MyScrollView;
 import com.jiyun.yingyuxinyuan.view.TeacherWorkLinearLayout;
+import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -94,6 +100,7 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
     private TeacherRecyclerAdapter teacherRecyclerAdapter;
     private WorkRecyclerAdapter workRecyclerAdapter;
     private ClassGridAdapter classGridAdapter;
+    private Intent intent;
 
     @Override
     protected int getLayoutId() {
@@ -105,6 +112,7 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
 
     @Override
     protected void init() {
+        intent = new Intent();
         homewoks = new ArrayList<>();
         liveCourses = new ArrayList<>();
         systemAds = new ArrayList<>();
@@ -114,6 +122,22 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
         //轮播图
         rollPagerAdapter = new RollPagerAdapter(systemAds);
         teacherPollPager.setAdapter(rollPagerAdapter);
+        teacherPollPager.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                TeacherHomePageBean.DataBean.SystemAdsBean systemAdsBean = systemAds.get(position);
+                String mobileUrl = systemAdsBean.getMobileUrl();
+
+                intent.putExtra("mobileUrl", mobileUrl);
+                String urlType = systemAdsBean.getUrlType();
+                if ("3".equals(urlType)) {
+                    intent.setClass(getContext(), DetailsSystemAdsActivity.class);
+                } else {
+                    intent.setClass(getContext(), DetailsSystemAdsTwoActivity.class);
+                }
+                startActivity(intent);
+            }
+        });
 
         //名师推荐
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -121,20 +145,43 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
         teacherTeacherRecycler.setLayoutManager(linearLayoutManager);
         teacherRecyclerAdapter = new TeacherRecyclerAdapter(users);
         teacherTeacherRecycler.setAdapter(teacherRecyclerAdapter);
+        teacherRecyclerAdapter.setMyClick(new TeacherRecyclerAdapter.MyClick() {
+            @Override
+            public void myClick(View view, int position) {
+                TeacherHomePageBean.DataBean.UsersBean usersBean = users.get(position);
+                intent.setClass(getContext(), MingShiActivity.class);
+                intent.putExtra("id", usersBean.getId());
+                startActivity(intent);
+            }
+        });
 
         //课堂推荐
         classGridAdapter = new ClassGridAdapter(liveCourses, getContext());
         teacherClassRecycler.setAdapter(classGridAdapter);
-
+        teacherClassRecycler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TeacherHomePageBean.DataBean.LiveCoursesBean liveCoursesBean = liveCourses.get(position);
+                intent.setClass(getContext(), DetailsSystemAdsTwoActivity.class);
+                intent.putExtra("mobileUrl", liveCoursesBean.getId() + "");
+                startActivity(intent);
+            }
+        });
         //推荐作业
         TeacherWorkLinearLayout teacherWorkLinearLayout = new TeacherWorkLinearLayout(getContext());
         teacherWorkLinearLayout.setScrollEnabled(false);
         teacherWorkRecycler.setLayoutManager(teacherWorkLinearLayout);
         workRecyclerAdapter = new WorkRecyclerAdapter(homewoks);
         teacherWorkRecycler.setAdapter(workRecyclerAdapter);
-
-
-
+        workRecyclerAdapter.setMyClick(new WorkRecyclerAdapter.MyClick() {
+            @Override
+            public void myClick(View view, int position) {
+                TeacherHomePageBean.DataBean.HomewoksBean homewoksBean = homewoks.get(position);
+                intent.setClass(getContext(), HomeworkContentActivity.class);
+                intent.putExtra("homewokId", homewoksBean.getId() + "");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -173,6 +220,7 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
 
     /**
      * Event更新ui控件
+     *
      * @param eventBean
      */
     @Subscribe
