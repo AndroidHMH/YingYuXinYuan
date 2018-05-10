@@ -7,6 +7,9 @@ import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.presente.MessageTiPresenterimp;
 
+/**
+ *
+ */
 public class MessageTiActivity extends BaseActivity{
 
     @Override
