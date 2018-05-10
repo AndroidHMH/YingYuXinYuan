@@ -48,17 +48,17 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
         map.put("mobile", phone);
         map.put("password", password);
 
-        if (!isPhone(phone)){
+        if (!isPhone(phone)) {
             return;
         }
-        if (!isPsw(password)){
+        if (!isPsw(password)) {
             return;
         }
 
 
         Map<String, String> headers = new HashMap<>();
         headers.put("apptoken", token.getString("appToken", ""));
-        loginService.GetLogin(map,headers)
+        loginService.GetLogin(map, headers)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<LoginBean>() {
@@ -71,16 +71,16 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
 
     @Override
     public boolean isPhone(String phone) {
-        if (phone == null){
+        if (phone == null) {
             return false;
         }
-        if (phone.equals("")){
+        if (phone.equals("")) {
             return false;
         }
-        if (phone.contains(" ")){
+        if (phone.contains(" ")) {
             return false;
         }
-        if (phone.matches("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$")){
+        if (phone.matches("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$")) {
             return true;
         }
         return false;
@@ -88,19 +88,16 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
 
     @Override
     public boolean isPsw(String password) {
-        if (password == null){
+        if (password == null) {
             return false;
         }
-        if (password.equals("")){
+        if (password.equals("")) {
             return false;
         }
-        if (password.contains(" ")){
+        if (password.contains(" ")) {
             return false;
         }
-        if (password.matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$")){
-            return true;
-        }
-        return false;
+        return true;
     }
 
 }

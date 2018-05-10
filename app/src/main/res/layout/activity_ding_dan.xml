@@ -8,7 +8,7 @@
         android:layout_height="@dimen/ts_44">
 
         <TextView
-            android:id="@+id/indentlist_aty_title_cancle"
+            android:id="@+id/ding_list_cancle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             style="@style/cancle_bg_style" />
@@ -36,13 +36,13 @@
         android:layout_height="@dimen/ts_36">
 
         <RelativeLayout
-            android:id="@+id/indentlist_aty_level1"
+            android:id="@+id/ding_list_al1"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/indentlist_aty_level1_tv"
+                android:id="@+id/ding_list_all_tv"
                 android:layout_width="wrap_content"
                 android:text="全部"
                 android:layout_centerInParent="true"
@@ -50,7 +50,7 @@
                 android:textColor="@color/login_close_c"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/indentlist_aty_level1_line"
+                android:id="@+id/ding_list_all_line"
                 android:layout_width="@dimen/ts_20"
                 android:background="@drawable/home_work_fragment_sortline_bg"
                 android:visibility="invisible"
@@ -73,10 +73,9 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/ts_80"
-                        android:layout_height="@dimen/ts_77"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
                         android:src="@mipmap/empty_content" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -84,21 +83,19 @@
                         android:text="暂无内容"
                         android:textColor="@color/black"
                         android:textSize="@dimen/ts_14" />
-
                 </LinearLayout>
-
             </RelativeLayout>
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:id="@+id/indentlist_aty_level2"
+            android:id="@+id/ding_list_fu"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/indentlist_aty_level2_tv"
+                android:id="@+id/ding_list_fu_tv"
                 android:layout_width="wrap_content"
                 android:text="待付款"
                 android:layout_centerInParent="true"
@@ -107,7 +104,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/indentlist_aty_level2_line"
+                android:id="@+id/ding_list_fu_line"
                 android:layout_width="@dimen/ts_20"
                 android:background="#FFD235"
                 android:visibility="invisible"
@@ -118,13 +115,13 @@
 
 
         <RelativeLayout
-            android:id="@+id/indentlist_aty_level3"
+            android:id="@+id/ding_list_use"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/indentlist_aty_level3_tv"
+                android:id="@+id/ding_list_use_tv"
                 android:layout_width="wrap_content"
                 android:text="待使用"
                 android:layout_centerInParent="true"
@@ -133,7 +130,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/indentlist_aty_level3_line"
+                android:id="@+id/ding_list_use_line"
                 android:layout_width="@dimen/ts_20"
                 android:background="#FFD235"
                 android:visibility="invisible"
@@ -144,13 +141,13 @@
 
 
         <RelativeLayout
-            android:id="@+id/indentlist_aty_level4"
+            android:id="@+id/ding_list_tui"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/indentlist_aty_level4_tv"
+                android:id="@+id/ding_list_tui_tv"
                 android:layout_width="wrap_content"
                 android:text="退货"
                 android:layout_centerInParent="true"
@@ -159,7 +156,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/indentlist_aty_level4_line"
+                android:id="@+id/ding_list_tui_line"
                 android:layout_width="@dimen/ts_20"
                 android:background="#FFD235"
                 android:visibility="invisible"

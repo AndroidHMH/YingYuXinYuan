@@ -76,6 +76,7 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5a8f6fa4a40fa378ba000134" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.jiyun.yingyuxinyuan"
@@ -107,13 +108,15 @@
         <activity android:name=".ui.activity.my.setting.activity.AboutActivity" />
         <activity android:name=".ui.activity.my.setting.activity.AboutIntoActivity" />
         <activity android:name=".ui.activity.my.mymessage.activity.SingleActivity" />
-        <activity android:name=".ui.activity.my.setting.activity.ChangePhoneNextActivity"></activity>
+        <activity android:name=".ui.modular.teacherlist.activity.TeacherListActivity" />
+        <activity android:name=".ui.modular.lookclass.activity.LookClassActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.ChangePhoneNextActivity" />
         <activity android:name=".ui.modular.detailssystemads.activity.DetailsSystemAdsActivity" />
         <activity android:name=".ui.modular.detailssystemads.activity.DetailsSystemAdsTwoActivity" />
         <activity android:name=".ui.modular.mingshi.activity.MingShiActivity" />
         <activity android:name=".ui.modular.homeworkcontent.activity.HomeworkContentActivity" />
-        <activity android:name=".ui.modular.treasureitemcontent.activity.TreasureItemContentActivity"></activity>
-
+        <activity android:name=".ui.modular.treasureitemcontent.activity.TreasureItemContentActivity" />
+        <activity android:name=".ui.activity.my.messagelis.activity.MessageTiActivity"></activity>
     </application>
 
 </manifest>

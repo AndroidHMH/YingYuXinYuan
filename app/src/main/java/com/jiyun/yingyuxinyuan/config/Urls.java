@@ -51,9 +51,9 @@ public class Urls {
 //设置手机
     public static final String SETPHONE="setting/mobile ";
 //登录
-    public static final String LOGIN="login/mobile";
+    public static final String LOGIN="user/login/mobile";
 //找回密码
-    public static final String RES_PSW="save/password";
+    public static final String RES_PSW="user/save/password";
 //获取新用户
-    public static final String USER_NEW="info/edit";
+    public static final String USER_NEW="user/info/edit";
 }
