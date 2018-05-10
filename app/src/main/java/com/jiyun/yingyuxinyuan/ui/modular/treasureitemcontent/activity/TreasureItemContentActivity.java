@@ -27,6 +27,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 宝典页面的点击事件
+ */
 public class TreasureItemContentActivity extends BaseActivity<TreasureItemContentPresenter> implements TreasureItemContentContract.View, PingLunAdapter.SecondSend {
 
     @BindView(R.id.treasure_item_content_close_btn)
