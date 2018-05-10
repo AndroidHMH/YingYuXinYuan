@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
-import com.jiyun.yingyuxinyuan.model.bean.SystemMessageListModel;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.adapter.MessageListAdapter;
 
 import java.util.List;
@@ -24,9 +23,6 @@ public class MessageActivity extends AppCompatActivity {
     @BindView(R.id.message_recycler)
     RecyclerView messageRecycler;
 
-    List<SystemMessageListModel.DataBean> dataBeans;
-    private MessageListAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +37,6 @@ public class MessageActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.message_recycler:
-                LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-                adapter = new MessageListAdapter(dataBeans,this);
-                messageRecycler.setLayoutManager(layoutManager);
-                messageRecycler.setAdapter(adapter);
                 break;
         }
     }

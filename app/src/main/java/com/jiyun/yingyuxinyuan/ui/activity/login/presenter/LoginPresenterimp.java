@@ -97,10 +97,7 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
         if (password.contains(" ")){
             return false;
         }
-        if (password.matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$")){
             return true;
-        }
-        return false;
     }
 
 }

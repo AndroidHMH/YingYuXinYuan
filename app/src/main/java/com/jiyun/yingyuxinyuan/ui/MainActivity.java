@@ -126,6 +126,10 @@ public class MainActivity extends BaseActivity {
                 setMyself();
                 SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
                 String nickname = login.getString("nickname", null);
+                String photo = login.getString("photo", null);
+                int sex = login.getInt("sex", 0);
+                String address = login.getString("address", null);
+
                 if (nickname == null) {
                     setCreateView(R.id.main_content, PersonFragment.class);
                 } else {

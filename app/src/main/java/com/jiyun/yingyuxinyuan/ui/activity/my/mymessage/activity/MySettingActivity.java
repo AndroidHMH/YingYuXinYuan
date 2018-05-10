@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -89,6 +90,10 @@ public class MySettingActivity extends BaseActivity {
                 break;
 //                更改头像
             case R.id.touxiang_my:
+                SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
+                String nickname = login.getString("nickname", null);
+                String photo = login.getString("photo", null);
+
                 if (ContextCompat.checkSelfPermission(this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {

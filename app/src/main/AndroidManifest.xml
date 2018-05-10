@@ -113,6 +113,8 @@
         <activity android:name=".ui.modular.mingshi.activity.MingShiActivity" />
         <activity android:name=".ui.modular.homeworkcontent.activity.HomeworkContentActivity" />
         <activity android:name=".ui.modular.treasureitemcontent.activity.TreasureItemContentActivity"></activity>
+        <activity android:name=".ui.modular.teacherlist.activity.TeacherListActivity"/>
+        <activity android:name=".ui.modular.lookclass.activity.LookClassActivity"/>
 
     </application>
 

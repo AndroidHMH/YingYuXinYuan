@@ -121,6 +121,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterimp> implements Lo
 //              登录
             case R.id.login_login:
                 presenter.getLogin(login_phone.getText().toString(),login_psw.getText().toString());
+                finish();
                 break;
 //                微信登录
             case R.id.login_weixin:

@@ -106,6 +106,7 @@ public class LoginPersonFragment extends BaseFragment {
                 break;
 //                网名
             case R.id.my_name:
+//                myName.setText("");
                 break;
 //                我的信息
             case R.id.mymessage_my:
