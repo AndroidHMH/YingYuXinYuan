@@ -23,6 +23,7 @@ public interface ChangePhoneContract {
     interface ChangePresenter extends BasePresenter<ChangeView> {
         void getChangeYzm(String phone);
 
+        void yanZheng(String phone, String yanZheng);
 
         boolean isPhone(String phone);
 

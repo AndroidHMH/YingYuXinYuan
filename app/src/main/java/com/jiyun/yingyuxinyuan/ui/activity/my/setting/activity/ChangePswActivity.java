@@ -84,7 +84,8 @@ public class ChangePswActivity extends BaseActivity<ChangPswPresenter> implement
                 presenter.getYanZheng(changePhoneAtyMobileTv.getText().toString());
                 break;
             case R.id.change_phone_aty_loginbtn:
-                next();
+                presenter.yanZheng(changePhoneAtyMobileTv.getText().toString(),
+                        changePhoneAtyGetcodeEt.getText().toString());
                 break;
         }
     }

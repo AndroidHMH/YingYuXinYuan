@@ -18,16 +18,12 @@ import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
 import com.jiyun.yingyuxinyuan.model.biz.ChangePswNextService;
 import com.jiyun.yingyuxinyuan.model.biz.ChongCenterService;
 import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
-import com.jiyun.yingyuxinyuan.model.biz.DingTiService;
 import com.jiyun.yingyuxinyuan.model.biz.ForgetService;
-import com.jiyun.yingyuxinyuan.model.biz.GuanMyService;
-import com.jiyun.yingyuxinyuan.model.biz.HomeWorkWoService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkContentService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
 import com.jiyun.yingyuxinyuan.model.biz.LookClassItemService;
 import com.jiyun.yingyuxinyuan.model.biz.MingShiService;
-import com.jiyun.yingyuxinyuan.model.biz.PingWoService;
 import com.jiyun.yingyuxinyuan.model.biz.PreviewService;
 import com.jiyun.yingyuxinyuan.model.biz.PswResService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
@@ -37,8 +33,6 @@ import com.jiyun.yingyuxinyuan.model.biz.TeacherListItemService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureItemContentService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureService;
-import com.jiyun.yingyuxinyuan.model.biz.UnivstarService;
-import com.jiyun.yingyuxinyuan.model.biz.ZanService;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -107,11 +101,11 @@ public class RetrofitUtils {
         return retrofit.create(ResginService.class);
     }
 
-    public ResginAllService getResginAllService(){
+    public ResginAllService getResginAllService() {
         return retrofit.create(ResginAllService.class);
     }
 
-    public LoginService getLoginService(){
+    public LoginService getLoginService() {
         return retrofit.create(LoginService.class);
     }
 
@@ -131,13 +125,25 @@ public class RetrofitUtils {
         return retrofit.create(PreviewService.class);
     }
 
-    public ForgetService getForgetService() { return retrofit.create(ForgetService.class); }
+    public ForgetService getForgetService() {
+        return retrofit.create(ForgetService.class);
+    }
 
-    public PswResService getPswResService() { return retrofit.create(PswResService.class); }
+    public PswResService getPswResService() {
+        return retrofit.create(PswResService.class);
+    }
 
-    public TeacherListItemService getTeacherListItemService(){ return retrofit.create(TeacherListItemService.class);}
-    public LookClassItemService getLookClassItemService(){ return retrofit.create(LookClassItemService.class); }
-    public ChangePhoneService getChangePhoneService(){ return retrofit.create(ChangePhoneService.class); }
+    public TeacherListItemService getTeacherListItemService() {
+        return retrofit.create(TeacherListItemService.class);
+    }
+
+    public LookClassItemService getLookClassItemService() {
+        return retrofit.create(LookClassItemService.class);
+    }
+
+    public ChangePhoneService getChangePhoneService() {
+        return retrofit.create(ChangePhoneService.class);
+    }
 
     public DetailsSystemAdsService getDetailsSystemAdsService() {
         return retrofit.create(DetailsSystemAdsService.class);
@@ -154,6 +160,7 @@ public class RetrofitUtils {
     public TreasureItemContentService getTreasureItemContentService() {
         return retrofit.create(TreasureItemContentService.class);
     }
+
     public ChangPswService getChangPswService() {
         return retrofit.create(ChangPswService.class);
     }
@@ -165,25 +172,5 @@ public class RetrofitUtils {
     public ChongCenterService getChongCenterService() {
         return retrofit.create(ChongCenterService.class);
     }
-    public GuanMyService getGuanMyService() {
-        return retrofit.create(GuanMyService.class);
-    }
-    public HomeWorkWoService getHomeWorkWoService() {
-        return retrofit.create(HomeWorkWoService.class);
-    }
-    public PingWoService getPingService() {
-        return retrofit.create(PingWoService.class);
-    }
 
-    public UnivstarService getUnivstarService(){
-        return retrofit.create(UnivstarService.class);
-    }
-
-    public ZanService getZanService(){
-        return retrofit.create(ZanService.class);
-    }
-
-    public DingTiService getDingTiService(){
-        return retrofit.create(DingTiService.class);
-    }
 }

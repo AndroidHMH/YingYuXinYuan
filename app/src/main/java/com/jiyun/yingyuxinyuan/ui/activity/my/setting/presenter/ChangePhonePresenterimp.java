@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.jiyun.yingyuxinyuan.app.App;
+import com.jiyun.yingyuxinyuan.config.TokenUtils;
 import com.jiyun.yingyuxinyuan.contract.ChangePhoneContract;
 import com.jiyun.yingyuxinyuan.model.bean.ChangePhoneBean;
 import com.jiyun.yingyuxinyuan.model.bean.PhoneResginYzmBean;
+import com.jiyun.yingyuxinyuan.model.bean.YanZhengBean;
 import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
+import com.jiyun.yingyuxinyuan.model.biz.JiaoYanService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
@@ -23,11 +26,13 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class ChangePhonePresenterimp implements ChangePhoneContract.ChangePresenter {
-    ChangePhoneService changePhoneService;
-    ChangePhoneContract.ChangeView changeView;
+    private ChangePhoneService changePhoneService;
+    private ChangePhoneContract.ChangeView changeView;
+    private JiaoYanService jiaoYanService;
 
     public ChangePhonePresenterimp() {
         changePhoneService = RetrofitUtils.getInstance().getChangePhoneService();
+        jiaoYanService = RetrofitUtils.getInstance().getJiaoYanService();
     }
 
     @Override
@@ -63,6 +68,28 @@ public class ChangePhonePresenterimp implements ChangePhoneContract.ChangePresen
                             changeView.startTime();
                         } else {
                             changeView.showError("获取失败");
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void yanZheng(String phone, String yanZheng) {
+        Map<String, String> params = new HashMap<>();
+        params.put("mobile", phone);
+        params.put("authCode", yanZheng);
+
+        jiaoYanService.yanZheng(TokenUtils.getToken(), params)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<YanZhengBean>() {
+                    @Override
+                    public void accept(YanZhengBean yanZhengBean) throws Exception {
+                        String message = yanZhengBean.getMessage();
+                        if ("成功".equals(message)) {
+                            changeView.next();
+                        } else {
+                            changeView.showError("验证码输入错误");
                         }
                     }
                 });
