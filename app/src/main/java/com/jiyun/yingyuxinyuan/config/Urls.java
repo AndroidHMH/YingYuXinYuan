@@ -49,32 +49,22 @@ public class Urls {
     public static final String ZUO_YE_TUIJIAN = "homewok/detail";
     //宝典详情页面
     public static final String BAO_DIAN_XIANG_QING = "artcircle/detail";
-//设置手机
-    public static final String SETPHONE="setting/mobile ";
-//登录
-    public static final String LOGIN="user/login/mobile";
-//找回密码
-    public static final String RES_PSW="user/save/password";
+    //设置手机
+    public static final String SETPHONE = "user/setting/mobile ";
+    //登录
+    public static final String LOGIN = "user/login/mobile";
+    //找回密码
+    public static final String RES_PSW = "user/save/password";
     //获取新用户
     public static final String USER_NEW = "user/info/edit";
     //获取用户信息
     public static final String USER_INFO = "user/info";
     //更改密码
-    public static final String CHANG_PSW = "usertting/password";
+    public static final String CHANG_PSW = "user/setting/password";
     //充值中心
     public static final String CHONG_CENTER = "record/bean/detail";
-    //订单提醒
-    public static final String DING_TI = "message/order";
-//    关注提醒
-    public static final String GUAN_MY = "message/attention";
-//    作业提醒
-    public static final String HOME_WORK_MY = "message/homewok";
-//    评论我的
-    public static final String PIN = "message/comments";
-//    官方
-    public static final String UNIVSTAR = "message/univstar";
-//赞我的
-    public static final String ZAN = "message/praise";
-//    我的收藏
-    public static final String STORE = "user/my/favorites";
+    //教研验证码
+    public static final String YAN_ZHENG = "user/verify/authcode";
+    //订单详情
+    public static final String DING_DAN = "user/my/orders";
 }
