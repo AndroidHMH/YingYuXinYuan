@@ -3,9 +3,11 @@ package com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
@@ -40,14 +42,9 @@ public class GuanZhuMyActivity extends BaseActivity<GuanMyPresenterimp> implemen
     @Override
     protected void init() {
         SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-        userId = login.getString("id", null);
-        if (list == null) {
-            linearGuan.setVisibility(View.VISIBLE);
-            guanRecycler.setVisibility(View.GONE);
-        } else {
-            linearGuan.setVisibility(View.GONE);
-            guanRecycler.setVisibility(View.VISIBLE);
-        }
+        userId = login.getString("id", "");
+        Log.e("ID",userId);
+        presenter.showData(userId);
     }
 
     @Override
@@ -61,12 +58,20 @@ public class GuanZhuMyActivity extends BaseActivity<GuanMyPresenterimp> implemen
                 finish();
                 break;
             case R.id.guan_ding_show:
-                presenter.showData(userId);
+
                 break;
         }
     }
     @Override
     public void showData(GuanMyBean guanMyBean) {
         list = guanMyBean.getData().getList();
+        if (list == null) {
+            linearGuan.setVisibility(View.VISIBLE);
+            guanRecycler.setVisibility(View.GONE);
+        } else {
+            linearGuan.setVisibility(View.GONE);
+            guanRecycler.setVisibility(View.VISIBLE);
+            Toast.makeText(this, guanMyBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

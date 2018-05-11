@@ -117,6 +117,13 @@
         <activity android:name=".ui.modular.homeworkcontent.activity.HomeworkContentActivity" />
         <activity android:name=".ui.modular.treasureitemcontent.activity.TreasureItemContentActivity" />
         <activity android:name=".ui.activity.my.messagelis.activity.MessageTiActivity"></activity>
+        <activity android:name=".ui.activity.my.messagelis.activity.UnivstarActivity"/>
+        <activity android:name=".ui.activity.my.messagelis.activity.ZanWoActivity"/>
+        <activity android:name=".ui.activity.my.messagelis.activity.GuanZhuMyActivity"/>
+        <activity android:name=".ui.activity.my.messagelis.activity.PingWoActivity"/>
+        <activity android:name=".ui.activity.my.messagelis.activity.HomeWorkWoActivity"/>
+        <activity android:name=".ui.activity.my.setting.activity.ChangePswNextActivity"/>
+
     </application>
 
 </manifest>

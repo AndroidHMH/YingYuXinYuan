@@ -45,13 +45,8 @@ public class MessageTiActivity extends BaseActivity<MessageTiPresenterimp> imple
     protected void init() {
         SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
         userId = login.getString("id", null);
-        if (list == null) {
-            linearDing.setVisibility(View.VISIBLE);
-            recycler.setVisibility(View.GONE);
-        } else {
-            linearDing.setVisibility(View.GONE);
-            recycler.setVisibility(View.VISIBLE);
-        }
+        presenter.showData(userId);
+
     }
 
     @Override
@@ -66,21 +61,20 @@ public class MessageTiActivity extends BaseActivity<MessageTiPresenterimp> imple
                 finish();
                 break;
             case R.id.linear_ding_show:
-                presenter.showData(userId);
+
                 break;
         }
     }
     @Override
     public void showData(DingTiBean dingTiBean) {
         list = dingTiBean.getData().getList();
-        Toast.makeText(this, dingTiBean.getMessage(), Toast.LENGTH_SHORT).show();
-      /* Toast.makeText(this, "获取数据成功", Toast.LENGTH_SHORT).show();
-        if (dingTiBean.getData().getList() == null) {
+        if (list == null) {
             linearDing.setVisibility(View.VISIBLE);
             recycler.setVisibility(View.GONE);
         } else {
             linearDing.setVisibility(View.GONE);
             recycler.setVisibility(View.VISIBLE);
-        }*/
+            Toast.makeText(this, dingTiBean.getMessage()+"", Toast.LENGTH_SHORT).show();
+        }
     }
 }

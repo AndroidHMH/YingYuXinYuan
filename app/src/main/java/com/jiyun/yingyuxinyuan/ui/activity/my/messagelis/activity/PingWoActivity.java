@@ -41,14 +41,9 @@ public class PingWoActivity extends BaseActivity<PinWoPresenterimp> implements P
     @Override
     protected void init() {
         SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-        userId = login.getString("id", null);
-        if (list == null) {
-            linearPing.setVisibility(View.VISIBLE);
-            pingRecycler.setVisibility(View.GONE);
-        } else {
-            linearPing.setVisibility(View.GONE);
-            pingRecycler.setVisibility(View.VISIBLE);
-        }
+        userId = login.getString("id", "");
+        presenter.showData(userId);
+
     }
 
     @Override
@@ -62,13 +57,21 @@ public class PingWoActivity extends BaseActivity<PinWoPresenterimp> implements P
                 finish();
                 break;
             case R.id.zan_ding_show:
-                presenter.showData(userId);
+
                 break;
         }
     }
     @Override
     public void showData(PingWoBean pingWoBean) {
         list = pingWoBean.getData().getList();
-        Toast.makeText(this, pingWoBean.getMessage(), Toast.LENGTH_SHORT).show();
+        if (list == null) {
+            linearPing.setVisibility(View.VISIBLE);
+            pingRecycler.setVisibility(View.GONE);
+            Toast.makeText(this, pingWoBean.getMessage(), Toast.LENGTH_SHORT).show();
+        } else {
+            linearPing.setVisibility(View.GONE);
+            pingRecycler.setVisibility(View.VISIBLE);
+        }
+
     }
 }

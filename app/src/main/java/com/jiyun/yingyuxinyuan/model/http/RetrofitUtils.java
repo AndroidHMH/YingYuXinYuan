@@ -13,14 +13,21 @@ import com.jiyun.yingyuxinyuan.config.EncryptUtil;
 import com.jiyun.yingyuxinyuan.config.Urls;
 import com.jiyun.yingyuxinyuan.model.bean.TokenBean;
 import com.jiyun.yingyuxinyuan.model.biz.AppTokenService;
+import com.jiyun.yingyuxinyuan.model.biz.ChangPswService;
 import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
+import com.jiyun.yingyuxinyuan.model.biz.ChangePswNextService;
+import com.jiyun.yingyuxinyuan.model.biz.ChongCenterService;
 import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
+import com.jiyun.yingyuxinyuan.model.biz.DingTiService;
 import com.jiyun.yingyuxinyuan.model.biz.ForgetService;
+import com.jiyun.yingyuxinyuan.model.biz.GuanMyService;
+import com.jiyun.yingyuxinyuan.model.biz.HomeWorkWoService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkContentService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
 import com.jiyun.yingyuxinyuan.model.biz.LookClassItemService;
 import com.jiyun.yingyuxinyuan.model.biz.MingShiService;
+import com.jiyun.yingyuxinyuan.model.biz.PingWoService;
 import com.jiyun.yingyuxinyuan.model.biz.PreviewService;
 import com.jiyun.yingyuxinyuan.model.biz.PswResService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
@@ -30,6 +37,8 @@ import com.jiyun.yingyuxinyuan.model.biz.TeacherListItemService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureItemContentService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureService;
+import com.jiyun.yingyuxinyuan.model.biz.UnivstarService;
+import com.jiyun.yingyuxinyuan.model.biz.ZanService;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -145,5 +154,36 @@ public class RetrofitUtils {
     public TreasureItemContentService getTreasureItemContentService() {
         return retrofit.create(TreasureItemContentService.class);
     }
+    public ChangPswService getChangPswService() {
+        return retrofit.create(ChangPswService.class);
+    }
 
+    public ChangePswNextService getChangePswNextService() {
+        return retrofit.create(ChangePswNextService.class);
+    }
+
+    public ChongCenterService getChongCenterService() {
+        return retrofit.create(ChongCenterService.class);
+    }
+    public GuanMyService getGuanMyService() {
+        return retrofit.create(GuanMyService.class);
+    }
+    public HomeWorkWoService getHomeWorkWoService() {
+        return retrofit.create(HomeWorkWoService.class);
+    }
+    public PingWoService getPingService() {
+        return retrofit.create(PingWoService.class);
+    }
+
+    public UnivstarService getUnivstarService(){
+        return retrofit.create(UnivstarService.class);
+    }
+
+    public ZanService getZanService(){
+        return retrofit.create(ZanService.class);
+    }
+
+    public DingTiService getDingTiService(){
+        return retrofit.create(DingTiService.class);
+    }
 }

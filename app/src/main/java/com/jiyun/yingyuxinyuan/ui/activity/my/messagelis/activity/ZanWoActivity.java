@@ -42,13 +42,7 @@ public class ZanWoActivity extends BaseActivity<ZanPresenterimp> implements ZanC
     protected void init() {
         SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
         userId = login.getString("id", null);
-      /*  if (list == null) {
-            linearZan.setVisibility(View.VISIBLE);
-            zanRecycler.setVisibility(View.GONE);
-        } else {*/
-            linearZan.setVisibility(View.GONE);
-            zanRecycler.setVisibility(View.VISIBLE);
-        //}
+        presenter.showData(userId);
     }
 
     @Override
@@ -62,13 +56,21 @@ public class ZanWoActivity extends BaseActivity<ZanPresenterimp> implements ZanC
                 finish();
                 break;
             case R.id.zan_ding_show:
-                presenter.showData(userId);
+
                 break;
         }
     }
     @Override
     public void showData(ZanBean zanBean) {
         list = zanBean.getData().getList();
-        Toast.makeText(this, zanBean.getMessage(), Toast.LENGTH_SHORT).show();
+          if (list == null) {
+            linearZan.setVisibility(View.VISIBLE);
+            zanRecycler.setVisibility(View.GONE);
+        } else {
+        linearZan.setVisibility(View.GONE);
+        zanRecycler.setVisibility(View.VISIBLE);
+              Toast.makeText(this, zanBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

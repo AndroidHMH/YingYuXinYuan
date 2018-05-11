@@ -42,13 +42,7 @@ public class HomeWorkWoActivity extends BaseActivity<HomeWorkWoPresenterimp> imp
     protected void init() {
         SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
         userId = login.getString("id", null);
-        if (list != null) {
-            linearHomeworkWo.setVisibility(View.GONE);
-            homeworkWoRecycler.setVisibility(View.VISIBLE);
-        } else {
-            linearHomeworkWo.setVisibility(View.VISIBLE);
-            homeworkWoRecycler.setVisibility(View.GONE);
-        }
+
     }
 
     @Override
@@ -62,13 +56,21 @@ public class HomeWorkWoActivity extends BaseActivity<HomeWorkWoPresenterimp> imp
                 finish();
                 break;
             case R.id.homework_wo_ding_show:
-                presenter.showData(userId);
+
                 break;
         }
     }
     @Override
     public void showData(HomeWorkWoBean homeWorkWoBean) {
         list = homeWorkWoBean.getData().getList();
-        Toast.makeText(this, homeWorkWoBean.getMessage(), Toast.LENGTH_SHORT).show();
+        if (list != null) {
+            linearHomeworkWo.setVisibility(View.GONE);
+            homeworkWoRecycler.setVisibility(View.VISIBLE);
+        } else {
+            linearHomeworkWo.setVisibility(View.VISIBLE);
+            homeworkWoRecycler.setVisibility(View.GONE);
+            Toast.makeText(this, homeWorkWoBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

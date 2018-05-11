@@ -2,6 +2,7 @@ package com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.presente;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.jiyun.yingyuxinyuan.app.App;
 import com.jiyun.yingyuxinyuan.contract.PinWoContract;
@@ -55,6 +56,7 @@ public class PinWoPresenterimp implements PinWoContract.Presenter {
                    @Override
                    public void accept(PingWoBean pingWoBean) throws Exception {
                        view.showData(pingWoBean);
+                       Log.e("TAG",pingWoBean.getData().getSize()+"");
                    }
                });
     }

@@ -2,6 +2,7 @@ package com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.presente;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.jiyun.yingyuxinyuan.app.App;
 import com.jiyun.yingyuxinyuan.base.BasePresenter;
@@ -54,6 +55,7 @@ public class GuanMyPresenterimp implements GuanWyContract.Presenter {
                     @Override
                     public void accept(GuanMyBean guanMyBean) throws Exception {
                         view.showData(guanMyBean);
+                        Log.e("TAG",guanMyBean.getData().getSize()+"");
                     }
                 });
     }

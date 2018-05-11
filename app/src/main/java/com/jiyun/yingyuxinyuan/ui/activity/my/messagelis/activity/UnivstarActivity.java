@@ -58,7 +58,7 @@ public class UnivstarActivity extends BaseActivity<UnivstarPresenterimp> impleme
         SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
         userId = login.getString("id", "");
         Log.e("用户ID",userId);
-        presenter.showData("735");
+        presenter.showData(userId);
     }
     @OnClick({R.id.univstar_list_cancle,R.id.univstar_ding_show})
     protected void onViewClicked(View view) {
@@ -66,9 +66,6 @@ public class UnivstarActivity extends BaseActivity<UnivstarPresenterimp> impleme
             case R.id.univstar_list_cancle:
                 finish();
                 break;
-            case R.id.univstar_ding_show:
-
-            break;
         }
     }
     @Override
