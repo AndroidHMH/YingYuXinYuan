@@ -18,6 +18,8 @@ public interface ChangpswContract {
     interface Presenter extends BasePresenter<View> {
         void getYanZheng(String phone);
 
+        void yanZheng(String phone, String yanZheng);
+
         boolean isPhone(String phone);
     }
 }

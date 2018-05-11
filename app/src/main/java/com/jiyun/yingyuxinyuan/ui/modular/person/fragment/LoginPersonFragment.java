@@ -86,6 +86,7 @@ public class LoginPersonFragment extends BaseFragment {
     @BindView(R.id.linear_myself1)
     LinearLayout linearMyself1;
     private SharedPreferences login;
+    private Intent intent;
 
     @Override
     protected int getLayoutId() {
@@ -94,7 +95,7 @@ public class LoginPersonFragment extends BaseFragment {
 
     @Override
     protected void init() {
-
+        intent = new Intent(getActivity(), DingDanActivity.class);
     }
 
     @Override
@@ -118,7 +119,7 @@ public class LoginPersonFragment extends BaseFragment {
                 .error(R.color.gray_prograss_bg).dontAnimate().into(imageTou);
         //设置昵称
         myName.setText(LoginShareUtils.getUserMessage(getContext(), LoginShareUtils.NICKNAME));
-        
+
     }
 
     @Override
@@ -185,16 +186,23 @@ public class LoginPersonFragment extends BaseFragment {
                 break;
 //                待付款
             case R.id.fukuan_my:
+                intent.putExtra("show", "0");
+                startActivity(intent);
                 break;
 //                待使用
             case R.id.shiyong_my:
+                intent.putExtra("show", "1");
+                startActivity(intent);
                 break;
 //                待退货
             case R.id.tuihuo_my:
+                intent.putExtra("show", "4");
+                startActivity(intent);
                 break;
 //            我的订单
             case R.id.dingdan_my:
-                startActivity(new Intent(getActivity(), DingDanActivity.class));
+                intent.putExtra("show", "-1");
+                startActivity(intent);
                 break;
 //                充值中心
             case R.id.chongzhi_my:

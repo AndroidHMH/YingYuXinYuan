@@ -18,9 +18,12 @@ import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
 import com.jiyun.yingyuxinyuan.model.biz.ChangePswNextService;
 import com.jiyun.yingyuxinyuan.model.biz.ChongCenterService;
 import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
+import com.jiyun.yingyuxinyuan.model.biz.DingDanService;
 import com.jiyun.yingyuxinyuan.model.biz.ForgetService;
+import com.jiyun.yingyuxinyuan.model.biz.GiftService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkContentService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
+import com.jiyun.yingyuxinyuan.model.biz.JiaoYanService;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
 import com.jiyun.yingyuxinyuan.model.biz.LookClassItemService;
 import com.jiyun.yingyuxinyuan.model.biz.MingShiService;
@@ -171,6 +174,18 @@ public class RetrofitUtils {
 
     public ChongCenterService getChongCenterService() {
         return retrofit.create(ChongCenterService.class);
+    }
+
+    public GiftService getGiftService() {
+        return retrofit.create(GiftService.class);
+    }
+
+    public DingDanService getDingDanService() {
+        return retrofit.create(DingDanService.class);
+    }
+
+    public JiaoYanService getJiaoYanService() {
+        return retrofit.create(JiaoYanService.class);
     }
 
 }

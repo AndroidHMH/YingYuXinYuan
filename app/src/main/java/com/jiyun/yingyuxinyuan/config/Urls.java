@@ -62,4 +62,8 @@ public class Urls {
     public static final String CHANG_PSW = "user/setting/password";
     //充值中心
     public static final String CHONG_CENTER = "record/bean/detail";
+    //教研验证码
+    public static final String YAN_ZHENG = "user/verify/authcode";
+    //订单详情
+    public static final String DING_DAN = "user/my/orders";
 }

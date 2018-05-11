@@ -64,7 +64,7 @@ public class ChangePhoneActivity extends BaseActivity<ChangePhonePresenterimp> i
                 break;
 //                下一步
             case R.id.new_phone_loginbtn:
-                next();
+                presenter.yanZheng(newPhoneEt.getText().toString(), newPhoneGetcodeEt.getText().toString().trim());
                 break;
         }
     }

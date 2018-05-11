@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.jiyun.yingyuxinyuan.app.App;
+import com.jiyun.yingyuxinyuan.config.TokenUtils;
 import com.jiyun.yingyuxinyuan.contract.ChangpswContract;
 import com.jiyun.yingyuxinyuan.model.bean.PhoneResginYzmBean;
+import com.jiyun.yingyuxinyuan.model.bean.YanZhengBean;
 import com.jiyun.yingyuxinyuan.model.biz.ChangPswService;
+import com.jiyun.yingyuxinyuan.model.biz.JiaoYanService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
@@ -24,9 +27,11 @@ import io.reactivex.schedulers.Schedulers;
 public class ChangPswPresenter implements ChangpswContract.Presenter {
     private ChangpswContract.View view;
     private ChangPswService changPswService;
+    private JiaoYanService jiaoYanService;
 
     public ChangPswPresenter() {
         changPswService = RetrofitUtils.getInstance().getChangPswService();
+        jiaoYanService = RetrofitUtils.getInstance().getJiaoYanService();
     }
 
     @Override
@@ -61,6 +66,28 @@ public class ChangPswPresenter implements ChangpswContract.Presenter {
                             view.startTime();
                         } else {
                             view.showError("获取失败");
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void yanZheng(String phone, String yanZheng) {
+        Map<String, String> params = new HashMap<>();
+        params.put("mobile", phone);
+        params.put("authCode", yanZheng);
+
+        jiaoYanService.yanZheng(TokenUtils.getToken(), params)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<YanZhengBean>() {
+                    @Override
+                    public void accept(YanZhengBean yanZhengBean) throws Exception {
+                        String message = yanZhengBean.getMessage();
+                        if ("成功".equals(message)) {
+                            view.next();
+                        } else {
+                            view.showError("验证码输入错误");
                         }
                     }
                 });
