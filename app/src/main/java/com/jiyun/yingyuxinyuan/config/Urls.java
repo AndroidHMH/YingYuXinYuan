@@ -7,7 +7,6 @@ package com.jiyun.yingyuxinyuan.config;
 /**
  * 统一管理  url地址
  *
- *
  */
 public class Urls {
     //基本路径
