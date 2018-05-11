@@ -6,7 +6,6 @@ package com.jiyun.yingyuxinyuan.config;
 
 /**
  * 统一管理  url地址
- *
  */
 public class Urls {
     //基本路径
@@ -67,4 +66,5 @@ public class Urls {
     public static final String YAN_ZHENG = "user/verify/authcode";
     //订单详情
     public static final String DING_DAN = "user/my/orders";
+    public static final String asdas = "asdasd";
 }
