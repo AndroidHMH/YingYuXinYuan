@@ -21,6 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by ASUS on 2018/05/05.
+ *
  */
 
 public class LoginPresenterimp implements LoginContract.LoginPresenter {
