@@ -35,6 +35,9 @@ import butterknife.Unbinder;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ *
+ */
 public class LoginPersonFragment extends BaseFragment {
 
     @BindView(R.id.setting_my)
