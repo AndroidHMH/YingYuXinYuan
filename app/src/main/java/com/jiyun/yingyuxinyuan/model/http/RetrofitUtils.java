@@ -13,7 +13,10 @@ import com.jiyun.yingyuxinyuan.config.EncryptUtil;
 import com.jiyun.yingyuxinyuan.config.Urls;
 import com.jiyun.yingyuxinyuan.model.bean.TokenBean;
 import com.jiyun.yingyuxinyuan.model.biz.AppTokenService;
+import com.jiyun.yingyuxinyuan.model.biz.ChangPswService;
 import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
+import com.jiyun.yingyuxinyuan.model.biz.ChangePswNextService;
+import com.jiyun.yingyuxinyuan.model.biz.ChongCenterService;
 import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
 import com.jiyun.yingyuxinyuan.model.biz.ForgetService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkContentService;
@@ -98,11 +101,11 @@ public class RetrofitUtils {
         return retrofit.create(ResginService.class);
     }
 
-    public ResginAllService getResginAllService(){
+    public ResginAllService getResginAllService() {
         return retrofit.create(ResginAllService.class);
     }
 
-    public LoginService getLoginService(){
+    public LoginService getLoginService() {
         return retrofit.create(LoginService.class);
     }
 
@@ -122,13 +125,25 @@ public class RetrofitUtils {
         return retrofit.create(PreviewService.class);
     }
 
-    public ForgetService getForgetService() { return retrofit.create(ForgetService.class); }
+    public ForgetService getForgetService() {
+        return retrofit.create(ForgetService.class);
+    }
 
-    public PswResService getPswResService() { return retrofit.create(PswResService.class); }
+    public PswResService getPswResService() {
+        return retrofit.create(PswResService.class);
+    }
 
-    public TeacherListItemService getTeacherListItemService(){ return retrofit.create(TeacherListItemService.class);}
-    public LookClassItemService getLookClassItemService(){ return retrofit.create(LookClassItemService.class); }
-    public ChangePhoneService getChangePhoneService(){ return retrofit.create(ChangePhoneService.class); }
+    public TeacherListItemService getTeacherListItemService() {
+        return retrofit.create(TeacherListItemService.class);
+    }
+
+    public LookClassItemService getLookClassItemService() {
+        return retrofit.create(LookClassItemService.class);
+    }
+
+    public ChangePhoneService getChangePhoneService() {
+        return retrofit.create(ChangePhoneService.class);
+    }
 
     public DetailsSystemAdsService getDetailsSystemAdsService() {
         return retrofit.create(DetailsSystemAdsService.class);
@@ -144,6 +159,18 @@ public class RetrofitUtils {
 
     public TreasureItemContentService getTreasureItemContentService() {
         return retrofit.create(TreasureItemContentService.class);
+    }
+
+    public ChangPswService getChangPswService() {
+        return retrofit.create(ChangPswService.class);
+    }
+
+    public ChangePswNextService getChangePswNextService() {
+        return retrofit.create(ChangePswNextService.class);
+    }
+
+    public ChongCenterService getChongCenterService() {
+        return retrofit.create(ChongCenterService.class);
     }
 
 }

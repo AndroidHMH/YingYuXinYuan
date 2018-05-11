@@ -1,11 +1,10 @@
 package com.jiyun.yingyuxinyuan.model.bean;
 
 /**
- * Created by ASUS on 2018/05/09.
+ * Created by asus on 2018/5/10.
  */
 
-public class ChangePhoneBean {
-
+public class ChangePswBean {
 
     /**
      * code : 0

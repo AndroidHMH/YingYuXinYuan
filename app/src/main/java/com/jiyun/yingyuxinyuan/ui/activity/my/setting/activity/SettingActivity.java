@@ -13,7 +13,7 @@ import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.config.CacheUtil;
 import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
-import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
+import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.LoginPersonFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +44,11 @@ public class SettingActivity extends BaseActivity {
     RelativeLayout about;
     @BindView(R.id.clean_login)
     RelativeLayout cleanLogin;
-    Unbinder unbinder;
+    public static final int CHANGE_PHONE = 1;
+    public static final int CHANGE_PHONE_RESULT = 2;
+    public static final int CHANGE_PSW = 3;
+    public static final int CHANGE_PSW_RESULT = 4;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_setting;
@@ -57,6 +61,15 @@ public class SettingActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //设置手机号
+        settingAtyPhoneTv.setText(LoginShareUtils.getUserMessage(this, LoginShareUtils.MOBILE));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //设置手机号
+        settingAtyPhoneTv.setText(LoginShareUtils.getUserMessage(this, LoginShareUtils.MOBILE));
     }
 
     @Override
@@ -66,38 +79,46 @@ public class SettingActivity extends BaseActivity {
 
     @OnClick({R.id.setting_close,
             R.id.setting_aty_phone_tv, R.id.change_phone, R.id.change_shejiao, R.id.change_psw,
-            R.id.clean,R.id.setting_glide_cahce_tv, R.id.about, R.id.clean_login})
+            R.id.clean, R.id.setting_glide_cahce_tv, R.id.about, R.id.clean_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.setting_close:
                 finish();
                 break;
             case R.id.change_phone:
-                SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-                String nickname = login.getString("nickname", null);
-                if (nickname != null){
-                    settingAtyPhoneTv.setText(nickname);
-                }
-                startActivity(new Intent(SettingActivity.this, ChangePhoneActivity.class));
+                startActivityForResult(new Intent(SettingActivity.this,
+                        ChangePhoneActivity.class), CHANGE_PHONE);
                 break;
             case R.id.change_shejiao:
-                startActivity(new Intent(SettingActivity.this, ChangeSheJiaoActivity.class));
+                startActivity(new Intent(SettingActivity.this,
+                        ChangeSheJiaoActivity.class));
                 break;
             case R.id.change_psw:
-                startActivity(new Intent(SettingActivity.this, ChangePswActivity.class));
+                startActivityForResult(new Intent(SettingActivity.this,
+                        ChangePswActivity.class), CHANGE_PSW);
                 break;
             case R.id.clean:
                 CacheUtil.clearAllCache(SettingActivity.this);
                 settingGlideCahceTv.setText("0.0K");
-                Toast.makeText(SettingActivity.this,"缓存已清理",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingActivity.this, "缓存已清理", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.about:
                 startActivity(new Intent(SettingActivity.this, AboutActivity.class));
                 break;
             case R.id.clean_login:
-                startActivity(new Intent(SettingActivity.this, PersonFragment.class));
+                LoginShareUtils.tuiChu(this);
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CHANGE_PHONE && resultCode == CHANGE_PHONE_RESULT) {
+
+        } else if (CHANGE_PSW == requestCode && resultCode == CHANGE_PSW_RESULT) {
+
         }
     }
 }

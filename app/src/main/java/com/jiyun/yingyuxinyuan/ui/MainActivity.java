@@ -9,13 +9,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
+import com.jiyun.yingyuxinyuan.app.App;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.model.bean.EventBean;
 import com.jiyun.yingyuxinyuan.ui.activity.LoginActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.activity.MessageActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.fragment.HomeworkFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.LoginPersonFragment;
-import com.jiyun.yingyuxinyuan.ui.modular.person.fragment.PersonFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.preview.fragment.PreviewFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.teacher.fragment.TeacherFragment;
 import com.jiyun.yingyuxinyuan.ui.modular.treasure.fragment.TreasureFragment;
@@ -71,6 +71,10 @@ public class MainActivity extends BaseActivity {
     TextView mainMyselfTv;
     @BindView(R.id.main_myself_btn)
     RelativeLayout mainMyselfBtn;
+    private String nickname;
+    private SharedPreferences login;
+    private String fragmentName;
+    private boolean isLogin;
 
     @Override
     protected int getLayoutId() {
@@ -82,6 +86,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        login = getSharedPreferences("Login", MODE_PRIVATE);
 
         titleIconIv.setImageResource(R.mipmap.title_logo);
         titleDrawIv.setVisibility(View.GONE);
@@ -94,16 +99,27 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        isLogin = intent.getBooleanExtra("isLogin", false);
+        if (isLogin) {
+            setCreateView(R.id.main_content, LoginPersonFragment.class);
+            isLogin = false;
+        }
+
+    }
+
     @OnClick({R.id.title_message_iv, R.id.main_teacher_btn, R.id.main_homework_btn, R.id.main_valuable_btn, R.id.main_notice_btn, R.id.main_myself_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_message_iv:
-                SharedPreferences login1 = getSharedPreferences("Login", MODE_PRIVATE);
-                String nickname1 = login1.getString("nickname", null);
-                if (nickname1 == null) {
-                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                String nickname = login.getString("nickname", null);
+                if (null == nickname) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 } else {
-                    startActivity(new Intent(MainActivity.this,MessageActivity.class));
+                    startActivity(new Intent(MainActivity.this, MessageActivity.class));
                 }
                 break;
             case R.id.main_teacher_btn:
@@ -124,19 +140,14 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.main_myself_btn:
                 setMyself();
-                SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-                String nickname = login.getString("nickname", null);
-                if (nickname == null) {
-                    setCreateView(R.id.main_content, PersonFragment.class);
-                } else {
-                    setCreateView(R.id.main_content, LoginPersonFragment.class);
-                }
-                break;
+                String nickname1 = login.getString("nickname", null);
+                setCreateView(R.id.main_content, LoginPersonFragment.class);
         }
     }
+
     @Subscribe
-    public void onEventMainThread(EventBean eventBean){
-        String fragmentName = eventBean.getFragmentTitle();
+    public void onEventMainThread(EventBean eventBean) {
+        fragmentName = eventBean.getFragmentTitle();
         if ("宝典".equals(fragmentName)) {
             setValuableView();
             setCreateView(R.id.main_content, TreasureFragment.class);

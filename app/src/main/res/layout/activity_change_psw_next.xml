@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jiyun.yingyuxinyuan.ui.activity.my.setting.activity.ChangePswNextActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ts_44"
+        android:layout_marginTop="@dimen/ts_26">
+
+        <TextView
+            android:id="@+id/change_phone_next_aty_cancle"
+            style="@style/cancle_bg_style"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="修改密码"
+            android:textColor="@color/blue_arlt"
+            android:textSize="@dimen/ts_16" />
+
+        <TextView
+            style="@style/login_line_style"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ts_1"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="输入新的密码"
+        android:textColor="#000"
+        android:textSize="18sp" />
+
+    <com.jiyun.yingyuxinyuan.view.MyEditText
+        android:id="@+id/change_psw_next_new_pasw_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:hint="请输入新密码" />
+
+    <com.jiyun.yingyuxinyuan.view.MyEditText
+        android:id="@+id/change_psw_next_new_pasw_pasw_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:hint="请确认新密码" />
+
+    <Button
+        android:id="@+id/change_psw_next_send_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="30dp"
+        android:background="#00f"
+        android:text="完全"
+        android:textColor="#fff" />
+</LinearLayout>

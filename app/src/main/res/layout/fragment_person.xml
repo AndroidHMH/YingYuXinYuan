@@ -1,78 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent">
-     <LinearLayout
-    android:visibility="visible"
-    android:id="@+id/linear_myself1"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@mipmap/myself_head_bg">
-        <LinearLayout
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/myself_setting"
-                android:src="@mipmap/myself_setting"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:id="@+id/title_message_iv"
-                android:src="@mipmap/home_master_shape"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+    android:orientation="vertical">
 
-        <ImageView
-            android:layout_marginTop="20dp"
-            android:src="@mipmap/user_head_portrait"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="30dp"
-        android:text="登录后，享受更对精彩服务"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/myself_resgin"
-            android:text="注册"
-            android:background="@drawable/shape1"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/myself_login"
-            android:layout_marginLeft="20dp"
-            android:text="登陆"
-            android:background="@drawable/shape"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-</LinearLayout>
 </LinearLayout>

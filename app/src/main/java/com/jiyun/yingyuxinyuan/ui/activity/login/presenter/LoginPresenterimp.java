@@ -3,12 +3,16 @@ package com.jiyun.yingyuxinyuan.ui.activity.login.presenter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.app.App;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.LoginContract;
 import com.jiyun.yingyuxinyuan.model.bean.LoginBean;
+import com.jiyun.yingyuxinyuan.model.bean.UserBean;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
+import com.jiyun.yingyuxinyuan.ui.activity.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,9 +49,6 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
     public void getLogin(String phone, String password) {
         SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
         Map<String, String> map = new HashMap<>();
-        map.put("mobile", phone);
-        map.put("password", password);
-
         if (!isPhone(phone)) {
             return;
         }
@@ -55,6 +56,8 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
             return;
         }
 
+        map.put("mobile", phone);
+        map.put("password", password);
 
         Map<String, String> headers = new HashMap<>();
         headers.put("apptoken", token.getString("appToken", ""));
@@ -64,7 +67,41 @@ public class LoginPresenterimp implements LoginContract.LoginPresenter {
                 .subscribe(new Consumer<LoginBean>() {
                     @Override
                     public void accept(LoginBean loginBean) throws Exception {
-                        loginView.gotoMain(loginBean);
+                        String message = loginBean.getMessage();
+                        if ("cid为空".equals(message)) {
+                            int id = loginBean.getData().getId();
+                            loadUserInfo(id);
+                        } else {
+                            loginView.showError("登陆失败");
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @param id 登录者id
+     */
+    @Override
+    public void loadUserInfo(int id) {
+        SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
+
+        loginService.loadUserInfo(String.valueOf(id), token.getString("appToken", ""))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<UserBean>() {
+                    @Override
+                    public void accept(UserBean userBean) throws Exception {
+                        String message = userBean.getMessage();
+                        if ("成功".equals(message)) {
+                            UserBean.DataBean data = userBean.getData();
+                            //保存信息
+                            LoginShareUtils.UserMessage(App.context, data);
+                            loginView.gotoMain();
+                        } else {
+                            loginView.showError("获取信息失败");
+                        }
                     }
                 });
     }

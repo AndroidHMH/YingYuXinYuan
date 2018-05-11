@@ -21,7 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".ui.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -116,7 +118,8 @@
         <activity android:name=".ui.modular.mingshi.activity.MingShiActivity" />
         <activity android:name=".ui.modular.homeworkcontent.activity.HomeworkContentActivity" />
         <activity android:name=".ui.modular.treasureitemcontent.activity.TreasureItemContentActivity" />
-        <activity android:name=".ui.activity.my.messagelis.activity.MessageTiActivity"></activity>
+        <activity android:name=".ui.activity.my.messagelis.activity.MessageTiActivity" />
+        <activity android:name=".ui.activity.my.setting.activity.ChangePswNextActivity"></activity>
     </application>
 
 </manifest>
