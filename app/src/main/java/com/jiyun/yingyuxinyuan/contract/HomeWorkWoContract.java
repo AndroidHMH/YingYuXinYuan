@@ -1,16 +1,16 @@
 package com.jiyun.yingyuxinyuan.contract;
 
 import com.jiyun.yingyuxinyuan.base.BasePresenter;
-import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
-import com.jiyun.yingyuxinyuan.model.bean.DingTiBean;
+import com.jiyun.yingyuxinyuan.model.bean.HomeWorkWoBean;
+import com.jiyun.yingyuxinyuan.model.bean.PingWoBean;
 
 /**
  * Created by asus on 2018/5/10.
  */
 
-public interface MessageTiContract {
+public interface HomeWorkWoContract {
     interface View{
-        void showData(DingTiBean dingTiBean);
+        void showData(HomeWorkWoBean homeWorkWoBean);
     }
     interface Presenter extends BasePresenter<View>{
         void showData(String userId);

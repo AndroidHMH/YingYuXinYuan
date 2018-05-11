@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.jiyun.yingyuxinyuan.app.App;
-import com.jiyun.yingyuxinyuan.contract.MessageTiContract;
-import com.jiyun.yingyuxinyuan.model.bean.DingTiBean;
-import com.jiyun.yingyuxinyuan.model.biz.DingTiService;
+import com.jiyun.yingyuxinyuan.contract.HomeWorkWoContract;
+import com.jiyun.yingyuxinyuan.contract.PinWoContract;
+import com.jiyun.yingyuxinyuan.model.bean.HomeWorkWoBean;
+import com.jiyun.yingyuxinyuan.model.bean.PingWoBean;
+import com.jiyun.yingyuxinyuan.model.biz.HomeWorkWoService;
+import com.jiyun.yingyuxinyuan.model.biz.PingWoService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
@@ -20,16 +23,17 @@ import io.reactivex.schedulers.Schedulers;
  * Created by asus on 2018/5/10.
  */
 
-public class MessageTiPresenterimp implements MessageTiContract.Presenter {
-    DingTiService dingTiService;
-    MessageTiContract.View view;
+public class HomeWorkWoPresenterimp implements HomeWorkWoContract.Presenter {
+    HomeWorkWoService homeWorkWoService;
+    HomeWorkWoContract.View view;
 
-    public MessageTiPresenterimp() {
-        dingTiService = RetrofitUtils.getInstance().getDingTiService();
+    public HomeWorkWoPresenterimp() {
+        homeWorkWoService = RetrofitUtils.getInstance().getHomeWorkWoService();
     }
 
+
     @Override
-    public void actualView(MessageTiContract.View view) {
+    public void actualView(HomeWorkWoContract.View view) {
         this.view = view;
     }
 
@@ -45,13 +49,13 @@ public class MessageTiPresenterimp implements MessageTiContract.Presenter {
        SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
        Map<String, String> headers = new HashMap<>();
        headers.put("apptoken", token.getString("appToken", ""));
-       dingTiService.getDingTi(map,headers)
+       homeWorkWoService.getHomeWorkWo(map,headers)
                .subscribeOn(Schedulers.newThread())
                .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(new Consumer<DingTiBean>() {
+               .subscribe(new Consumer<HomeWorkWoBean>() {
                    @Override
-                   public void accept(DingTiBean dingTiBean) throws Exception {
-                       view.showData(dingTiBean);
+                   public void accept(HomeWorkWoBean homeWorkWoBean) throws Exception {
+                       view.showData(homeWorkWoBean);
                    }
                });
     }

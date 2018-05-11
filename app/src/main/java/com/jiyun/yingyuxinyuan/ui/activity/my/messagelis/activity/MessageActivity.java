@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.dingdan.activity.DingDanActivity;
+import com.jiyun.yingyuxinyuan.ui.activity.my.guanzhu.activity.GuanZhuActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,14 +70,19 @@ public class MessageActivity extends BaseActivity {
                 startActivity(new Intent(MessageActivity.this, MessageTiActivity.class));
                 break;
             case R.id.message_zan_wo_btn:
+                startActivity(new Intent(MessageActivity.this,ZanWoActivity.class));
                 break;
             case R.id.message_ping_lun_btn:
+                startActivity(new Intent(MessageActivity.this,PingWoActivity.class));
                 break;
             case R.id.message_homework_btn:
+                startActivity(new Intent(MessageActivity.this,HomeWorkWoActivity.class));
                 break;
             case R.id.message_univstar_btn:
+                startActivity(new Intent(MessageActivity.this,UnivstarActivity.class));
                 break;
             case R.id.message_guan_zhu_ti_xing_btn:
+                startActivity(new Intent(MessageActivity.this,GuanZhuMyActivity.class));
                 break;
         }
     }

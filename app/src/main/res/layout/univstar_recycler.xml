@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/ts_10"
+    android:background="#fff">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:drawableLeft="@mipmap/message_time_lable"
+        android:text="111111111"
+        android:id="@+id/message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+    <EditText
+        android:textSize="@dimen/ts_14"
+        android:textColor="#f9595858"
+        android:background="@drawable/editselected"
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+</LinearLayout>

@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 
 import com.jiyun.yingyuxinyuan.app.App;
 import com.jiyun.yingyuxinyuan.contract.MessageTiContract;
+import com.jiyun.yingyuxinyuan.contract.ZanContract;
 import com.jiyun.yingyuxinyuan.model.bean.DingTiBean;
+import com.jiyun.yingyuxinyuan.model.bean.ZanBean;
 import com.jiyun.yingyuxinyuan.model.biz.DingTiService;
+import com.jiyun.yingyuxinyuan.model.biz.ZanService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
@@ -20,16 +23,15 @@ import io.reactivex.schedulers.Schedulers;
  * Created by asus on 2018/5/10.
  */
 
-public class MessageTiPresenterimp implements MessageTiContract.Presenter {
-    DingTiService dingTiService;
-    MessageTiContract.View view;
+public class ZanPresenterimp implements ZanContract.Presenter {
+    ZanService zanService;
+    ZanContract.View view;
 
-    public MessageTiPresenterimp() {
-        dingTiService = RetrofitUtils.getInstance().getDingTiService();
+    public ZanPresenterimp() {
+        zanService = RetrofitUtils.getInstance().getZanService();
     }
-
     @Override
-    public void actualView(MessageTiContract.View view) {
+    public void actualView(ZanContract.View view) {
         this.view = view;
     }
 
@@ -45,13 +47,13 @@ public class MessageTiPresenterimp implements MessageTiContract.Presenter {
        SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
        Map<String, String> headers = new HashMap<>();
        headers.put("apptoken", token.getString("appToken", ""));
-       dingTiService.getDingTi(map,headers)
+       zanService.getZan(map,headers)
                .subscribeOn(Schedulers.newThread())
                .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(new Consumer<DingTiBean>() {
+               .subscribe(new Consumer<ZanBean>() {
                    @Override
-                   public void accept(DingTiBean dingTiBean) throws Exception {
-                       view.showData(dingTiBean);
+                   public void accept(ZanBean zanBean) throws Exception {
+                       view.showData(zanBean);
                    }
                });
     }

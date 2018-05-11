@@ -13,31 +13,31 @@
         android:layout_height="@dimen/ts_44">
 
         <TextView
-            android:id="@+id/ding_list_cancle"
+            android:id="@+id/zan_list_cancle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             style="@style/cancle_bg_style" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="订单提醒"
+            android:text="赞我提醒"
             android:textColor="@color/blue_arlt"
             android:textSize="@dimen/ts_18"
             android:layout_centerInParent="true"
             android:layout_height="wrap_content" />
     </RelativeLayout>
     <LinearLayout
-        android:id="@+id/linear_ding_show"
+        android:id="@+id/zan_ding_show"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
             android:visibility="gone"
-            android:id="@+id/recycler"
+            android:id="@+id/zan_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <LinearLayout
-            android:id="@+id/linear_ding"
+            android:id="@+id/linear_zan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ts_145"
