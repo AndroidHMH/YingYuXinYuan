@@ -23,6 +23,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ *
+ */
 public class StoreActivity extends AppCompatActivity {
 
     @BindView(R.id.store_cancle)
