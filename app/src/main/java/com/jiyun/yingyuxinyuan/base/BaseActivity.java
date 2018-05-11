@@ -44,7 +44,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         loadDate();
     }
 
-    private T getPresenter() {
+    protected T getPresenter() {
 
         Type type = getClass().getGenericSuperclass();
         if (BaseActivity.class.equals(type)) {
@@ -67,7 +67,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("TAG", "------onResume");
         App.context = this;
         presenter = getPresenter();
         if (presenter != null) {
@@ -79,10 +78,14 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void onPause() {
         super.onPause();
         App.context = null;
-        Log.e("TAG", "------onPause==================");
         if (presenter != null) {
             presenter.unActualView();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     /**

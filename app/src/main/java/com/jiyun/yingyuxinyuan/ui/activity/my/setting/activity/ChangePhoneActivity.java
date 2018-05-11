@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.ChangePhoneContract;
 import com.jiyun.yingyuxinyuan.model.bean.ChangePhoneBean;
 import com.jiyun.yingyuxinyuan.model.bean.TimeCount;
@@ -24,8 +25,8 @@ public class ChangePhoneActivity extends BaseActivity<ChangePhonePresenterimp> i
 
     @BindView(R.id.new_phone_cancle)
     TextView newPhoneCancle;
-    @BindView(R.id.new_phone_et)
-    MyEditText newPhoneEt;
+    @BindView(R.id.new_phone_tv)
+    TextView newPhoneEt;
     @BindView(R.id.new_phone_getcode_et)
     MyEditText newPhoneGetcodeEt;
     @BindView(R.id.new_phone_getcode_reset)
@@ -34,6 +35,7 @@ public class ChangePhoneActivity extends BaseActivity<ChangePhonePresenterimp> i
     Button newPhoneLoginbtn;
     private TimeCount timeCount;
     private String phone;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_change_phone;
@@ -46,11 +48,10 @@ public class ChangePhoneActivity extends BaseActivity<ChangePhonePresenterimp> i
 
     @Override
     protected void loadDate() {
-
+        newPhoneEt.setText(LoginShareUtils.getUserMessage(this, LoginShareUtils.MOBILE));
     }
 
-    @OnClick({R.id.new_phone_cancle,R.id.new_phone_et,
-            R.id.new_phone_getcode_et,R.id.new_phone_getcode_reset,R.id.new_phone_loginbtn})
+    @OnClick({R.id.new_phone_cancle, R.id.new_phone_getcode_et, R.id.new_phone_getcode_reset, R.id.new_phone_loginbtn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 //            关闭
@@ -63,13 +64,15 @@ public class ChangePhoneActivity extends BaseActivity<ChangePhonePresenterimp> i
                 break;
 //                下一步
             case R.id.new_phone_loginbtn:
-                presenter.gotoNext(newPhoneEt.getText().toString(),newPhoneGetcodeEt.getText().toString());
+                next();
                 break;
         }
     }
+
     @Override
     public void showNewPhoneYzmMessage(String msg) {
-        Toast.makeText(this, "获取验证码成功", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        newPhoneLoginbtn.setEnabled(true);
     }
 
     @Override
@@ -77,14 +80,15 @@ public class ChangePhoneActivity extends BaseActivity<ChangePhonePresenterimp> i
         timeCount.start();
     }
 
+
     @Override
-    public void gotoNext(ChangePhoneBean changePhoneBean) {
-        startActivity(new Intent(ChangePhoneActivity.this,SettingActivity.class));
-        finish();
+    public void showError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void next() {
-        startActivity(new Intent(this,ChangePhoneNextActivity.class));
+        startActivity(new Intent(this, ChangePhoneNextActivity.class));
+        finish();
     }
 }

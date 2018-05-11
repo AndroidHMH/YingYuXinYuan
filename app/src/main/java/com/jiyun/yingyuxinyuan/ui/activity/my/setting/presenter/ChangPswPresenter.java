@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.jiyun.yingyuxinyuan.app.App;
-import com.jiyun.yingyuxinyuan.contract.ChangePhoneContract;
-import com.jiyun.yingyuxinyuan.model.bean.ChangePhoneBean;
+import com.jiyun.yingyuxinyuan.contract.ChangpswContract;
 import com.jiyun.yingyuxinyuan.model.bean.PhoneResginYzmBean;
-import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
+import com.jiyun.yingyuxinyuan.model.biz.ChangPswService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
@@ -19,29 +18,29 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by ASUS on 2018/05/09.
+ * Created by asus on 2018/5/10.
  */
 
-public class ChangePhonePresenterimp implements ChangePhoneContract.ChangePresenter {
-    ChangePhoneService changePhoneService;
-    ChangePhoneContract.ChangeView changeView;
+public class ChangPswPresenter implements ChangpswContract.Presenter {
+    private ChangpswContract.View view;
+    private ChangPswService changPswService;
 
-    public ChangePhonePresenterimp() {
-        changePhoneService = RetrofitUtils.getInstance().getChangePhoneService();
+    public ChangPswPresenter() {
+        changPswService = RetrofitUtils.getInstance().getChangPswService();
     }
 
     @Override
-    public void actualView(ChangePhoneContract.ChangeView changeView) {
-        this.changeView = changeView;
+    public void actualView(ChangpswContract.View view) {
+        this.view = view;
     }
 
     @Override
     public void unActualView() {
-        this.changeView = null;
+        this.view = null;
     }
 
     @Override
-    public void getChangeYzm(String phone) {
+    public void getYanZheng(String phone) {
         Map<String, String> map = new HashMap<>();
         if (!isPhone(phone)) {
             return;
@@ -51,7 +50,7 @@ public class ChangePhonePresenterimp implements ChangePhoneContract.ChangePresen
         Map<String, String> headers = new HashMap<>();
         headers.put("apptoken", token.getString("appToken", ""));
 
-        changePhoneService.GetPhoneYzm(map, headers)
+        changPswService.GetPhoneYzm(map, headers)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<PhoneResginYzmBean>() {
@@ -59,15 +58,13 @@ public class ChangePhonePresenterimp implements ChangePhoneContract.ChangePresen
                     public void accept(PhoneResginYzmBean phoneResginYzmBean) throws Exception {
                         String message = phoneResginYzmBean.getMessage();
                         if ("验证码已发送".equals(message)) {
-                            changeView.showNewPhoneYzmMessage("获取成功");
-                            changeView.startTime();
+                            view.startTime();
                         } else {
-                            changeView.showError("获取失败");
+                            view.showError("获取失败");
                         }
                     }
                 });
     }
-
 
     @Override
     public boolean isPhone(String phone) {

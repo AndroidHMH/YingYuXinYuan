@@ -8,23 +8,23 @@ import com.jiyun.yingyuxinyuan.model.bean.ChangePhoneBean;
  */
 
 public interface ChangePhoneContract {
-    interface ChangeView{
+    interface ChangeView {
         //获取手机验证码
         void showNewPhoneYzmMessage(String msg);
+
         //倒计时
         void startTime();
 
-        void gotoNext(ChangePhoneBean changePhoneBean);
+        void showError(String msg);
 
         void next();
     }
+
     interface ChangePresenter extends BasePresenter<ChangeView> {
         void getChangeYzm(String phone);
 
-        void gotoNext(String phone, String changezym);
 
         boolean isPhone(String phone);
 
-        boolean isYzm(String changeyzm);
     }
 }

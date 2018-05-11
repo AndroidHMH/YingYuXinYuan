@@ -127,8 +127,7 @@ public class MySettingActivity extends BaseActivity {
 //                                postUserInfo();
                             }
                         })
-                        .create()
-                        .show();
+                        .create().show();
                 break;
 //                更改地址
             case R.id.change_address_my:

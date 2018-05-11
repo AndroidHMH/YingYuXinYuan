@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="chong_center_animation" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/chong_center_popup_jin</item>
+        <item name="android:windowExitAnimation">@anim/chong_center_popup_chu</item>
+    </style>
 
     <style name="login_top_tv">
         <item name="android:layout_centerVertical">true</item>
@@ -54,8 +58,9 @@
         <item name="android:background">@color/login_line_c</item>
 
     </style>
+
     <style name="login_logout_input">
-        <item name="android:layout_centerVertical" >true</item>
+        <item name="android:layout_centerVertical">true</item>
 
         <item name="android:background">@null</item>
 
@@ -73,8 +78,9 @@
         <item name="android:textSize">@dimen/ts_12</item>
         <item name="android:textColor">@color/b3_c</item>
     </style>
+
     <style name="register_getcode_style">
-        <item name="android:layout_centerVertical" >true</item>
+        <item name="android:layout_centerVertical">true</item>
 
         <item name="android:background">@null</item>
 
@@ -85,6 +91,7 @@
         <item name="android:singleLine">true</item>
 
     </style>
+
     <style name="cancle_bg_style">
 
         <item name="android:drawableLeft">@mipmap/register_return</item>

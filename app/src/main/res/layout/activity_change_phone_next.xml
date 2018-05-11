@@ -1,12 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jiyun.yingyuxinyuan.ui.activity.my.setting.activity.ChangePhoneNextActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ts_44"
+        android:layout_marginTop="@dimen/ts_26">
+
+        <TextView
+            android:id="@+id/change_phone_cancle"
+            style="@style/cancle_bg_style"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="更换手机号"
+            android:textColor="@color/blue_arlt"
+            android:textSize="@dimen/ts_16" />
+
+        <TextView
+            style="@style/login_line_style"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ts_1"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+
+    <com.jiyun.yingyuxinyuan.view.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ts_42"
+                    android:text="输入新的手机号"
+                    android:textColor="@color/login_phone_flag_c"
+                    android:textSize="@dimen/ts_18" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ts_56"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+86："
+                        android:textColor="@color/login_phone_flag_c"
+                        android:textSize="@dimen/ts_16" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.jiyun.yingyuxinyuan.view.MyEditText
+                            android:id="@+id/change_phone_ed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/ts_12"
+                            android:hint="请输入手机号"
+                            android:maxLength="11" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/login_line_style"
+                    android:layout_width="@dimen/ts_280"
+                    android:layout_height="@dimen/ts_1"
+                    android:layout_marginTop="@dimen/ts_20" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ts_30"
+                    android:background="@color/white">
+
+                    <com.jiyun.yingyuxinyuan.view.MyEditText
+                        android:id="@+id/change_phone_getcode_et"
+                        style="@style/login_logout_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="输入验证码"
+                        android:maxLength="6"
+                        android:minWidth="@dimen/ts_90" />
+
+                    <Button
+                        android:id="@+id/change_phone_getcode_reset"
+                        style="@style/register_getcode_style"
+                        android:layout_width="105dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="获取验证码"
+                        android:textColor="#5491FF" />
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/login_line_style"
+                    android:layout_width="@dimen/ts_280"
+                    android:layout_height="@dimen/ts_1"
+                    android:layout_marginTop="@dimen/ts_20" />
+
+                <Button
+                    android:id="@+id/change_phone_loginbtn"
+                    android:layout_width="@dimen/ts_280"
+                    android:layout_height="@dimen/ts_48"
+                    android:layout_marginTop="@dimen/ts_68dp"
+                    android:enabled="false"
+                    android:text="确定"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/ts_16" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.jiyun.yingyuxinyuan.view.MyScrollView>
 
 </LinearLayout>
