@@ -18,6 +18,7 @@ import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
 import com.jiyun.yingyuxinyuan.model.biz.ChangePswNextService;
 import com.jiyun.yingyuxinyuan.model.biz.ChongCenterService;
 import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
+import com.jiyun.yingyuxinyuan.model.biz.DianZanService;
 import com.jiyun.yingyuxinyuan.model.biz.DingDanService;
 import com.jiyun.yingyuxinyuan.model.biz.DingTiService;
 import com.jiyun.yingyuxinyuan.model.biz.FenSiService;
@@ -31,12 +32,15 @@ import com.jiyun.yingyuxinyuan.model.biz.JiaoYanService;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
 import com.jiyun.yingyuxinyuan.model.biz.LookClassItemService;
 import com.jiyun.yingyuxinyuan.model.biz.MingShiService;
+import com.jiyun.yingyuxinyuan.model.biz.MySelfService;
 import com.jiyun.yingyuxinyuan.model.biz.PingWoService;
 import com.jiyun.yingyuxinyuan.model.biz.PreviewService;
 import com.jiyun.yingyuxinyuan.model.biz.PswResService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginService;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
+import com.jiyun.yingyuxinyuan.model.biz.ShouChangService;
+import com.jiyun.yingyuxinyuan.model.biz.SingleService;
 import com.jiyun.yingyuxinyuan.model.biz.StoreService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherListItemService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
@@ -214,4 +218,19 @@ public class RetrofitUtils {
     public TieZiService getTieZiService(){return retrofit.create(TieZiService.class);}
     public GuanZhuService getGuanZhuService(){return retrofit.create(GuanZhuService.class);}
     public FenSiService getFenSiService(){return retrofit.create(FenSiService.class);}
+    public DianZanService getDianZanService() {
+        return retrofit.create(DianZanService.class);
+    }
+
+    public ShouChangService getShouChangService() {
+        return retrofit.create(ShouChangService.class);
+    }
+
+    public SingleService getSingleService() {
+        return retrofit.create(SingleService.class);
+    }
+
+    public MySelfService getMySelfService() {
+        return retrofit.create(MySelfService.class);
+    }
 }

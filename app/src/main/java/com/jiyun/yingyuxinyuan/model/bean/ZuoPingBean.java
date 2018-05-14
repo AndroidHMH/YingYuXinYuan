@@ -231,7 +231,7 @@ public class ZuoPingBean {
             this.lastPage = lastPage;
         }
 
-        public static List<?> getList() {
+        public List<?> getList() {
             return list;
         }
 

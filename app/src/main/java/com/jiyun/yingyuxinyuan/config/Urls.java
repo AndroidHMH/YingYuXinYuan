@@ -20,8 +20,6 @@ public class Urls {
     public static final String SHOU_CHANG = "user/favorite";
     //取消收藏
     public static final String QU_XIAO_SHOU_CHANG = "user/favorite/cancel";
-    //关注
-    public static final String GUAN_ZHU = "user/attention";
     //取消关注
     public static final String QU_XIAO_GUAN_ZHU = "user/attention/cancel";
     //点赞
@@ -103,7 +101,9 @@ public class Urls {
 //    我的帖子
     public static final String TIE_ZI_MY = "user/my/artcircle";
 //    我的关注
-    public static final String GUAN_ZHU = "user/my/attention";
+    public static final String GUAN_ZHU = "user/attention";
 //    我的粉丝
     public static final String FEN_SI = "user/my/fans";
+//
+    public static final String GUAN_ZHU_MY = "user/my/attention";
 }
