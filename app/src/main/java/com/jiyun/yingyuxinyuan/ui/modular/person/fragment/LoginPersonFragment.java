@@ -44,7 +44,7 @@ import butterknife.Unbinder;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- *
+ *我的登录之后
  */
 public class LoginPersonFragment extends BaseFragment {
 
