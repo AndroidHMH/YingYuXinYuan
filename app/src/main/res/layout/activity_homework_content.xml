@@ -252,11 +252,11 @@
             android:layout_marginRight="@dimen/ts_16"
             android:gravity="center">
 
-            <TextView
+            <ImageView
                 android:id="@+id/homework_content_dianzan_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/work_detail_praise_normal" />
+                android:src="@mipmap/work_detail_praise_normal" />
 
             <TextView
                 android:id="@+id/homework_content_dianzan_num_tv"

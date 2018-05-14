@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.contract.TreasureItemContract;
 import com.jiyun.yingyuxinyuan.model.bean.TreasureItemBean;
+import com.jiyun.yingyuxinyuan.ui.activity.my.myself.activity.MySelfActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.presenter.HomeworkItemPresenter;
 import com.jiyun.yingyuxinyuan.ui.modular.treasure.adapter.TreasureItemAdapter;
 import com.jiyun.yingyuxinyuan.ui.modular.treasure.presenter.TreasureItemPresenter;
@@ -68,6 +69,15 @@ public class TreasureItemFragment extends Fragment implements TreasureItemContra
 
     private void initViews() {
         treasureItemAdapter = new TreasureItemAdapter(list);
+        treasureItemAdapter.setImgClick(new TreasureItemAdapter.ImgClick() {
+            @Override
+            public void imgClick(int position) {
+                TreasureItemBean.DataBean.ArtcircleListBean.ListBean listBean = list.get(position);
+                Intent intent = new Intent(getContext(), MySelfActivity.class);
+                intent.putExtra(MySelfActivity.STUDENT_ID, listBean.getId() + "");
+                startActivity(intent);
+            }
+        });
         treasureItemAdapter.setMyClick(new TreasureItemAdapter.MyClick() {
             @Override
             public void myClick(View view, int position) {

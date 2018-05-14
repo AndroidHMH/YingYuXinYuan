@@ -162,7 +162,9 @@ public class LoginPersonFragment extends BaseFragment {
                 break;
 //                头像
             case R.id.image_tou:
-                startActivity(new Intent(getActivity(), MySelfActivity.class));
+                Intent intent = new Intent(getActivity(), MySelfActivity.class);
+                intent.putExtra(MySelfActivity.STUDENT_ID, LoginShareUtils.getUserMessage(getContext(), LoginShareUtils.ID));
+                startActivity(intent);
                 break;
 //                网名
             case R.id.my_name:
@@ -189,23 +191,23 @@ public class LoginPersonFragment extends BaseFragment {
                 break;
 //                待付款
             case R.id.fukuan_my:
-                intent.putExtra("show", "0");
-                startActivity(intent);
+                this.intent.putExtra("show", "0");
+                startActivity(this.intent);
                 break;
 //                待使用
             case R.id.shiyong_my:
-                intent.putExtra("show", "1");
-                startActivity(intent);
+                this.intent.putExtra("show", "1");
+                startActivity(this.intent);
                 break;
 //                待退货
             case R.id.tuihuo_my:
-                intent.putExtra("show", "4");
-                startActivity(intent);
+                this.intent.putExtra("show", "4");
+                startActivity(this.intent);
                 break;
 //            我的订单
             case R.id.dingdan_my:
-                intent.putExtra("show", "-1");
-                startActivity(intent);
+                this.intent.putExtra("show", "-1");
+                startActivity(this.intent);
                 break;
 //                充值中心
             case R.id.chongzhi_my:

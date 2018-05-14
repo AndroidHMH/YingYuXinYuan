@@ -9,8 +9,10 @@ import com.jiyun.yingyuxinyuan.base.BasePresenter;
 import com.jiyun.yingyuxinyuan.contract.DetailsSystemAdsContract;
 import com.jiyun.yingyuxinyuan.model.bean.DetailsSystemAdsBean;
 import com.jiyun.yingyuxinyuan.model.bean.DetailsSystemAdsTwoBean;
+import com.jiyun.yingyuxinyuan.model.bean.ShouChangBean;
 import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
+import com.jiyun.yingyuxinyuan.ui.modular.shoucang.ShouChang;
 
 import java.util.HashMap;
 
@@ -25,9 +27,10 @@ import io.reactivex.schedulers.Schedulers;
 public class DetailsSystemAdsPresenter implements DetailsSystemAdsContract.Presenter {
     private DetailsSystemAdsContract.View view;
     private DetailsSystemAdsService detailsSystemAdsService;
-
+    private ShouChang shouChang;
     public DetailsSystemAdsPresenter() {
         detailsSystemAdsService = RetrofitUtils.getInstance().getDetailsSystemAdsService();
+        shouChang = new ShouChang();
     }
 
     @Override
@@ -61,5 +64,35 @@ public class DetailsSystemAdsPresenter implements DetailsSystemAdsContract.Prese
                         }
                     }
                 });
+    }
+
+    @Override
+    public void shouCang( String userId, String type) {
+        shouChang.shouChang(userId, type, new ShouChang.Result() {
+            @Override
+            public void success(ShouChangBean shouChangBean) {
+                view.sucess("收藏成功");
+            }
+
+            @Override
+            public void error(String msg) {
+               view.error("收藏失败");
+            }
+        });
+    }
+
+    @Override
+    public void quXiaoStore(String userId, String type) {
+        shouChang.quXiaoShouChang(userId, type, new ShouChang.Result() {
+            @Override
+            public void success(ShouChangBean shouChangBean) {
+                view.sucess("取消收藏");
+            }
+
+            @Override
+            public void error(String msg) {
+                view.error("取消失败");
+            }
+        });
     }
 }

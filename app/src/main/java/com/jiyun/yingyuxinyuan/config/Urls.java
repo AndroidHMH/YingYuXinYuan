@@ -6,11 +6,28 @@ package com.jiyun.yingyuxinyuan.config;
 
 /**
  * 统一管理  url地址
- *
  */
 public class Urls {
     //基本路径
     public static final String BASE_URL = "https://www.univstar.com/v1/m/";
+    //个人页面
+    public static final String MY_SELF = "user/personal/homepage";
+    //帖子
+    public static final String TIE_ZI = "user/personal/homepage/artcircle";
+    //更新用户信息
+    public static final String CHANGE_MSG = "user/info/edit";
+    //收藏
+    public static final String SHOU_CHANG = "user/favorite";
+    //取消收藏
+    public static final String QU_XIAO_SHOU_CHANG = "user/favorite/cancel";
+    //关注
+    public static final String GUAN_ZHU = "user/attention";
+    //取消关注
+    public static final String QU_XIAO_GUAN_ZHU = "user/attention/cancel";
+    //点赞
+    public static final String DIAN_ZAN = "user/praise";
+    //取消赞
+    public static final String QU_XIAO_ZAN = "user/praise/cancel";
     //名师首页
     public static final String TEACHER_HOME_PAGE = "home/alliance/list";
     //作业首页
@@ -49,36 +66,36 @@ public class Urls {
     public static final String ZUO_YE_TUIJIAN = "homewok/detail";
     //宝典详情页面
     public static final String BAO_DIAN_XIANG_QING = "artcircle/detail";
-//设置手机
-    public static final String SETPHONE="setting/mobile ";
-//登录
-    public static final String LOGIN="user/login/mobile";
-//找回密码
-    public static final String RES_PSW="user/save/password";
+    //设置手机
+    public static final String SETPHONE = "setting/mobile ";
+    //登录
+    public static final String LOGIN = "user/login/mobile";
+    //找回密码
+    public static final String RES_PSW = "user/save/password";
     //获取新用户
     public static final String USER_NEW = "user/info/edit";
     //获取用户信息
     public static final String USER_INFO = "user/info";
     //更改密码
-    public static final String CHANG_PSW = "usertting/password";
+    public static final String CHANG_PSW = "user/setting/password";
     //充值中心
     public static final String CHONG_CENTER = "record/bean/detail";
     //订单提醒
     public static final String DING_TI = "message/order";
-//    关注提醒
+    //    关注提醒
     public static final String GUAN_MY = "message/attention";
-//    作业提醒
+    //    作业提醒
     public static final String HOME_WORK_MY = "message/homewok";
-//    评论我的
+    //    评论我的
     public static final String PIN = "message/comments";
-//    官方
+    //    官方
     public static final String UNIVSTAR = "message/univstar";
-//赞我的
+    //赞我的
     public static final String ZAN = "message/praise";
-//    我的收藏
+    //    我的收藏
     public static final String STORE = "user/my/favorites";
     //教研验证码
-    public static final String YAN_ZHENG = "usererify/authcode";
+    public static final String YAN_ZHENG = "user/verify/authcode";
     //订单详情
     public static final String DING_DAN = "user/my/orders";
 

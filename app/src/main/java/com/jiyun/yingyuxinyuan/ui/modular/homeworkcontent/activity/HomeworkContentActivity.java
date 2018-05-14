@@ -3,6 +3,7 @@ package com.jiyun.yingyuxinyuan.ui.modular.homeworkcontent.activity;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,11 +17,15 @@ import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.config.DateUtils;
 import com.jiyun.yingyuxinyuan.contract.HomeworkContentContract;
+import com.jiyun.yingyuxinyuan.model.bean.HomeworkBean;
 import com.jiyun.yingyuxinyuan.model.bean.HomeworkContentBean;
+import com.jiyun.yingyuxinyuan.ui.modular.dianzan.DianZan;
 import com.jiyun.yingyuxinyuan.ui.modular.homeworkcontent.adapter.DaShangAdapter;
 import com.jiyun.yingyuxinyuan.ui.modular.homeworkcontent.adapter.PingLunAdapter;
 import com.jiyun.yingyuxinyuan.ui.modular.homeworkcontent.presenter.HomeworkContentPresenter;
 import com.makeramen.roundedimageview.RoundedImageView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +62,7 @@ public class HomeworkContentActivity extends BaseActivity<HomeworkContentPresent
     @BindView(R.id.homework_content_input_btn)
     TextView homeworkContentInputBtn;
     @BindView(R.id.homework_content_dianzan_btn)
-    TextView homeworkContentDianzanBtn;
+    ImageView homeworkContentDianzanBtn;
     @BindView(R.id.homework_content_dianzan_num_tv)
     TextView homeworkContentDianzanNumTv;
     @BindView(R.id.homework_content_dianzan_group)
@@ -81,6 +86,10 @@ public class HomeworkContentActivity extends BaseActivity<HomeworkContentPresent
     private DaShangAdapter daShangAdapter;
     private PingLunAdapter pingLunAdapter;
     private String homewokId;
+    private int commentNum;
+    private int isPraise1;
+    private int praiseNum;
+    private int studentId;
 
     @Override
     protected int getLayoutId() {
@@ -125,6 +134,15 @@ public class HomeworkContentActivity extends BaseActivity<HomeworkContentPresent
             case R.id.homework_content_input_btn:
                 break;
             case R.id.homework_content_dianzan_btn:
+                if (0 == isPraise1) {
+                    presenter.zanPingLun(studentId+"", homewokId+"", DianZan.YI_KAO_QUAN_ZUO_PIN);
+                    homeworkContentDianzanBtn.setImageResource(R.mipmap.detail_praisse_active);
+                    isPraise1 = 1;
+                } else {
+                    presenter.quXiaoZan(studentId+"", homewokId+"", DianZan.YI_KAO_QUAN_ZUO_PIN);
+                    homeworkContentDianzanBtn.setImageResource(R.mipmap.detail_praisse_normal);
+                    isPraise1 = 0;
+                }
                 break;
             case R.id.homework_content_ping_lun_btn:
                 break;
@@ -137,7 +155,7 @@ public class HomeworkContentActivity extends BaseActivity<HomeworkContentPresent
     public void showDate(HomeworkContentBean homeworkContentBean) {
         HomeworkContentBean.DataBean data = homeworkContentBean.getData();
         HomeworkContentBean.DataBean.HomewokBean homewok = data.getHomewok();
-
+        studentId = homewok.getStudentId();
         //打上的集合
         rewardUserList.addAll(data.getRewardUserList());
         daShangAdapter.notifyDataSetChanged();
@@ -149,7 +167,16 @@ public class HomeworkContentActivity extends BaseActivity<HomeworkContentPresent
         homeworkContentSourceTv.setText(homewok.getSource());
         homeworkContentTimeTv.setText(DateUtils.getYYYYbyTimeStampMs(homewok.getCreateDate()));
         homeworkContentContentTv.setText(homewok.getContent());
+        commentNum = homewok.getCommentNum();
+        homeworkContentDianzanNumTv.setText(commentNum + "");
         Glide.with(this).load(homewok.getCoverImg()).into(homeworkContentImg);
+
+        isPraise1 = homewok.getIsPraise();
+        if (0 == isPraise1) {
+            homeworkContentDianzanBtn.setImageResource(R.mipmap.detail_praisse_normal);
+        } else {
+            homeworkContentDianzanBtn.setImageResource(R.mipmap.detail_praisse_active);
+        }
     }
 
     @Override
@@ -170,6 +197,19 @@ public class HomeworkContentActivity extends BaseActivity<HomeworkContentPresent
     }
 
     @Override
+    public void success(String msg) {
+        if ("赞了".equals(msg)) {
+            commentNum++;
+            Log.d("HomeworkContentActivity", "commentNum1:" + commentNum);
+            homeworkContentDianzanNumTv.setText((commentNum) + "");
+        } else if ("已取消".equals(msg)) {
+            commentNum--;
+            Log.d("HomeworkContentActivity", "commentNum2:" + commentNum);
+            homeworkContentDianzanNumTv.setText((commentNum) + "");
+        }
+    }
+
+    @Override
     public void showError(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
@@ -182,11 +222,27 @@ public class HomeworkContentActivity extends BaseActivity<HomeworkContentPresent
 
     }
 
+    private int isPraise;
+
     /**
      * 点击赞
      */
     @Override
-    public void zanClick() {
-
+    public void zanClick(int position, int isPraise, TextView praiseCount) {
+        this.isPraise = isPraise;
+        HomeworkContentBean.DataBean.CommentsBean.ListBean listBean = list.get(position);
+        praiseNum = listBean.getPraiseNum();
+        if (0 == isPraise) {
+            presenter.zanPingLun(listBean.getUserId() + "", listBean.getId() + "", DianZan.ZUO_YE_PING_LUN);
+            homeworkContentDianzanBtn.setImageResource(R.mipmap.detail_praisse_active);
+            praiseCount.setText((praiseNum + ""));
+            this.isPraise = 1;
+        } else {
+            presenter.quXiaoZan(listBean.getUserId() + "", listBean.getId() + "", DianZan.ZUO_YE_PING_LUN);
+            homeworkContentDianzanBtn.setImageResource(R.mipmap.detail_praisse_normal);
+            praiseCount.setText((praiseNum) + "");
+            this.isPraise = 0;
+        }
+        pingLunAdapter.notifyDataSetChanged();
     }
 }

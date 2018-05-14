@@ -42,8 +42,8 @@ public class PingLunAdapter extends RecyclerView.Adapter<PingLunAdapter.Holder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position) {
-        HomeworkContentBean.DataBean.CommentsBean.ListBean listBean = list.get(position);
+    public void onBindViewHolder(@NonNull final Holder holder, final int position) {
+        final HomeworkContentBean.DataBean.CommentsBean.ListBean listBean = list.get(position);
         Glide.with(context).load(listBean.getPhoto()).placeholder(R.color.gray_prograss_bg)
                 .error(R.color.gray_prograss_bg).dontAnimate().into(holder.pingLunRecyclerItemIconImg);
         holder.pingLunRecyclerItemNameTv.setText(listBean.getNickname());
@@ -56,10 +56,11 @@ public class PingLunAdapter extends RecyclerView.Adapter<PingLunAdapter.Holder> 
                 secondSend.huiFuClick();
             }
         });
-        holder.pingLunRecyclerItemContentTv.setOnClickListener(new View.OnClickListener() {
+        holder.pingLunRecyclerItemZanCountImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                secondSend.zanClick();
+                int isPraise = listBean.getIsPraise();
+                secondSend.zanClick(position, isPraise,holder.pingLunRecyclerItemZanCountTv);
             }
         });
     }
@@ -73,7 +74,7 @@ public class PingLunAdapter extends RecyclerView.Adapter<PingLunAdapter.Holder> 
     public interface SecondSend {
         void huiFuClick();
 
-        void zanClick();
+        void zanClick(int position, int isPraise,TextView praiseCount);
     }
 
     @Override

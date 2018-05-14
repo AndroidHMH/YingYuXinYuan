@@ -32,12 +32,13 @@ public class TeacherListItemPresenter implements Presenter {
     }
 
     @Override
-    public void loadDate(int userType) {
+    public void loadDate(String loginUserId, int userType) {
         Map<String, String> params = new HashMap<>();
         Map<String, String> headers = new HashMap<>();
         SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
         headers.put("apptoken", token.getString("appToken", ""));
         params.put("userType", userType + "");
+        params.put("loginUserId", loginUserId + "");
         teacherListItemService.loadDate(headers, params)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

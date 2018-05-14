@@ -14,10 +14,12 @@ import android.widget.Toast;
 import com.baoyz.widget.PullRefreshLayout;
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseFragment;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.TeacherContract;
 import com.jiyun.yingyuxinyuan.model.bean.EventBean;
 import com.jiyun.yingyuxinyuan.model.bean.TeacherHomePageBean;
 import com.jiyun.yingyuxinyuan.ui.MainActivity;
+import com.jiyun.yingyuxinyuan.ui.activity.my.myself.activity.MySelfActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.detailssystemads.activity.DetailsSystemAdsActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.detailssystemads.activity.DetailsSystemAdsTwoActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.fragment.HomeworkFragment;
@@ -172,6 +174,15 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
         teacherWorkLinearLayout.setScrollEnabled(false);
         teacherWorkRecycler.setLayoutManager(teacherWorkLinearLayout);
         workRecyclerAdapter = new WorkRecyclerAdapter(homewoks);
+        workRecyclerAdapter.setImgClick(new WorkRecyclerAdapter.ImgClick() {
+            @Override
+            public void imgClick(int position) {
+                TeacherHomePageBean.DataBean.HomewoksBean homewoksBean = homewoks.get(position);
+                Intent intent = new Intent(getContext(), MySelfActivity.class);
+                intent.putExtra(MySelfActivity.STUDENT_ID, homewoksBean.getId()+"");
+                startActivity(intent);
+            }
+        });
         teacherWorkRecycler.setAdapter(workRecyclerAdapter);
         workRecyclerAdapter.setMyClick(new WorkRecyclerAdapter.MyClick() {
             @Override
@@ -186,7 +197,12 @@ public class TeacherFragment extends BaseFragment<TeacherPresenter> implements T
 
     @Override
     protected void loadDate() {
-        presenter.loadHomePageDate(0);
+        String userId = LoginShareUtils.getUserMessage(getContext(), LoginShareUtils.ID);
+        if ("未获取到值".equals(userId)) {
+            presenter.loadHomePageDate(0);
+        } else {
+            presenter.loadHomePageDate(Integer.parseInt(userId));
+        }
     }
 
     @OnClick({R.id.teacher_scroll, R.id.teacher_findTeacher_btn, R.id.teacher_lookClass_btn, R.id.teacher_work_btn, R.id.teacher_chat_btn, R.id.teacher_learn_btn, R.id.teacher_moreTeacher_btn, R.id.teacher_moreClass_btn, R.id.teacher_moreWork_btn})

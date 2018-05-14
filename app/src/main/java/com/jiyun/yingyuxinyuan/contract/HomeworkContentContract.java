@@ -17,10 +17,16 @@ public interface HomeworkContentContract {
 
         void showErrorPingLun();
 
+        void success(String msg);
+
         void showError(String msg);
     }
 
     interface Presenter extends BasePresenter<View> {
         void loadDate(String homewokId);
+
+        void zanPingLun(String userId, String id, String type);
+
+        void quXiaoZan(String userId, String id, String type);
     }
 }

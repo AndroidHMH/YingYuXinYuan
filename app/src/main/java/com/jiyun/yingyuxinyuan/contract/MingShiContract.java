@@ -11,10 +11,20 @@ public interface MingShiContract {
     interface View {
         void showDate(MingShiBean mingShiBean);
 
+        void showSuccess(String msg);
+
         void showError(String msg);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void loadDate(String id);
+        void loadDate(String id, String loginUserId);
+
+        void dianZan(String userId, String id, String type);
+
+        void quXiao(String userId, String id, String type);
+
+        void guanZhu(String attentionId);
+
+        void quXiaoGuan(String attentionId);
     }
 }

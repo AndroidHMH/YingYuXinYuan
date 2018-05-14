@@ -1,66 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/ts_26"
-        android:layout_height="@dimen/ts_44">
+        android:layout_height="@dimen/ts_44"
+        android:layout_marginTop="@dimen/ts_26">
 
         <TextView
             android:id="@+id/single_title_cancle"
+            style="@style/cancle_bg_style"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            style="@style/cancle_bg_style" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/single_title_tv"
             android:layout_width="wrap_content"
-            android:textSize="@dimen/ts_18"
-            android:textColor="@color/blue_arlt"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/blue_arlt"
+            android:textSize="@dimen/ts_18" />
 
 
         <TextView
             android:id="@+id/single_savebtn"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="#FFD235"
-            android:text="保存"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/ts_14"
-            android:padding="@dimen/ts_6"
             android:layout_marginRight="@dimen/ts_12"
+            android:background="#FFD235"
+            android:padding="@dimen/ts_6"
+            android:text="保存"
             android:textColor="@color/white"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/ts_14" />
 
         <TextView
-            android:layout_width="match_parent"
             style="@style/login_line_style"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/ts_1" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ts_1"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:background="#F6F6F6"
-        android:layout_height="@dimen/ts_10" />
+        android:layout_height="@dimen/ts_10"
+        android:background="#F6F6F6" />
 
-    <EditText
+    <com.jiyun.yingyuxinyuan.view.MyEditText
         android:id="@+id/single_input"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/ts_54"
         android:background="@color/white"
-        android:singleLine="true"
         android:paddingLeft="@dimen/ts_12"
-        android:layout_height="@dimen/ts_54" />
+        android:singleLine="true" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="#F6F6F6"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#F6F6F6">
 
 
     </LinearLayout>

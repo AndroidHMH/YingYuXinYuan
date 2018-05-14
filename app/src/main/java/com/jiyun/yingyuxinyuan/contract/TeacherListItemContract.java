@@ -14,6 +14,6 @@ public interface TeacherListItemContract {
     }
 
     interface Presenter {
-        void loadDate(int userType);
+        void loadDate(String loginUserId,int userType);
     }
 }

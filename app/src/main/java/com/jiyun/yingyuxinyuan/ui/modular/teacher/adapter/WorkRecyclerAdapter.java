@@ -54,8 +54,18 @@ public class WorkRecyclerAdapter extends RecyclerView.Adapter<WorkRecyclerAdapte
         return holder;
     }
 
+    public interface ImgClick {
+        void imgClick(int position);
+    }
+
+    private ImgClick imgClick;
+
+    public void setImgClick(ImgClick imgClick) {
+        this.imgClick = imgClick;
+    }
+
     @Override
-    public void onBindViewHolder(@NonNull final Holder holder, int position) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int position) {
         TeacherHomePageBean.DataBean.HomewoksBean homewoksBean = homewoks.get(position);
         Object photo = homewoksBean.getPhoto();
         //加载学生头像
@@ -71,6 +81,12 @@ public class WorkRecyclerAdapter extends RecyclerView.Adapter<WorkRecyclerAdapte
                         }
                     });
         }
+        holder.workRecyclerItemTitleImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgClick.imgClick(position);
+            }
+        });
         holder.workRecyclerItemStudentName.setText(homewoksBean.getNickname());
         holder.workRecyclerItemTime.setText("上传时间");
         holder.workRecyclerItemFrom.setText(homewoksBean.getSource());
@@ -148,6 +164,7 @@ public class WorkRecyclerAdapter extends RecyclerView.Adapter<WorkRecyclerAdapte
         }
         holder.itemView.setTag(position);
     }
+
 
     @Override
     public int getItemCount() {

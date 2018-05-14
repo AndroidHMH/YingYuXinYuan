@@ -18,10 +18,12 @@ import com.jiyun.yingyuxinyuan.model.biz.ChangePhoneService;
 import com.jiyun.yingyuxinyuan.model.biz.ChangePswNextService;
 import com.jiyun.yingyuxinyuan.model.biz.ChongCenterService;
 import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
+import com.jiyun.yingyuxinyuan.model.biz.DianZanService;
 import com.jiyun.yingyuxinyuan.model.biz.DingDanService;
 import com.jiyun.yingyuxinyuan.model.biz.DingTiService;
 import com.jiyun.yingyuxinyuan.model.biz.ForgetService;
 import com.jiyun.yingyuxinyuan.model.biz.GuanMyService;
+import com.jiyun.yingyuxinyuan.model.biz.GuanZhuService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeWorkWoService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkContentService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
@@ -29,12 +31,15 @@ import com.jiyun.yingyuxinyuan.model.biz.JiaoYanService;
 import com.jiyun.yingyuxinyuan.model.biz.LoginService;
 import com.jiyun.yingyuxinyuan.model.biz.LookClassItemService;
 import com.jiyun.yingyuxinyuan.model.biz.MingShiService;
+import com.jiyun.yingyuxinyuan.model.biz.MySelfService;
 import com.jiyun.yingyuxinyuan.model.biz.PingWoService;
 import com.jiyun.yingyuxinyuan.model.biz.PreviewService;
 import com.jiyun.yingyuxinyuan.model.biz.PswResService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginService;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
+import com.jiyun.yingyuxinyuan.model.biz.ShouChangService;
+import com.jiyun.yingyuxinyuan.model.biz.SingleService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherListItemService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureItemContentService;
@@ -180,28 +185,56 @@ public class RetrofitUtils {
     public ChongCenterService getChongCenterService() {
         return retrofit.create(ChongCenterService.class);
     }
+
     public DingDanService getDingDanService() {
         return retrofit.create(DingDanService.class);
     }
+
     public GuanMyService getGuanMyService() {
         return retrofit.create(GuanMyService.class);
     }
+
     public HomeWorkWoService getHomeWorkWoService() {
         return retrofit.create(HomeWorkWoService.class);
     }
+
     public DingTiService getDingTiService() {
         return retrofit.create(DingTiService.class);
     }
+
     public PingWoService getPingService() {
         return retrofit.create(PingWoService.class);
     }
+
     public UnivstarService getUnivstarService() {
         return retrofit.create(UnivstarService.class);
     }
+
     public ZanService getZanService() {
         return retrofit.create(ZanService.class);
     }
+
     public JiaoYanService getJiaoYanService() {
         return retrofit.create(JiaoYanService.class);
+    }
+
+    public DianZanService getDianZanService() {
+        return retrofit.create(DianZanService.class);
+    }
+
+    public GuanZhuService getGuanZhuService() {
+        return retrofit.create(GuanZhuService.class);
+    }
+
+    public ShouChangService getShouChangService() {
+        return retrofit.create(ShouChangService.class);
+    }
+
+    public SingleService getSingleService() {
+        return retrofit.create(SingleService.class);
+    }
+
+    public MySelfService getMySelfService() {
+        return retrofit.create(MySelfService.class);
     }
 }

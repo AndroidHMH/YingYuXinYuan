@@ -198,6 +198,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/details_system_ada_shouCang_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/collect_normal" />
