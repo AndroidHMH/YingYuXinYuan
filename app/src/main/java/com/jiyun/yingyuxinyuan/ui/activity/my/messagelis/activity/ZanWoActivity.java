@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.ZanContract;
 import com.jiyun.yingyuxinyuan.model.bean.ZanBean;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.presente.ZanPresenterimp;
@@ -40,16 +41,15 @@ public class ZanWoActivity extends BaseActivity<ZanPresenterimp> implements ZanC
 
     @Override
     protected void init() {
-        SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-        userId = login.getString("id", null);
-        presenter.showData(userId);
+        userId = LoginShareUtils.getUserMessage(this, LoginShareUtils.ID);
     }
 
     @Override
     protected void loadDate() {
-
+        presenter.loadData(userId);
     }
-    @OnClick({R.id.zan_list_cancle,R.id.zan_ding_show})
+
+    @OnClick({R.id.zan_list_cancle, R.id.zan_ding_show})
     protected void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.zan_list_cancle:
@@ -60,17 +60,19 @@ public class ZanWoActivity extends BaseActivity<ZanPresenterimp> implements ZanC
                 break;
         }
     }
+
     @Override
     public void showData(ZanBean zanBean) {
-        list = zanBean.getData().getList();
-          if (list == null) {
-            linearZan.setVisibility(View.VISIBLE);
-            zanRecycler.setVisibility(View.GONE);
-        } else {
+//        list = zanBean.getData().getList();
         linearZan.setVisibility(View.GONE);
         zanRecycler.setVisibility(View.VISIBLE);
-              Toast.makeText(this, zanBean.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, zanBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void showError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        linearZan.setVisibility(View.VISIBLE);
+        zanRecycler.setVisibility(View.GONE);
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.UnivastarContract;
 import com.jiyun.yingyuxinyuan.model.bean.UnivstarBean;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.adapter.UnivstarAdapter;
@@ -51,16 +52,15 @@ public class UnivstarActivity extends BaseActivity<UnivstarPresenterimp> impleme
           /*  univstarRecycler.setLayoutManager(manager);
             univstarRecycler.setAdapter(univstarAdapter);*/
 
+        userId = LoginShareUtils.getUserMessage(this, LoginShareUtils.ID);
     }
 
     @Override
     protected void loadDate() {
-        SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-        userId = login.getString("id", "");
-        Log.e("用户ID",userId);
-        presenter.showData(userId);
+        presenter.loadDate(userId);
     }
-    @OnClick({R.id.univstar_list_cancle,R.id.univstar_ding_show})
+
+    @OnClick({R.id.univstar_list_cancle, R.id.univstar_ding_show})
     protected void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.univstar_list_cancle:
@@ -68,23 +68,26 @@ public class UnivstarActivity extends BaseActivity<UnivstarPresenterimp> impleme
                 break;
         }
     }
+
     @Override
     public void showData(UnivstarBean univstarBean) {
         list = univstarBean.getData().getList();
-        if (list != null){
-            linearUnivstar.setVisibility(View.GONE);
-            univstarRecycler.setVisibility(View.VISIBLE);
-            Toast.makeText(this, univstarBean.getMessage(), Toast.LENGTH_SHORT).show();
-            univstarAdapter = new UnivstarAdapter(list, UnivstarActivity.this);
-            manager = new LinearLayoutManager(UnivstarActivity.this,LinearLayoutManager.VERTICAL,false);
-            univstarRecycler.setLayoutManager(manager);
-            univstarRecycler.setAdapter(univstarAdapter);
-            univstarAdapter.notifyDataSetChanged();
-        }else {
-           linearUnivstar.setVisibility(View.VISIBLE);
-            univstarRecycler.setVisibility(View.GONE);
-        }
+        linearUnivstar.setVisibility(View.GONE);
+        univstarRecycler.setVisibility(View.VISIBLE);
+        Toast.makeText(this, univstarBean.getMessage(), Toast.LENGTH_SHORT).show();
+        univstarAdapter = new UnivstarAdapter(list, UnivstarActivity.this);
+        manager = new LinearLayoutManager(UnivstarActivity.this, LinearLayoutManager.VERTICAL, false);
+        univstarRecycler.setLayoutManager(manager);
+        univstarRecycler.setAdapter(univstarAdapter);
+        univstarAdapter.notifyDataSetChanged();
         univstarAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void showError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        linearUnivstar.setVisibility(View.VISIBLE);
+        univstarRecycler.setVisibility(View.GONE);
     }
 }

@@ -13,6 +13,7 @@ import com.jiyun.yingyuxinyuan.model.biz.PingWoService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -43,20 +44,30 @@ public class HomeWorkWoPresenterimp implements HomeWorkWoContract.Presenter {
     }
 
     @Override
-    public void showData(String userId) {
-       Map<String, String> map = new HashMap<>();
-       map.put("loginUserId",userId);
-       SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
-       Map<String, String> headers = new HashMap<>();
-       headers.put("apptoken", token.getString("appToken", ""));
-       homeWorkWoService.getHomeWorkWo(map,headers)
-               .subscribeOn(Schedulers.newThread())
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(new Consumer<HomeWorkWoBean>() {
-                   @Override
-                   public void accept(HomeWorkWoBean homeWorkWoBean) throws Exception {
-                       view.showData(homeWorkWoBean);
-                   }
-               });
+    public void loadDate(String userId) {
+        Map<String, String> map = new HashMap<>();
+        map.put("loginUserId", userId);
+        SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        Map<String, String> headers = new HashMap<>();
+        headers.put("apptoken", token.getString("appToken", ""));
+        homeWorkWoService.getHomeWorkWo(map, headers)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<HomeWorkWoBean>() {
+                    @Override
+                    public void accept(HomeWorkWoBean homeWorkWoBean) throws Exception {
+                        String message = homeWorkWoBean.getMessage();
+                        if ("成功".equals(message)) {
+                            List<?> list = homeWorkWoBean.getData().getList();
+                            if (list != null && list.size() != 0) {
+                                view.showData(homeWorkWoBean);
+                            } else {
+                                view.showError("暂无数据");
+                            }
+                        } else {
+                            view.showError("请求失败");
+                        }
+                    }
+                });
     }
 }

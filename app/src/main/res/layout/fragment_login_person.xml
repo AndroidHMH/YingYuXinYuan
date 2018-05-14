@@ -111,6 +111,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/zuo_ping_nums_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -135,6 +136,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tie_zi_nums_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -159,6 +161,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/guan_zhu_nums_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -183,6 +186,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/fen_si_nums_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

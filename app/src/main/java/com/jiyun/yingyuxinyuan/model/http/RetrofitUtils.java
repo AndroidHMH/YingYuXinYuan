@@ -20,8 +20,10 @@ import com.jiyun.yingyuxinyuan.model.biz.ChongCenterService;
 import com.jiyun.yingyuxinyuan.model.biz.DetailsSystemAdsService;
 import com.jiyun.yingyuxinyuan.model.biz.DingDanService;
 import com.jiyun.yingyuxinyuan.model.biz.DingTiService;
+import com.jiyun.yingyuxinyuan.model.biz.FenSiService;
 import com.jiyun.yingyuxinyuan.model.biz.ForgetService;
 import com.jiyun.yingyuxinyuan.model.biz.GuanMyService;
+import com.jiyun.yingyuxinyuan.model.biz.GuanZhuService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeWorkWoService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkContentService;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkService;
@@ -35,12 +37,15 @@ import com.jiyun.yingyuxinyuan.model.biz.PswResService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginAllService;
 import com.jiyun.yingyuxinyuan.model.biz.ResginService;
 import com.jiyun.yingyuxinyuan.model.biz.SetHobbyService;
+import com.jiyun.yingyuxinyuan.model.biz.StoreService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherListItemService;
 import com.jiyun.yingyuxinyuan.model.biz.TeacherService;
+import com.jiyun.yingyuxinyuan.model.biz.TieZiService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureItemContentService;
 import com.jiyun.yingyuxinyuan.model.biz.TreasureService;
 import com.jiyun.yingyuxinyuan.model.biz.UnivstarService;
 import com.jiyun.yingyuxinyuan.model.biz.ZanService;
+import com.jiyun.yingyuxinyuan.model.biz.ZuoPingService;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -204,4 +209,9 @@ public class RetrofitUtils {
     public JiaoYanService getJiaoYanService() {
         return retrofit.create(JiaoYanService.class);
     }
+    public StoreService getStoreService(){ return retrofit.create(StoreService.class); }
+    public ZuoPingService getZuoPingService(){return retrofit.create(ZuoPingService.class);}
+    public TieZiService getTieZiService(){return retrofit.create(TieZiService.class);}
+    public GuanZhuService getGuanZhuService(){return retrofit.create(GuanZhuService.class);}
+    public FenSiService getFenSiService(){return retrofit.create(FenSiService.class);}
 }

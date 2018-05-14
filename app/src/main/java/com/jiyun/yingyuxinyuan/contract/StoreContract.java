@@ -10,8 +10,9 @@ import com.jiyun.yingyuxinyuan.model.bean.StoreBean;
 public interface StoreContract {
     interface View{
         void showData(StoreBean storeBean);
+        void showError();
     }
     interface Presenter extends BasePresenter<StoreContract.View> {
-        void showData(String userId,String type);
+        void showData(int type);
     }
 }

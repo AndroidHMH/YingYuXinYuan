@@ -81,5 +81,12 @@ public class Urls {
     public static final String YAN_ZHENG = "usererify/authcode";
     //订单详情
     public static final String DING_DAN = "user/my/orders";
-
+//    我的作品
+    public static final String ZUO_PING="user/my/homewok";
+//    我的帖子
+    public static final String TIE_ZI_MY = "user/my/artcircle";
+//    我的关注
+    public static final String GUAN_ZHU = "user/my/attention";
+//    我的粉丝
+    public static final String FEN_SI = "user/my/fans";
 }

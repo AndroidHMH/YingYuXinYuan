@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.MessageTiContract;
 import com.jiyun.yingyuxinyuan.model.bean.DingTiBean;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.presente.MessageTiPresenterimp;
@@ -43,18 +44,15 @@ public class MessageTiActivity extends BaseActivity<MessageTiPresenterimp> imple
 
     @Override
     protected void init() {
-        SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-        userId = login.getString("id", null);
-        presenter.showData(userId);
-
+        userId = LoginShareUtils.getUserMessage(this, LoginShareUtils.ID);
     }
 
     @Override
     protected void loadDate() {
-
+        presenter.loadDate(userId);
     }
 
-    @OnClick({R.id.ding_list_cancle,R.id.linear_ding_show})
+    @OnClick({R.id.ding_list_cancle, R.id.linear_ding_show})
     protected void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ding_list_cancle:
@@ -65,16 +63,19 @@ public class MessageTiActivity extends BaseActivity<MessageTiPresenterimp> imple
                 break;
         }
     }
+
     @Override
     public void showData(DingTiBean dingTiBean) {
-        list = dingTiBean.getData().getList();
-        if (list == null) {
-            linearDing.setVisibility(View.VISIBLE);
-            recycler.setVisibility(View.GONE);
-        } else {
-            linearDing.setVisibility(View.GONE);
-            recycler.setVisibility(View.VISIBLE);
-            Toast.makeText(this, dingTiBean.getMessage()+"", Toast.LENGTH_SHORT).show();
-        }
+//        list = dingTiBean.getData().getList();
+        linearDing.setVisibility(View.GONE);
+        recycler.setVisibility(View.VISIBLE);
+        Toast.makeText(this, dingTiBean.getMessage() + "", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        linearDing.setVisibility(View.VISIBLE);
+        recycler.setVisibility(View.GONE);
     }
 }

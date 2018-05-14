@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.HomeWorkWoContract;
 import com.jiyun.yingyuxinyuan.model.bean.HomeWorkWoBean;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.presente.HomeWorkWoPresenterimp;
@@ -40,16 +41,15 @@ public class HomeWorkWoActivity extends BaseActivity<HomeWorkWoPresenterimp> imp
 
     @Override
     protected void init() {
-        SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-        userId = login.getString("id", null);
-
+        userId = LoginShareUtils.getUserMessage(this, LoginShareUtils.ID);
     }
 
     @Override
     protected void loadDate() {
-
+        presenter.loadDate(userId);
     }
-    @OnClick({R.id.homework_wo_list_cancle,R.id.homework_wo_ding_show})
+
+    @OnClick({R.id.homework_wo_list_cancle, R.id.homework_wo_ding_show})
     protected void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.homework_wo_list_cancle:
@@ -60,17 +60,19 @@ public class HomeWorkWoActivity extends BaseActivity<HomeWorkWoPresenterimp> imp
                 break;
         }
     }
+
     @Override
     public void showData(HomeWorkWoBean homeWorkWoBean) {
-        list = homeWorkWoBean.getData().getList();
-        if (list != null) {
-            linearHomeworkWo.setVisibility(View.GONE);
-            homeworkWoRecycler.setVisibility(View.VISIBLE);
-        } else {
-            linearHomeworkWo.setVisibility(View.VISIBLE);
-            homeworkWoRecycler.setVisibility(View.GONE);
-            Toast.makeText(this, homeWorkWoBean.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+//        list = homeWorkWoBean.getData().getList();
+        linearHomeworkWo.setVisibility(View.GONE);
+        homeworkWoRecycler.setVisibility(View.VISIBLE);
+        Toast.makeText(this, homeWorkWoBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void showError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        linearHomeworkWo.setVisibility(View.VISIBLE);
+        homeworkWoRecycler.setVisibility(View.GONE);
     }
 }

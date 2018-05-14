@@ -25,6 +25,7 @@
             android:layout_height="54dp" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/tiezi_linear"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -41,21 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-
-    <com.jiyun.yingyuxinyuan.view.MyScrollView
-        android:visibility="invisible"
-        android:scrollbars="vertical"
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/tiezi_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </com.jiyun.yingyuxinyuan.view.MyScrollView>
+        android:layout_height="match_parent"
+        />
 </LinearLayout>

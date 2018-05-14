@@ -2,7 +2,10 @@ package com.jiyun.yingyuxinyuan.ui.modular.person.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,6 +15,10 @@ import com.bumptech.glide.Glide;
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseFragment;
 import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
+import com.jiyun.yingyuxinyuan.model.bean.FenSiBean;
+import com.jiyun.yingyuxinyuan.model.bean.GuanZhuBean;
+import com.jiyun.yingyuxinyuan.model.bean.TieZiBean;
+import com.jiyun.yingyuxinyuan.model.bean.ZuoPingBean;
 import com.jiyun.yingyuxinyuan.ui.activity.LoginActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.ResginActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.my.chongzhi.activity.ChongCenterActivity;
@@ -30,6 +37,7 @@ import com.jiyun.yingyuxinyuan.ui.activity.my.zuoping.activity.ZuoPingActivity;
 import com.jiyun.yingyuxinyuan.ui.activity.resgin.activity.SetHobbyActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -88,6 +96,17 @@ public class LoginPersonFragment extends BaseFragment {
     Button myselfLogin;
     @BindView(R.id.linear_myself1)
     LinearLayout linearMyself1;
+    @BindView(R.id.zuo_ping_nums_tv)
+    TextView zuoPingNumsTv;
+    @BindView(R.id.tie_zi_nums_tv)
+    TextView tieZiNumsTv;
+    @BindView(R.id.guan_zhu_nums_tv)
+    TextView guanZhuNumsTv;
+    @BindView(R.id.fen_si_nums_tv)
+    TextView fenSiNumsTv;
+    @BindView(R.id.relative)
+    LinearLayout relative;
+    Unbinder unbinder;
     private SharedPreferences login;
     private Intent intent;
 
@@ -162,7 +181,8 @@ public class LoginPersonFragment extends BaseFragment {
                 break;
 //                头像
             case R.id.image_tou:
-                startActivity(new Intent(getActivity(), MySelfActivity.class));
+                Intent intent = new Intent(getActivity(), MySelfActivity.class);
+                startActivity(intent);
                 break;
 //                网名
             case R.id.my_name:
@@ -173,39 +193,43 @@ public class LoginPersonFragment extends BaseFragment {
                 break;
 //                作品
             case R.id.zuoping:
+//                zuoPingNumsTv.setText(ZuoPingBean.DataBean.getList().size());
                 startActivity(new Intent(getActivity(), ZuoPingActivity.class));
                 break;
 //                帖子
             case R.id.tiezi:
+//                tieZiNumsTv.setText(TieZiBean.DataBean.getArtcircleList().getList());
                 startActivity(new Intent(getActivity(), TieZiActivity.class));
                 break;
 //                关注
             case R.id.guanzhu:
+//                guanZhuNumsTv.setText(GuanZhuBean.DataBean.getList().size());
                 startActivity(new Intent(getActivity(), GuanZhuActivity.class));
                 break;
 //                粉丝
             case R.id.fensi:
+//                fenSiNumsTv.setText(FenSiBean.DataBean.getList().size());
                 startActivity(new Intent(getActivity(), FenSiActivity.class));
                 break;
 //                待付款
             case R.id.fukuan_my:
-                intent.putExtra("show", "0");
-                startActivity(intent);
+                this.intent.putExtra("show", "0");
+                startActivity(this.intent);
                 break;
 //                待使用
             case R.id.shiyong_my:
-                intent.putExtra("show", "1");
-                startActivity(intent);
+                this.intent.putExtra("show", "1");
+                startActivity(this.intent);
                 break;
 //                待退货
             case R.id.tuihuo_my:
-                intent.putExtra("show", "4");
-                startActivity(intent);
+                this.intent.putExtra("show", "4");
+                startActivity(this.intent);
                 break;
 //            我的订单
             case R.id.dingdan_my:
-                intent.putExtra("show", "-1");
-                startActivity(intent);
+                this.intent.putExtra("show", "-1");
+                startActivity(this.intent);
                 break;
 //                充值中心
             case R.id.chongzhi_my:
@@ -230,4 +254,17 @@ public class LoginPersonFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

@@ -9,12 +9,14 @@ import com.jiyun.yingyuxinyuan.model.bean.ZanBean;
  */
 
 public interface ZanContract {
-    interface View{
+    interface View {
         void showData(ZanBean zanBean);
+
+        void showError(String msg);
     }
-    interface Presenter extends BasePresenter<View>{
-        void showData(String userId);
-//        void showData()
+
+    interface Presenter extends BasePresenter<View> {
+        void loadData(String userId);
     }
 
 }

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.PinWoContract;
 import com.jiyun.yingyuxinyuan.model.bean.PingWoBean;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.presente.PinWoPresenterimp;
@@ -30,8 +31,8 @@ public class PingWoActivity extends BaseActivity<PinWoPresenterimp> implements P
     LinearLayout linearPing;
     @BindView(R.id.ping_ding_show)
     LinearLayout pingDingShow;
-    private String userId;
     private List<?> list;
+    private String userId;
 
     @Override
     protected int getLayoutId() {
@@ -40,38 +41,40 @@ public class PingWoActivity extends BaseActivity<PinWoPresenterimp> implements P
 
     @Override
     protected void init() {
-        SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-        userId = login.getString("id", "");
-        presenter.showData(userId);
+        userId = LoginShareUtils.getUserMessage(this, LoginShareUtils.ID);
 
     }
 
     @Override
     protected void loadDate() {
-
+        presenter.loadDate(userId);
     }
-    @OnClick({R.id.ping_list_cancle,R.id.ping_ding_show})
+
+    @OnClick({R.id.ping_list_cancle, R.id.ping_ding_show})
     protected void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.zan_list_cancle:
+            case R.id.ping_list_cancle:
                 finish();
                 break;
-            case R.id.zan_ding_show:
+            case R.id.ping_ding_show:
 
                 break;
         }
     }
+
     @Override
     public void showData(PingWoBean pingWoBean) {
-        list = pingWoBean.getData().getList();
-        if (list == null) {
-            linearPing.setVisibility(View.VISIBLE);
-            pingRecycler.setVisibility(View.GONE);
-            Toast.makeText(this, pingWoBean.getMessage(), Toast.LENGTH_SHORT).show();
-        } else {
-            linearPing.setVisibility(View.GONE);
-            pingRecycler.setVisibility(View.VISIBLE);
-        }
+//        list = pingWoBean.getData().getList();
+        Toast.makeText(this, pingWoBean.getMessage(), Toast.LENGTH_SHORT).show();
+        linearPing.setVisibility(View.GONE);
+        pingRecycler.setVisibility(View.VISIBLE);
 
+    }
+
+    @Override
+    public void showError(String msg) {
+        linearPing.setVisibility(View.VISIBLE);
+        pingRecycler.setVisibility(View.GONE);
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

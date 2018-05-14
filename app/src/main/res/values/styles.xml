@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="listui_title_style">
+
+        <item name="android:layout_centerInParent">true</item>
+
+        <item name="android:textSize">@dimen/ts_18</item>
+
+        <item name="android:textColor">@color/blue_arlt</item>
+    </style>
     <style name="chong_center_animation" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/chong_center_popup_jin</item>
         <item name="android:windowExitAnimation">@anim/chong_center_popup_chu</item>

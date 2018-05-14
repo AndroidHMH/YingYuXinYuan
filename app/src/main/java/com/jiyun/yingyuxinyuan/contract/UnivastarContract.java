@@ -8,10 +8,13 @@ import com.jiyun.yingyuxinyuan.model.bean.UnivstarBean;
  */
 
 public interface UnivastarContract {
-    interface View{
+    interface View {
         void showData(UnivstarBean univstarBean);
+
+        void showError(String msh);
     }
-    interface Presenter extends BasePresenter<View>{
-        void showData(String userId);
+
+    interface Presenter extends BasePresenter<View> {
+        void loadDate(String userId);
     }
 }

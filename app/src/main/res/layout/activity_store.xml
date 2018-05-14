@@ -1,147 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/ts_26"
-        android:layout_height="@dimen/ts_44">
+        android:layout_height="@dimen/ts_44"
+        android:layout_marginTop="@dimen/ts_26">
 
         <TextView
-            android:id="@+id/store_cancle"
+            android:id="@+id/store_list_cancle"
+            style="@style/cancle_bg_style"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            style="@style/cancle_bg_style" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="我的收藏"
-            android:textSize="@dimen/ts_18"
-            android:textColor="@color/blue_arlt"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_height="wrap_content" />
+            android:text="我的收藏"
+            android:textColor="@color/blue_arlt"
+            android:textSize="@dimen/ts_18" />
 
-        <TextView
-            android:layout_width="match_parent"
-            style="@style/login_line_style"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/ts_1" />
     </RelativeLayout>
-    <LinearLayout
-        android:visibility="gone"
+
+    <TextView
+        style="@style/login_line_style"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="@dimen/ts_1"
+        android:layout_alignParentBottom="true" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ts_36"
         android:background="#f8f8f8"
-        android:layout_height="@dimen/ts_36">
+        android:orientation="horizontal">
 
         <RelativeLayout
-            android:id="@+id/store_level1"
+            android:id="@+id/store_list_al1"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <TextView
-                android:id="@+id/store_level1_tv"
+                android:id="@+id/store_list_zhi_tv"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="直播课程"
-                android:layout_centerInParent="true"
                 android:textColor="@color/login_close_c"
-                android:textSize="@dimen/ts_14"
-                android:layout_height="wrap_content" />
+                android:textSize="14dp" />
+
             <TextView
-                android:id="@+id/store_level1_line"
+                android:id="@+id/store_list_zhi_line"
                 android:layout_width="@dimen/ts_20"
-                android:background="@drawable/home_work_fragment_sortline_bg"
-                android:visibility="invisible"
-                android:layout_centerHorizontal="true"
+                android:layout_height="@dimen/ts_3"
                 android:layout_alignParentBottom="true"
-                android:layout_height="@dimen/ts_3" />
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/home_work_fragment_sortline_bg"
+                android:visibility="invisible" />
+
+
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/store_level2"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:id="@+id/store_list_ti"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
             <TextView
-                android:id="@+id/store_level2_tv"
+                android:id="@+id/store_list_ti_tv"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="体验课程"
-                android:layout_centerInParent="true"
                 android:textColor="@color/login_close_c"
-                android:textSize="@dimen/ts_14"
-                android:layout_height="wrap_content" />
+                android:textSize="14dp" />
+
             <TextView
-                android:id="@+id/store_level2_line"
+                android:id="@+id/store_list_ti_line"
                 android:layout_width="@dimen/ts_20"
-                android:background="@drawable/home_work_fragment_sortline_bg"
-                android:visibility="invisible"
-                android:layout_centerHorizontal="true"
+                android:layout_height="@dimen/ts_3"
                 android:layout_alignParentBottom="true"
-                android:layout_height="@dimen/ts_3" />
+                android:layout_centerHorizontal="true"
+                android:background="#FFD235"
+                android:visibility="invisible" />
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:id="@+id/store_level3"
+            android:id="@+id/store_list_work"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <TextView
-                android:id="@+id/store_level3_tv"
+                android:id="@+id/store_list_work_tv"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="偷听作业"
-                android:layout_centerInParent="true"
                 android:textColor="@color/login_close_c"
-                android:textSize="@dimen/ts_14"
-                android:layout_height="wrap_content" />
+                android:textSize="14dp" />
+
             <TextView
-                android:id="@+id/store_level3_line"
+                android:id="@+id/store_list_work_line"
                 android:layout_width="@dimen/ts_20"
-                android:background="@drawable/home_work_fragment_sortline_bg"
-                android:visibility="invisible"
-                android:layout_centerHorizontal="true"
+                android:layout_height="@dimen/ts_3"
                 android:layout_alignParentBottom="true"
-                android:layout_height="@dimen/ts_3" />
+                android:layout_centerHorizontal="true"
+                android:background="#FFD235"
+                android:visibility="invisible" />
         </RelativeLayout>
 
+
         <RelativeLayout
-            android:id="@+id/store_level4"
+            android:id="@+id/store_list_tie"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <TextView
-                android:id="@+id/store_level4_tv"
+                android:id="@+id/store_list_tie_tv"
                 android:layout_width="wrap_content"
-                android:text="帖子"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:text="帖子"
                 android:textColor="@color/login_close_c"
-                android:textSize="@dimen/ts_14"
-                android:layout_height="wrap_content" />
+                android:textSize="14dp" />
+
             <TextView
-                android:id="@+id/store_level4_line"
+                android:id="@+id/store_list_tie_line"
                 android:layout_width="@dimen/ts_20"
-                android:background="@drawable/home_work_fragment_sortline_bg"
-                android:visibility="invisible"
-                android:layout_centerHorizontal="true"
+                android:layout_height="@dimen/ts_3"
                 android:layout_alignParentBottom="true"
-                android:layout_height="@dimen/ts_3" />
+                android:layout_centerHorizontal="true"
+                android:background="#FFD235"
+                android:visibility="invisible" />
         </RelativeLayout>
 
     </LinearLayout>
-    <android.support.design.widget.TabLayout
-        android:id="@+id/store_tablayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/store_Viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+    <TextView
+        style="@style/login_line_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ts_1"
+        android:layout_alignParentBottom="true" />
 
+    <RelativeLayout
+        android:id="@+id/store_list_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ts_145"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/empty_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ts_10"
+                android:text="暂无内容"
+                android:textColor="@color/black"
+                android:textSize="@dimen/ts_14" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/store_list_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 </LinearLayout>

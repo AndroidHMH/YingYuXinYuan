@@ -14,6 +14,7 @@ import com.jiyun.yingyuxinyuan.model.biz.ZanService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -43,21 +44,30 @@ public class PinWoPresenterimp implements PinWoContract.Presenter {
     }
 
     @Override
-    public void showData(String userId) {
-       Map<String, String> map = new HashMap<>();
-       map.put("loginUserId",userId);
-       SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
-       Map<String, String> headers = new HashMap<>();
-       headers.put("apptoken", token.getString("appToken", ""));
-        pingWoService.getPing(map,headers)
-               .subscribeOn(Schedulers.newThread())
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(new Consumer<PingWoBean>() {
-                   @Override
-                   public void accept(PingWoBean pingWoBean) throws Exception {
-                       view.showData(pingWoBean);
-                       Log.e("TAG",pingWoBean.getData().getSize()+"");
-                   }
-               });
+    public void loadDate(String userId) {
+        Map<String, String> map = new HashMap<>();
+        map.put("loginUserId", userId);
+        SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        Map<String, String> headers = new HashMap<>();
+        headers.put("apptoken", token.getString("appToken", ""));
+        pingWoService.getPing(map, headers)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<PingWoBean>() {
+                    @Override
+                    public void accept(PingWoBean pingWoBean) throws Exception {
+                        String message = pingWoBean.getMessage();
+                        if ("成功".equals(message)) {
+                            List<?> list = pingWoBean.getData().getList();
+                            if (list != null && list.size() != 0) {
+                                view.showData(pingWoBean);
+                            } else {
+                                view.showError("暂无数据");
+                            }
+                        } else {
+                            view.showError("请求失败");
+                        }
+                    }
+                });
     }
 }

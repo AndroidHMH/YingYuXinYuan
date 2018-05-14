@@ -1,98 +1,129 @@
 package com.jiyun.yingyuxinyuan.ui.activity.my.store.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
-import com.jiyun.yingyuxinyuan.ui.activity.my.store.StoreFragmentAdapter;
-import com.jiyun.yingyuxinyuan.ui.activity.my.store.fragment.StoreListFragment;
-import com.jiyun.yingyuxinyuan.ui.activity.my.store.fragment.TiYanFragment;
-import com.jiyun.yingyuxinyuan.ui.activity.my.store.fragment.TieZiFragment;
-import com.jiyun.yingyuxinyuan.ui.activity.my.store.fragment.WorkFragment;
-import com.jiyun.yingyuxinyuan.ui.activity.my.store.fragment.ZhiBoFragment;
-import com.jiyun.yingyuxinyuan.view.MyTabLayout;
+import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.contract.StoreContract;
+import com.jiyun.yingyuxinyuan.model.bean.StoreBean;
+import com.jiyun.yingyuxinyuan.ui.activity.my.store.adapter.StoreAdapter;
+import com.jiyun.yingyuxinyuan.ui.activity.my.store.presenter.StorePresenterimp;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  *
  */
-public class StoreActivity extends AppCompatActivity {
+public class StoreActivity extends BaseActivity<StorePresenterimp> implements StoreContract.View {
 
-    @BindView(R.id.store_cancle)
-    TextView storeCancle;
-    @BindView(R.id.store_level1_tv)
-    TextView storeLevel1Tv;
-    @BindView(R.id.store_level1_line)
-    TextView storeLevel1Line;
-    @BindView(R.id.store_level1)
-    RelativeLayout storeLevel1;
-    @BindView(R.id.store_level2_tv)
-    TextView storeLevel2Tv;
-    @BindView(R.id.store_level2_line)
-    TextView storeLevel2Line;
-    @BindView(R.id.store_level2)
-    RelativeLayout storeLevel2;
-    @BindView(R.id.store_level3_tv)
-    TextView storeLevel3Tv;
-    @BindView(R.id.store_level3_line)
-    TextView storeLevel3Line;
-    @BindView(R.id.store_level3)
-    RelativeLayout storeLevel3;
-    @BindView(R.id.store_level4_tv)
-    TextView storeLevel4Tv;
-    @BindView(R.id.store_level4_line)
-    TextView storeLevel4Line;
-    @BindView(R.id.store_level4)
-    RelativeLayout storeLevel4;
-    @BindView(R.id.store_tablayout)
-    TabLayout storeTablayout;
-    @BindView(R.id.store_Viewpager)
-    ViewPager storeViewpager;
-    private List<String> title;
-    private List<Fragment> fragment;
-    private StoreFragmentAdapter storeFragmentAdapter;
+    @BindView(R.id.store_list_cancle)
+    TextView storeListCancle;
+    @BindView(R.id.store_list_zhi_tv)
+    TextView storeListZhiTv;
+    @BindView(R.id.store_list_zhi_line)
+    TextView storeListZhiLine;
+    @BindView(R.id.store_list_al1)
+    RelativeLayout storeListAl1;
+    @BindView(R.id.store_list_ti_tv)
+    TextView storeListTiTv;
+    @BindView(R.id.store_list_ti_line)
+    TextView storeListTiLine;
+    @BindView(R.id.store_list_ti)
+    RelativeLayout storeListTi;
+    @BindView(R.id.store_list_work_tv)
+    TextView storeListWorkTv;
+    @BindView(R.id.store_list_work_line)
+    TextView storeListWorkLine;
+    @BindView(R.id.store_list_work)
+    RelativeLayout storeListWork;
+    @BindView(R.id.store_list_tie_tv)
+    TextView storeListTieTv;
+    @BindView(R.id.store_list_tie_line)
+    TextView storeListTieLine;
+    @BindView(R.id.store_list_tie)
+    RelativeLayout storeListTie;
+    @BindView(R.id.store_list_relative)
+    RelativeLayout storeListRelative;
+    @BindView(R.id.store_list_recycler)
+    RecyclerView storeListRecycler;
+    private List<?> list;
+    private int type =1;
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_store;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store);
-        ButterKnife.bind(this);
-        initData();
+    protected void init() {
+        list = new ArrayList<>();
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        storeListRecycler.setLayoutManager(manager);
+        StoreAdapter storeAdapter = new StoreAdapter(list,StoreActivity.this);
+        storeListRecycler.setAdapter(storeAdapter);
     }
 
-    private void initAdapter() {
-        storeFragmentAdapter = new StoreFragmentAdapter(getSupportFragmentManager(), fragment, title);
-        storeTablayout.setupWithViewPager(storeViewpager);
-        storeViewpager.setAdapter(storeFragmentAdapter);
-
+    @Override
+    protected void loadDate() {
+        presenter.showData(type);
     }
-
-    private void initData() {
-        title = new ArrayList<>();
-        fragment = new ArrayList<>();
-        title.add("直播课程");
-        title.add("体验课程");
-        title.add("偷听作业");
-        title.add("帖子");
-       /* fragment.add(new ZhiBoFragment());
-        fragment.add(new TiYanFragment());
-        fragment.add(new WorkFragment());
-        fragment.add(new TieZiFragment());*/
-        for (int i = 0; i < title.size(); i++) {
-            fragment.add(new ZhiBoFragment());
+    @OnClick({R.id.store_list_cancle, R.id.store_list_al1, R.id.store_list_ti, R.id.store_list_work, R.id.store_list_tie})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.store_list_cancle:
+                finish();
+                break;
+            case R.id.store_list_al1:
+                storeListZhiLine.setVisibility(View.VISIBLE);
+                storeListTiLine.setVisibility(View.INVISIBLE);
+                storeListWorkLine.setVisibility(View.INVISIBLE);
+                storeListTieLine.setVisibility(View.INVISIBLE);
+                type = 1;
+                break;
+            case R.id.store_list_ti:
+                storeListZhiLine.setVisibility(View.INVISIBLE);
+                storeListTiLine.setVisibility(View.VISIBLE);
+                storeListWorkLine.setVisibility(View.INVISIBLE);
+                storeListTieLine.setVisibility(View.INVISIBLE);
+                type = 2;
+                break;
+            case R.id.store_list_work:
+                storeListZhiLine.setVisibility(View.INVISIBLE);
+                storeListTiLine.setVisibility(View.INVISIBLE);
+                storeListWorkLine.setVisibility(View.VISIBLE);
+                storeListTieLine.setVisibility(View.INVISIBLE);
+                type = 3;
+                break;
+            case R.id.store_list_tie:
+                storeListZhiLine.setVisibility(View.INVISIBLE);
+                storeListTiLine.setVisibility(View.INVISIBLE);
+                storeListWorkLine.setVisibility(View.INVISIBLE);
+                storeListTieLine.setVisibility(View.VISIBLE);
+                type = 4;
+                break;
         }
-        initAdapter();
-        storeFragmentAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public void showData(StoreBean storeBean) {
+//        store_list_recycler
+//        store_list_relative
+        storeListRecycler.setVisibility(View.VISIBLE);
+        storeListRecycler.setVisibility(View.GONE);
 
+        list = storeBean.getData().getList();
+    }
+    @Override
+    public void showError() {
+        storeListRecycler.setVisibility(View.GONE);
+        storeListRecycler.setVisibility(View.VISIBLE);
     }
 }

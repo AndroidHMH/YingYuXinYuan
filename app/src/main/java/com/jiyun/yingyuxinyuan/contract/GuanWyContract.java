@@ -9,11 +9,14 @@ import com.jiyun.yingyuxinyuan.model.bean.PingWoBean;
  */
 
 public interface GuanWyContract {
-    interface View{
+    interface View {
         void showData(GuanMyBean guanMyBean);
+
+        void showError(String msg);
     }
-    interface Presenter extends BasePresenter<View>{
-        void showData(String userId);
+
+    interface Presenter extends BasePresenter<View> {
+        void loadDate(String userId);
 //        void showData()
     }
 

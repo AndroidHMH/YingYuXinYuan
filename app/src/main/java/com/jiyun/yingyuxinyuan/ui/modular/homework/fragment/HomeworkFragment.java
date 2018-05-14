@@ -1,6 +1,7 @@
 package com.jiyun.yingyuxinyuan.ui.modular.homework.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseFragment;
+import com.jiyun.yingyuxinyuan.ui.modular.homework.activity.FaHomeActivity;
 import com.jiyun.yingyuxinyuan.ui.modular.homework.adapter.HomeworkAdapter;
 import com.jiyun.yingyuxinyuan.view.MyViewPager;
 
@@ -78,8 +80,10 @@ public class HomeworkFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.homework_work_btn:
+
                 break;
             case R.id.homework_submit_btn:
+                startActivity(new Intent(getActivity(),FaHomeActivity.class));
                 break;
         }
     }

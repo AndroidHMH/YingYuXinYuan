@@ -10,6 +10,7 @@ import com.jiyun.yingyuxinyuan.model.biz.DingTiService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -39,20 +40,30 @@ public class MessageTiPresenterimp implements MessageTiContract.Presenter {
     }
 
     @Override
-    public void showData(String userId) {
-       Map<String, String> map = new HashMap<>();
-       map.put("loginUserId",userId);
-       SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
-       Map<String, String> headers = new HashMap<>();
-       headers.put("apptoken", token.getString("appToken", ""));
-       dingTiService.getDingTi(map,headers)
-               .subscribeOn(Schedulers.newThread())
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(new Consumer<DingTiBean>() {
-                   @Override
-                   public void accept(DingTiBean dingTiBean) throws Exception {
-                       view.showData(dingTiBean);
-                   }
-               });
+    public void loadDate(String userId) {
+        Map<String, String> map = new HashMap<>();
+        map.put("loginUserId", userId);
+        SharedPreferences token = App.context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        Map<String, String> headers = new HashMap<>();
+        headers.put("apptoken", token.getString("appToken", ""));
+        dingTiService.getDingTi(map, headers)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<DingTiBean>() {
+                    @Override
+                    public void accept(DingTiBean dingTiBean) throws Exception {
+                        String message = dingTiBean.getMessage();
+                        if ("成功".equals(message)) {
+                            List<?> list = dingTiBean.getData().getList();
+                            if (list != null && list.size() != 0) {
+                                view.showData(dingTiBean);
+                            } else {
+                                view.showError("暂无内容");
+                            }
+                        } else {
+                            view.showError("请求失败");
+                        }
+                    }
+                });
     }
 }

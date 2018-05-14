@@ -9,11 +9,14 @@ import com.jiyun.yingyuxinyuan.model.bean.DingTiBean;
  */
 
 public interface MessageTiContract {
-    interface View{
+    interface View {
         void showData(DingTiBean dingTiBean);
+
+        void showError(String msg);
     }
-    interface Presenter extends BasePresenter<View>{
-        void showData(String userId);
+
+    interface Presenter extends BasePresenter<View> {
+        void loadDate(String userId);
 //        void showData()
     }
 

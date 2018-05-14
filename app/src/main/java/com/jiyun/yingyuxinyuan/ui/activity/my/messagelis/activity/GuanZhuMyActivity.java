@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.GuanWyContract;
 import com.jiyun.yingyuxinyuan.model.bean.GuanMyBean;
 import com.jiyun.yingyuxinyuan.ui.activity.my.messagelis.presente.GuanMyPresenterimp;
@@ -21,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GuanZhuMyActivity extends BaseActivity<GuanMyPresenterimp> implements GuanWyContract.View{
+public class GuanZhuMyActivity extends BaseActivity<GuanMyPresenterimp> implements GuanWyContract.View {
 
     @BindView(R.id.guan_list_cancle)
     TextView guanListCancle;
@@ -41,17 +42,15 @@ public class GuanZhuMyActivity extends BaseActivity<GuanMyPresenterimp> implemen
 
     @Override
     protected void init() {
-        SharedPreferences login = getSharedPreferences("Login", MODE_PRIVATE);
-        userId = login.getString("id", "");
-        Log.e("ID",userId);
-        presenter.showData(userId);
+        userId = LoginShareUtils.getUserMessage(this, LoginShareUtils.ID);
     }
 
     @Override
     protected void loadDate() {
-
+        presenter.loadDate(userId);
     }
-    @OnClick({R.id.guan_list_cancle,R.id.guan_ding_show})
+
+    @OnClick({R.id.guan_list_cancle, R.id.guan_ding_show})
     protected void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.guan_list_cancle:
@@ -62,16 +61,19 @@ public class GuanZhuMyActivity extends BaseActivity<GuanMyPresenterimp> implemen
                 break;
         }
     }
+
     @Override
     public void showData(GuanMyBean guanMyBean) {
-        list = guanMyBean.getData().getList();
-        if (list == null) {
-            linearGuan.setVisibility(View.VISIBLE);
-            guanRecycler.setVisibility(View.GONE);
-        } else {
-            linearGuan.setVisibility(View.GONE);
-            guanRecycler.setVisibility(View.VISIBLE);
-            Toast.makeText(this, guanMyBean.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+//        list = guanMyBean.getData().getList();
+        linearGuan.setVisibility(View.GONE);
+        guanRecycler.setVisibility(View.VISIBLE);
+        Toast.makeText(this, guanMyBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        linearGuan.setVisibility(View.VISIBLE);
+        guanRecycler.setVisibility(View.GONE);
     }
 }

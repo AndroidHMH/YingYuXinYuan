@@ -58,4 +58,9 @@ public class ZhiBoFragment extends BaseFragment  implements StoreContract.View{
     public void showData(StoreBean storeBean) {
 
     }
+
+    @Override
+    public void showError() {
+
+    }
 }
