@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.jiyun.yingyuxinyuan.R;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.contract.TeacherListItemContract;
 import com.jiyun.yingyuxinyuan.model.bean.TeacherListBean;
 import com.jiyun.yingyuxinyuan.ui.modular.teacherlist.adapter.TeacherListItemAdapter;
@@ -60,7 +61,12 @@ public class TeacherListItemFragment extends Fragment implements TeacherListItem
     }
 
     private void loadDate() {
-        presenter.loadDate(userType);
+        String userId = LoginShareUtils.getUserMessage(getContext(), LoginShareUtils.ID);
+        if ("未获取到值".equals(userId)) {
+            presenter.loadDate("", userType);
+        } else {
+            presenter.loadDate(userId, userType);
+        }
     }
 
     private void initView() {

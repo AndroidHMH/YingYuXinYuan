@@ -45,19 +45,38 @@ public class TreasureItemAdapter extends RecyclerView.Adapter<TreasureItemAdapte
         return holder;
     }
 
+    public interface ImgClick {
+        void imgClick(int position);
+    }
+
+    private ImgClick imgClick;
+
+    public void setImgClick(ImgClick imgClick) {
+        this.imgClick = imgClick;
+    }
+
     @Override
-    public void onBindViewHolder(@NonNull final Holder holder, int position) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int position) {
         TreasureItemBean.DataBean.ArtcircleListBean.ListBean listBean = list.get(position);
         //设置头像
-        Glide.with(context).load(listBean.getPhoto()).asBitmap()
-                .placeholder(R.mipmap.user_head_portrait).error(R.mipmap.user_head_portrait)
-                .dontAnimate()
-                .into(new BitmapImageViewTarget(holder.treasureItemRecyclerItemTitleImg) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        holder.treasureItemRecyclerItemTitleImg.setImageBitmap(resource);
-                    }
-                });
+        String photo = listBean.getPhoto();
+        if (photo != null) {
+            Glide.with(context).load(photo).asBitmap()
+                    .placeholder(R.mipmap.user_head_portrait).error(R.mipmap.user_head_portrait)
+                    .dontAnimate()
+                    .into(new BitmapImageViewTarget(holder.treasureItemRecyclerItemTitleImg) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            holder.treasureItemRecyclerItemTitleImg.setImageBitmap(resource);
+                        }
+                    });
+        }
+        holder.treasureItemRecyclerItemTitleImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgClick.imgClick(position);
+            }
+        });
         //设置姓名
         holder.treasureItemRecyclerItemStudentNameTv.setText(listBean.getNickname());
         //设置时间

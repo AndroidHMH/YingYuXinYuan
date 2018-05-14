@@ -16,6 +16,7 @@ import com.jiyun.yingyuxinyuan.config.DateUtils;
 import com.jiyun.yingyuxinyuan.contract.DetailsSystemAdsContract;
 import com.jiyun.yingyuxinyuan.model.bean.DetailsSystemAdsBean;
 import com.jiyun.yingyuxinyuan.ui.modular.detailssystemads.presenter.DetailsSystemAdsPresenter;
+import com.jiyun.yingyuxinyuan.ui.modular.shoucang.ShouChang;
 
 
 import butterknife.BindView;
@@ -46,6 +47,8 @@ public class DetailsSystemAdsActivity extends BaseActivity<DetailsSystemAdsPrese
     WebView detailsSystemAdsWebView;
     @BindView(R.id.details_system_ads_shouCang_btn)
     LinearLayout detailsSystemAdsShouCangBtn;
+    @BindView(R.id.details_system_ada_shouCang_iv)
+    ImageView detailsSystemAdsShouCangIv;
     @BindView(R.id.details_system_ads_zi_xun_btn)
     TextView detailsSystemAdsZiXunBtn;
     @BindView(R.id.details_system_ads_gou_mai_btn)
@@ -54,7 +57,8 @@ public class DetailsSystemAdsActivity extends BaseActivity<DetailsSystemAdsPrese
     TextView detailsSystemAdsAddressTv;
     private String mobileUrl;
     private String urlType;
-
+    private int favorite;
+    private int id150;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_details_system_ads;
@@ -101,6 +105,15 @@ public class DetailsSystemAdsActivity extends BaseActivity<DetailsSystemAdsPrese
             case R.id.details_system_ads_share_btn:
                 break;
             case R.id.details_system_ads_shouCang_btn:
+                if (0 == favorite){
+                    presenter.shouCang(id150+"", ShouChang.ZHI_BO_KE);
+                    detailsSystemAdsShouCangIv.setImageResource(R.mipmap.collect_active);
+                    favorite = 1;
+                }else{
+                    presenter.quXiaoStore(id150+"", ShouChang.ZHI_BO_KE);
+                    detailsSystemAdsShouCangIv.setImageResource(R.mipmap.collect_normal);
+                    favorite = 0;
+                }
                 break;
             case R.id.details_system_ads_zi_xun_btn:
                 break;
@@ -127,10 +140,26 @@ public class DetailsSystemAdsActivity extends BaseActivity<DetailsSystemAdsPrese
 //                return super.shouldOverrideUrlLoading(view, url);
 //            }
 //        });
+        favorite = data.getFavorite();
+        if (0 == favorite){
+            detailsSystemAdsShouCangIv.setImageResource(R.mipmap.collect_normal);
+        }else{
+            detailsSystemAdsShouCangIv.setImageResource(R.mipmap.collect_active);
+        }
     }
 
     @Override
     public void showError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void sucess(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void error(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

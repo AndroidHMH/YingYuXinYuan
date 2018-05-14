@@ -1,91 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jiyun.yingyuxinyuan.ui.activity.my.myself.activity.MySelfActivity">
+
     <LinearLayout
-        android:background="@mipmap/person_info_bg"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:background="@mipmap/person_info_bg"
         android:orientation="vertical">
+
         <ImageView
             android:id="@+id/myself_close"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/detail_back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:src="@mipmap/detail_back" />
 
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
-            <ImageView
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/my_self_img"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/user_head_portrait"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                app:riv_oval="true" />
+
             <LinearLayout
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="3"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
+
                 <TextView
+                    android:id="@+id/my_self_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="hy3098626581"
                     android:textColor="#fff"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:textSize="20sp" />
+
                 <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical">
+
                         <TextView
-                            android:text="0"
+                            android:id="@+id/my_self_guan_zhu_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
+                            android:text="0"
                             android:textColor="#fff"
-                            android:textSize="18sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:textSize="18sp" />
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="关注"
                             android:textColor="#fff"
-                            android:textSize="18sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:textSize="18sp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical">
+
                         <TextView
-                            android:text="0"
+                            android:id="@+id/my_self_fen_si_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
+                            android:text="0"
                             android:textColor="#fff"
-                            android:textSize="18sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:textSize="18sp" />
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="粉丝"
                             android:textColor="#fff"
-                            android:textSize="18sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:textSize="18sp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -95,73 +111,104 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:background="#0059ff"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#0059ff"
+                android:gravity="center"
                 android:text="关注"
                 android:textColor="#fff"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="@dimen/ts_36"
         android:background="#f8f8f8"
-        android:layout_height="@dimen/ts_36">
+        android:orientation="horizontal">
+
         <RelativeLayout
             android:id="@+id/myself_zuoping"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/myself_zuoping_tv"
                 android:layout_width="wrap_content"
-                android:text="作品"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:textSize="20sp"
+                android:text="作品"
                 android:textColor="@color/login_close_c"
-                android:layout_height="wrap_content" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/myslef_zuoping_line"
                 android:layout_width="@dimen/ts_20"
-                android:background="#FFD235"
-                android:visibility="invisible"
-                android:layout_centerHorizontal="true"
+                android:layout_height="@dimen/ts_3"
                 android:layout_alignParentBottom="true"
-                android:layout_height="@dimen/ts_3" />
+                android:layout_centerHorizontal="true"
+                android:background="#FFD235"
+                android:visibility="invisible" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/myself_tiezi"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/myself_tiezi_tv"
                 android:layout_width="wrap_content"
-                android:text="帖子"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:textSize="20dp"
+                android:text="帖子"
                 android:textColor="@color/login_close_c"
-                android:layout_height="wrap_content" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/myself_tiezi_line"
                 android:layout_width="@dimen/ts_20"
-                android:background="#FFD235"
-                android:visibility="invisible"
-                android:layout_centerHorizontal="true"
+                android:layout_height="@dimen/ts_3"
                 android:layout_alignParentBottom="true"
-                android:layout_height="@dimen/ts_3" />
+                android:layout_centerHorizontal="true"
+                android:background="#FFD235"
+                android:visibility="invisible" />
         </RelativeLayout>
 
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_self_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/my_self_error_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/empty_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无数据" />
+        </LinearLayout>
+    </LinearLayout>
+
+
 </LinearLayout>

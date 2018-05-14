@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 
 import com.jiyun.yingyuxinyuan.app.App;
 import com.jiyun.yingyuxinyuan.contract.HomeworkContentContract;
+import com.jiyun.yingyuxinyuan.model.bean.DianZanBean;
 import com.jiyun.yingyuxinyuan.model.bean.HomeworkContentBean;
 import com.jiyun.yingyuxinyuan.model.biz.HomeworkContentService;
 import com.jiyun.yingyuxinyuan.model.http.RetrofitUtils;
+import com.jiyun.yingyuxinyuan.ui.modular.dianzan.DianZan;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,9 +25,11 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeworkContentPresenter implements HomeworkContentContract.Presenter {
     private HomeworkContentContract.View view;
     private HomeworkContentService homeworkContentService;
+    private DianZan dianZan;
 
     public HomeworkContentPresenter() {
         homeworkContentService = RetrofitUtils.getInstance().getHomeworkContentService();
+        dianZan = new DianZan();
     }
 
     @Override
@@ -68,5 +72,35 @@ public class HomeworkContentPresenter implements HomeworkContentContract.Present
                         }
                     }
                 });
+    }
+
+    @Override
+    public void zanPingLun(String userId, String id, String type) {
+        dianZan.sendZan(userId, id, type, new DianZan.Result() {
+            @Override
+            public void success(DianZanBean dianZanBean) {
+                view.success("赞了");
+            }
+
+            @Override
+            public void error(String msg) {
+                view.showError("赞失败");
+            }
+        });
+    }
+
+    @Override
+    public void quXiaoZan(String userId, String id, String type) {
+        dianZan.quXiaoZan(userId, id, type, new DianZan.Result() {
+            @Override
+            public void success(DianZanBean dianZanBean) {
+                view.success("已取消");
+            }
+
+            @Override
+            public void error(String msg) {
+                view.showError("失败");
+            }
+        });
     }
 }

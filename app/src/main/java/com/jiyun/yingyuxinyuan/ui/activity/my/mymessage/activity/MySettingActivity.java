@@ -27,6 +27,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.base.BaseActivity;
 import com.jiyun.yingyuxinyuan.config.GetImagePath;
+import com.jiyun.yingyuxinyuan.config.LoginShareUtils;
 import com.jiyun.yingyuxinyuan.ui.activity.resgin.activity.ResginAllActivity;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -63,6 +64,14 @@ public class MySettingActivity extends BaseActivity {
     public static final int REQUEST_CODE_PICK_IMAGE = 100;
     //权限申请
     public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE2 = 1;
+    //更改昵称的
+    public static final int CHANGE_NAME_REQUEST_CODE = 2;
+    public static final int CHANGE_NAME_RESULT_CODE = 3;
+    //更改地址的
+    public static final int CHANGE_ADDRESS_REQUEST_CODE = 4;
+    public static final int CHANGE_ADDRESS_RESULT_CODE = 5;
+    private Intent intent;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_my_setting;
@@ -70,7 +79,11 @@ public class MySettingActivity extends BaseActivity {
 
     @Override
     protected void init() {
-
+        String userName = LoginShareUtils.getUserMessage(this, LoginShareUtils.NICKNAME);
+        changeNameMy.setText(userName);
+        String userAddress = LoginShareUtils.getUserMessage(this, LoginShareUtils.ADDRESS);
+        changeAddressMy.setText(userAddress);
+        intent = new Intent(MySettingActivity.this, SingleActivity.class);
     }
 
     @Override
@@ -78,9 +91,9 @@ public class MySettingActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.setting_close,R.id.touxiang_my,
-            R.id.change_name_my,R.id.name_my,R.id.sex_my,
-            R.id.change_address_my,R.id.address_my,R.id.change_birthday_my,R.id.birthday_my
+    @OnClick({R.id.setting_close, R.id.touxiang_my,
+            R.id.change_name_my, R.id.name_my, R.id.sex_my,
+            R.id.change_address_my, R.id.address_my, R.id.change_birthday_my, R.id.birthday_my
     })
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -105,15 +118,13 @@ public class MySettingActivity extends BaseActivity {
                     gotoPhoto();
                 }
                 break;
-//                更改昵称
-            case R.id.change_name_my:
-                break;
+            // 更改昵称
             case R.id.name_my:
-                Intent intent = new Intent(MySettingActivity.this, SingleActivity.class);
-                intent.putExtra("Name",changeNameMy.getText().toString());
-                startActivityForResult(intent,1);
+                intent.putExtra("Name", changeNameMy.getText().toString());
+                intent.putExtra("type", "name");
+                startActivityForResult(intent, CHANGE_NAME_REQUEST_CODE);
                 break;
-//              更改性别
+            // 更改性别
             case R.id.sex_my:
                 final String[] items = new String[]{"男", "女"};
                 new AlertDialog.Builder(this)
@@ -133,9 +144,9 @@ public class MySettingActivity extends BaseActivity {
             case R.id.change_address_my:
                 break;
             case R.id.address_my:
-                Intent intent1 = new Intent(MySettingActivity.this, SingleActivity.class);
-                intent1.putExtra("Address",changeAddressMy.getText().toString());
-                startActivityForResult(intent1,2);
+                intent.putExtra("Address", changeAddressMy.getText().toString());
+                intent.putExtra("type", "address");
+                startActivityForResult(intent, CHANGE_ADDRESS_REQUEST_CODE);
                 break;
 //                更改生日
             case R.id.birthday_my:
@@ -146,7 +157,7 @@ public class MySettingActivity extends BaseActivity {
                         int year = datePicker.getYear();//年
                         int month = datePicker.getMonth();//月-1
                         int dayOfMonth1 = datePicker.getDayOfMonth();//日*
-                        changeBirthdayMy.setText(iyear +":"+ (monthOfYear+1)+":"+dayOfMonth);
+                        changeBirthdayMy.setText(iyear + ":" + (monthOfYear + 1) + ":" + dayOfMonth);
                     }
                 }, 1990, 1, 1);//2013:初始年份，2：初始月份-1 ，1：初始日期
                 dp.show();
@@ -154,14 +165,15 @@ public class MySettingActivity extends BaseActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public void onActivityResult(int req, int res, Intent data) {
-        switch (req) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
             /**
              * 从相册中选取图片的请求标志
              */
             case REQUEST_CODE_PICK_IMAGE:
-                if (res == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     String path = GetImagePath.getPath(this, data.getData());
                     Glide.with(this).load(path).asBitmap()
                             .override(85, 85).into(new BitmapImageViewTarget(changeImageMy) {
@@ -178,11 +190,21 @@ public class MySettingActivity extends BaseActivity {
                     showRhoneSettingMessage("失败");
                 }
                 break;
-
-            default:
+            case CHANGE_NAME_REQUEST_CODE:
+                if (resultCode == CHANGE_NAME_RESULT_CODE) {
+                    String name = data.getStringExtra("name");
+                    changeNameMy.setText(name);
+                }
+                break;
+            case CHANGE_ADDRESS_REQUEST_CODE:
+                if (resultCode == CHANGE_ADDRESS_RESULT_CODE) {
+                    String name = data.getStringExtra("address");
+                    changeAddressMy.setText(name);
+                }
                 break;
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == MY_PERMISSIONS_REQUEST_CALL_PHONE2) {
@@ -195,9 +217,11 @@ public class MySettingActivity extends BaseActivity {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
     public void showRhoneSettingMessage(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+
     private void gotoPhoto() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");//相片类型

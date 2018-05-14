@@ -18,6 +18,7 @@ public class LoginShareUtils {
     public static final String SEX = "sex";
     public static final String BIRTHDAY = "birthday";
     public static final String PHOTO = "photo";
+    public static final String ADDRESS = "address";
 
     /**
      * 登录成功返回的用户数据
@@ -35,6 +36,12 @@ public class LoginShareUtils {
         edit.putString("sex", dataBean.getSex() + "");
         edit.putString("birthday", dataBean.getBirthday() + "");
         edit.putString("mobile", dataBean.getMobile());
+        Object address = dataBean.getAddress();
+        if (address == null) {
+            edit.putString("address", "");
+        } else {
+            edit.putString("address", (String) address);
+        }
         edit.commit();
     }
 

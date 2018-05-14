@@ -8,12 +8,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jiyun.yingyuxinyuan.R;
+import com.jiyun.yingyuxinyuan.base.BaseActivity;
+import com.jiyun.yingyuxinyuan.contract.SingleContract;
+import com.jiyun.yingyuxinyuan.ui.activity.my.mymessage.presenter.SinglePresenter;
+import com.jiyun.yingyuxinyuan.view.MyEditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SingleActivity extends AppCompatActivity {
+public class SingleActivity extends BaseActivity<SinglePresenter> implements SingleContract.View {
 
     @BindView(R.id.single_title_cancle)
     TextView singleTitleCancle;
@@ -22,51 +26,64 @@ public class SingleActivity extends AppCompatActivity {
     @BindView(R.id.single_savebtn)
     TextView singleSavebtn;
     @BindView(R.id.single_input)
-    EditText singleInput;
-    public static final int NAME = 0;
-    public static final int TITLE = 1;
-    public static final int DETAIL = 2;
-    public static final int CITY = 3;
-    private int type;
-    private String singleinput;
+    MyEditText singleInput;
     private String name;
     private String address;
+    private String type;
+    private String message;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single);
-        ButterKnife.bind(this);
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_single;
     }
 
-    private void initView() {
+    @Override
+    protected void init() {
         Intent intent = getIntent();
-        name = intent.getStringExtra("Name");
-        address = intent.getStringExtra("Address");
+        type = intent.getStringExtra("type");
+        if ("name".equals(type)) {
+            name = intent.getStringExtra("Name");
+            singleInput.setText(name);
+            singleTitleTv.setText("编辑昵称");
+        } else {
+            address = intent.getStringExtra("Address");
+            singleInput.setText(address);
+            singleTitleTv.setText("编辑详细地址");
+        }
     }
 
-    @OnClick({R.id.single_title_cancle,R.id.single_title_tv,R.id.single_input,R.id.single_savebtn})
+    @Override
+    protected void loadDate() {
+
+    }
+
+    @OnClick({R.id.single_title_cancle, R.id.single_title_tv, R.id.single_input, R.id.single_savebtn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.single_title_cancle:
-                break;
-            case R.id.single_title_tv:
-                if (type == NAME){
-                    singleTitleTv.setText("编辑昵称");
-                }else if (type == TITLE){
-                    singleTitleTv.setText("");
-                }else if (type == CITY){
-                    singleTitleTv.setText("编辑详细地址");
-                }
-                break;
-            case R.id.single_input:
-
+                finish();
                 break;
             case R.id.single_savebtn:
-                singleinput = singleInput.getText().toString();
-
+                message = this.singleInput.getText().toString();
+                if ("name".equals(type)) {
+                    presenter.sendChangeMsg(SinglePresenter.NICKNAME,message);
+                } else {
+                    presenter.sendChangeMsg(SinglePresenter.ADDRESS,message);
+                }
                 break;
         }
+    }
+
+    @Override
+    public void returnActivity() {
+        Intent intent = new Intent();
+        if ("name".equals(type)) {
+            intent.putExtra("name", message);
+            setResult(MySettingActivity.CHANGE_NAME_RESULT_CODE);
+        } else {
+            intent.putExtra("address", message);
+            setResult(MySettingActivity.CHANGE_ADDRESS_RESULT_CODE);
+        }
+        finish();
     }
 }

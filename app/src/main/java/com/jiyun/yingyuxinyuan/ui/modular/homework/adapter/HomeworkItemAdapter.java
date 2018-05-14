@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.jiyun.yingyuxinyuan.R;
 import com.jiyun.yingyuxinyuan.model.bean.HomeworkBean;
-import com.jiyun.yingyuxinyuan.model.bean.TeacherHomePageBean;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
@@ -50,8 +49,18 @@ public class HomeworkItemAdapter extends RecyclerView.Adapter<HomeworkItemAdapte
         return holder;
     }
 
+    public interface ImgClick {
+        void imgClick(int position);
+    }
+
+    private ImgClick imgClick;
+
+    public void setImgClick(ImgClick imgClick) {
+        this.imgClick = imgClick;
+    }
+
     @Override
-    public void onBindViewHolder(@NonNull final Holder holder, int position) {
+    public void onBindViewHolder(@NonNull final Holder holder, final int position) {
         HomeworkBean.DataBean.ListBean homewoksBean = homewoks.get(position);
         Object photo = homewoksBean.getPhoto();
         //加载学生头像
@@ -67,6 +76,12 @@ public class HomeworkItemAdapter extends RecyclerView.Adapter<HomeworkItemAdapte
                         }
                     });
         }
+        holder.workRecyclerItemTitleImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgClick.imgClick(position);
+            }
+        });
         holder.workRecyclerItemStudentName.setText(homewoksBean.getNickname());
         holder.workRecyclerItemTime.setText("上传时间");
         holder.workRecyclerItemFrom.setText(homewoksBean.getSource());
