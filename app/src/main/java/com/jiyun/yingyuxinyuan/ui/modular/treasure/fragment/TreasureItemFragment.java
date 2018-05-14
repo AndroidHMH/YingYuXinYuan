@@ -29,6 +29,7 @@ import butterknife.Unbinder;
 
 /**
  * 宝典页面的子页面
+ *
  */
 public class TreasureItemFragment extends Fragment implements TreasureItemContract.View {
 
